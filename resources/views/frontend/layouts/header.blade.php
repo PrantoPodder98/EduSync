@@ -1,8 +1,12 @@
-  <header class="flex justify-between items-center px-16 py-6 bg-white shadow">
-
-      <div class="text-2xl font-bold text-indigo-600">EduSync</div>
+  <header class="flex justify-between items-center px-16 py-6 bg-white shadow border-b">
+      <a href="{{ route('dashboard') }}">
+          <div class="flex items-center space-x-4">
+              <img src="{{ asset('asset/frontend_asset') }}/images/edusync-logo.png" alt="EduSync Logo" class="h-6" />
+              <span class="text-2xl font-bold text-indigo-600">EduSync</span>
+          </div>
+      </a>
       <nav class="space-x-8">
-          <a href="#" class="text-gray-700 hover:text-indigo-600">Marketplace</a>
+          <a href="{{ route('lost-found') }}" class="text-gray-700 hover:text-indigo-600">Lost & Found</a>
           <a href="#" class="text-gray-700 hover:text-indigo-600">Housing</a>
           <a href="#" class="text-gray-700 hover:text-indigo-600">Tutoring</a>
           <a href="#" class="text-gray-700 hover:text-indigo-600">Jobs</a>
@@ -28,5 +32,4 @@
               </ul>
           </div>
       </div>
-
   </header>
