@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduSync - Campus Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e6f4ff;
+      color: #333;
+    }
+
+    /* Top Nav */
+    .topbar {
+      background: linear-gradient(to right, #3b82f6, #60a5fa);
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo::before {
+      content: "🎓";
+      font-size: 26px;
+      margin-right: 8px;
+    }
+
+    .tagline {
+      font-size: 15px;
+    }
+
+    /* Hero */
+    .hero {
+      background-color: #f0f8ff;
+      padding: 60px 20px 30px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      color: #1e3a8a;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+
+    .hero-icons {
+      margin-top: 20px;
+      font-size: 28px;
+    }
+
+    .container {
+      max-width: 550px;
+      margin: 30px auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      padding: 20px;
+    }
+
+    .service {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #4f8cd6;
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 15px;
+      color: white;
+      transition: 0.2s ease-in-out;
+    }
+
+    .service:hover {
+      transform: translateY(-3px);
+    }
+
+    .service img {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      margin-right: 15px;
+    }
+
+    .service-content {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .service-title {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .explore-btn {
+      background-color: #003366;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .explore-btn:hover {
+      background-color: #002952;
+    }
+
+    footer {
+      background-color: #3b82f6;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    footer h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      font-size: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    footer .footer-icons {
+      margin-top: 20px;
+      font-size: 22px;
+    }
+
+    @media (max-width: 600px) {
+      .service-title {
+        font-size: 14px;
+      }
+      .explore-btn {
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <div class="topbar">
+    <div class="logo">EduSync</div>
+    <div class="tagline">Campus Hub - Explore Student Services</div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Empowering Learning Beyond the Classroom</h1>
+    <p>From academic support to real-world opportunities, EduSync helps you thrive in every step of your student journey.</p>
+    <div class="hero-icons">📚 🧠 ✏️ 🏫 🎓</div>
+  </div>
+
+  <!-- Service List -->
+  <div class="container">
+    <div class="service"><div class="service-content"><img src="./images/Marketplace for Small Businesses & Startups.jpg"/><div class="service-title">Marketplace for Small Businesses & Startups</div></div><button class="explore-btn">Explore</button></div>
+    <div class="service"><div class="service-content"><img src="./images/Second-Hand Product Sell & Exchange.jpg"/><div class="service-title">Second-Hand Product Sell & Exchange</div></div><button class="explore-btn">Explore</button></div>
+    <div class="service"><div class="service-content"><img src="./images/Rental Services.jpg"/><div class="service-title">Rental Services</div></div><button class="explore-btn">Explore</button></div>
+    <div class="service"><div class="service-content"><img src="./images/Tutoring & Mentorship Program.jpg"/><div class="service-title">Tutoring & Mentorship Program</div></div><button class="explore-btn">Explore</button></div>
+    <div class="service"><div class="service-content"><img src="./images/Rental Notice Board for Accommodation.jpg"/><div class="service-title">Rental Notice Board for Accommodation</div></div><button class="explore-btn">Explore</button></div>
+    
+    <div class="service"><div class="service-content"><img src="./images/Dedicated Food Marketplaces.jpg"/><div class="service-title">Dedicated Food Marketplaces</div></div><button class="explore-btn">Explore</button></div>
+    
+    
+    <div class="service"><div class="service-content"><img src="./images/Lost & Found Section.jpg"/><div class="service-title">Lost & Found Section</div></div><button class="explore-btn">Explore</button></div>
+    <div class="service"><div class="service-content"><img src="./images/Notice Board for Institute-Wide Announcements.jpg"/><div class="service-title">Notice Board for Institute-Wide Announcements</div></div><button class="explore-btn">Explore</button></div>
+  </div>
+
+  <!-- Bottom Footer -->
+  <footer>
+    <h2>🌐 EduSync Student Portal</h2>
+    <p>Connecting knowledge, community, and opportunity — one campus at a time.</p>
+    <div class="footer-icons">🌍 🕊️ 📘 📸</div>
+  </footer>
+
+</body>
+</html>

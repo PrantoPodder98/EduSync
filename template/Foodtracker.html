@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Track Order - EduSync</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- Topbar -->
+  <div class="bg-[#0B0C3F] text-white text-sm py-2 px-8 flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+      <span>Follow us:</span>
+      <img src="./images/facebook.png" class="h-4" />
+        <img src="./images/twitter.png" class="h-4" />
+        <img src="./images/linkedin.png" class="h-4" />
+        <img src="./images/instagram.png" class="h-4" />
+    </div>
+    <div class="flex items-center space-x-4">
+      <span>Eng</span>
+      <span>•</span>
+      <span>USD ▾</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-8 py-6 border-b">
+    <img src="./images/edusync-logo.png" alt="EduSync Logo" class="h-8">
+    <nav class="space-x-6 text-sm">
+      <a href="#" class="hover:underline">About</a>
+      <a href="#" class="hover:underline">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="text-center mt-20 px-8">
+    <h1 class="text-blue-600 text-xl font-semibold mb-2">Marketplace For Small Businesses & Startups</h1>
+
+    <div class="mt-10 max-w-xl mx-auto bg-white border p-8 rounded-lg shadow">
+      <h2 class="text-2xl font-bold mb-4">Track Order</h2>
+      <p class="text-gray-600 mb-6 text-sm">
+        To track your order please enter your order ID in the input field below and press the "Track Order" button. This was given to you on your receipt and in the confirmation email you should have received.
+      </p>
+
+      <form class="grid grid-cols-2 gap-4 text-left mb-4">
+        <div>
+          <label for="orderId" class="block text-sm font-medium mb-1">Order ID</label>
+          <input id="orderId" type="text" class="w-full border px-4 py-2 rounded text-sm" placeholder="ID..." />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium mb-1">Billing Email</label>
+          <input id="email" type="email" class="w-full border px-4 py-2 rounded text-sm" placeholder="Email address" />
+        </div>
+      </form>
+
+      <p class="text-xs text-gray-500 mb-4">Order ID that was sent to your in your email address.</p>
+      <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 text-sm rounded flex items-center justify-center mx-auto">
+        TRACK ORDER
+        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 mt-20 px-8 py-12 text-sm text-gray-700">
+    <div class="grid grid-cols-4 gap-8">
+      <div>
+        <h3 class="font-bold text-base mb-2">EduSync</h3>
+        <p class="text-xs leading-relaxed">Making campus life easier and more connected for students everywhere.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Features</h4>
+        <ul class="space-y-1 text-xs">
+          <li><a href="#">Marketplace</a></li>
+          <li><a href="#">Housing</a></li>
+          <li><a href="#">Tutoring</a></li>
+          <li><a href="#">Jobs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Support</h4>
+        <ul class="space-y-1 text-xs">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Safety Center</a></li>
+          <li><a href="#">Community Guidelines</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Connect</h4>
+        <div class="flex space-x-3">
+          <img src="./images/instagram.png" class="w-5 h-5" />
+          <img src="./images/twitter.png" class="w-5 h-5" />
+          <img src="./images/facebook.png" class="w-5 h-5" />
+          <img src="./images/linkedin.png" class="w-5 h-5" />
+        </div>
+      </div>
+    </div>
+    <div class="mt-10 text-center text-xs text-gray-400">© 2025 EduSync. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>

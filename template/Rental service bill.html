@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - EduSync</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #2d3edb;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+    nav {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    }
+    nav h1 {
+      font-size: 20px;
+      color: #2d3edb;
+    }
+    nav a {
+      margin-left: 20px;
+      color: #333;
+      text-decoration: none;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 30px auto;
+      gap: 2rem;
+    }
+    .form-section {
+      flex: 2;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+    .summary-section {
+      flex: 1;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+    h2 {
+      color: #2d3edb;
+      font-size: 20px;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .row { display: flex; gap: 1rem; }
+    .row > div { flex: 1; }
+    .checkbox { margin-top: 10px; }
+    .payment-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 15px 0 20px;
+    }
+    .payment-options label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .payment-options label:hover {
+      border-color: #2d3edb;
+      background: #f0f4ff;
+    }
+    .payment-options img {
+      width: 40px;
+      height: auto;
+      margin-bottom: 5px;
+    }
+    .payment-options input {
+      margin-top: 5px;
+    }
+    .card-inputs input {
+      width: calc(100% - 20px);
+    }
+    .summary-product {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .summary-product img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+    }
+    .total {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    .btn {
+      background-color: #2d3edb;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    footer {
+      background: #111;
+      color: white;
+      padding: 2rem;
+      margin-top: 40px;
+    }
+    footer .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    footer h4 { margin-bottom: 10px; }
+    footer ul { list-style: none; padding: 0; }
+    footer ul li {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    footer .social-icons a {
+      color: white;
+      margin-right: 10px;
+      font-size: 18px;
+      text-decoration: none;
+    }
+    footer p {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>Follow us: 🔵 🟣 🔴 🟠</div>
+  <div>Eng | USD</div>
+</header>
+
+<nav>
+  <h1>EduSync</h1>
+  <div>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="form-section">
+    <h2> Rental Service Billing Information </h2>
+
+    <div class="row">
+      <div><label>Username</label><input type="text" placeholder="First name"></div>
+      <div><label>&nbsp;</label><input type="text" placeholder="Last name"></div>
+      <div><label>Company Name <small>(Optional)</small></label><input type="text" placeholder="Company Name"></div>
+    </div>
+
+    <label>Address</label>
+    <input type="text" placeholder="Street address">
+
+    <div class="row">
+      <div><label>Country</label><select><option>Select...</option></select></div>
+      <div><label>Region/State</label><select><option>Select...</option></select></div>
+      <div><label>City</label><input type="text"></div>
+      <div><label>Zip Code</label><input type="text"></div>
+    </div>
+
+    <div class="row">
+      <div><label>Email</label><input type="email"></div>
+      <div><label>Phone Number</label><input type="tel"></div>
+    </div>
+
+    <div class="checkbox">
+      <input type="checkbox" id="ship-diff"> 
+      <label for="ship-diff">Ship to different address</label>
+    </div>
+
+    <h2>Payment Option</h2>
+    <div class="payment-options">
+      <label>
+        <img src="./images/cash on delivery.jpeg" alt="Cash">
+        <input type="radio" name="pay">Cash
+      </label>
+      <label>
+        <img src="./images/venmo.png" alt="Venmo">
+        <input type="radio" name="pay">Venmo
+      </label>
+      <label>
+        <img src="./images/paypal.jpeg" alt="Paypal">
+        <input type="radio" name="pay">Paypal
+      </label>
+      <label>
+        <img src="./images/amazon pay.png" alt="Amazon Pay">
+        <input type="radio" name="pay">Amazon
+      </label>
+      <label>
+        <img src="./images/credit card.png" alt="Card">
+        <input type="radio" name="pay">Card
+      </label>
+    </div>
+
+    <div class="row card-inputs">
+      <div><label>Name on Card</label><input type="text"></div>
+      <div><label>Card Number</label><input type="text"></div>
+    </div>
+
+    <div class="row card-inputs">
+      <div><label>Expire Date</label><input type="text" placeholder="MM/YY"></div>
+      <div><label>CVC</label><input type="text"></div>
+    </div>
+
+    <h2>Additional Information</h2>
+    <label>Order Notes (optional)</label>
+    <textarea rows="3" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+  </div>
+
+  <div class="summary-section">
+    <h3>Order Summary</h3>
+
+    <div class="summary-product">
+      <img src="./images/cabinet .jpeg" alt="Cabinet">
+      <div>
+        <div>Cabinet</div>
+        <small></small>
+      </div>
+    </div>
+
+    <div class="summary-product">
+      <img src="./images/Chair.jpeg" alt="Chair">
+      <div>
+        <div>Chair</div>
+        <small></small>
+      </div>
+    </div>
+
+    <div class="summary-item"><span>Subtotal:</span> <span>$820</span></div>
+    <div class="summary-item"><span>Shipping:</span> <span>Free</span></div>
+    <div class="summary-item"><span>Discount:</span> <span>$94</span></div>
+    <div class="summary-item"><span>Tax:</span> <span>$81.99</span></div>
+    <div class="total">Total: $837.99 USD</div>
+
+    <button class="btn">PLACE ORDER ➔</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div><h4>EduSync</h4><p>Making campus life easier and more connected for students everywhere.</p></div>
+    <div><h4>Features</h4><ul><li>Marketplace</li><li>Housing</li><li>Tutoring</li><li>Jobs</li></ul></div>
+    <div><h4>Support</h4><ul><li>Help Center</li><li>Identity Center</li><li>Community Guidelines</li></ul></div>
+    <div><h4>Connect</h4><div class="social-icons"><a href="#">🐦</a><a href="#">📸</a><a href="#">🔵</a></div></div>
+  </div>
+  <p>&copy; 2025 EduSync. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

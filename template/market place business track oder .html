@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Track Order - EduSync</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    header {
+      background-color: #2d3edb;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    nav {
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    nav h1 {
+      font-size: 22px;
+      color: #2d3edb;
+    }
+
+    nav a {
+      margin-left: 20px;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .track-container {
+      max-width: 700px;
+      margin: 60px auto 30px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .track-container h2 {
+      color: #2d3edb;
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+
+    .track-box {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      text-align: left;
+    }
+
+    .track-box h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .track-box p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .form-row input {
+      flex: 1;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #777;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 10px 0 20px;
+    }
+
+    .track-btn {
+      background-color: #2d3edb;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 200px;
+      display: inline-block;
+    }
+
+    footer {
+      background-color: #0c0c0c;
+      color: white;
+      padding: 2rem;
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .footer-grid h4 {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .footer-grid p,
+    .footer-grid li {
+      font-size: 13px;
+      color: #ccc;
+    }
+
+    .footer-grid ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-grid li {
+      margin-bottom: 6px;
+    }
+
+    .social-icons a {
+      color: white;
+      margin-right: 10px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    footer p.copyright {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>Follow us: 🐦 🧵 📸 📘 ▶️ 🔗</div>
+  <div>Eng ▼    USD ▼</div>
+</header>
+
+<nav>
+  <h1>EduSync</h1>
+  <div>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
+
+<div class="track-container">
+  <h2>Marketplace For Small Businesses & Startups</h2>
+  <div class="track-box">
+    <h3>Track Order</h3>
+    <p>To track your order please enter your order ID in the input field below and press the “Track Order” button. This was given to you on your receipt and in the confirmation email you should have received.</p>
+    
+    <div class="form-row">
+      <input type="text" placeholder="Order ID">
+      <input type="email" placeholder="Email address">
+    </div>
+
+    <div class="note">ℹ️ Order ID that we sent to you in your email address.</div>
+
+    <button class="track-btn">TRACK ORDER ➔</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>EduSync</h4>
+      <p>Making campus life easier and more connected for students everywhere.</p>
+    </div>
+    <div>
+      <h4>Features</h4>
+      <ul>
+        <li>Marketplace</li>
+        <li>Housing</li>
+        <li>Tutoring</li>
+        <li>Jobs</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul>
+        <li>Help Center</li>
+        <li>Safety Center</li>
+        <li>Community Guidelines</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <div class="social-icons">
+        <a href="#">📸</a>
+        <a href="#">🐦</a>
+        <a href="#">📘</a>
+        <a href="#">🔗</a>
+      </div>
+    </div>
+  </div>
+  <p class="copyright">© 2025 EduSync. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Second-Hand Product Exchange</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  header, .slider, .content, footer {
+    margin-bottom: 20px;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header h1 {
+    font-size: 20px;
+  }
+  header nav {
+    display: flex;
+    gap: 10px;
+  }
+  header nav i {
+    cursor: pointer;
+  }
+  .slider {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+  }
+  .slider img {
+    border-radius: 10px;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+  .create-list-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .content {
+    display: flex;
+    gap: 20px;
+  }
+  .left, .right {
+    flex: 1;
+  }
+  .left .main-image img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .left .similar-products {
+    margin-top: 20px;
+  }
+  .left .similar-products h3 {
+    margin-bottom: 10px;
+  }
+  .left .similar-products .similar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+  }
+  .left .similar-products .similar-grid img {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+  }
+  .right h2 {
+    margin-top: 0;
+  }
+  .price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .price span.old-price {
+    text-decoration: line-through;
+    color: #999;
+  }
+  .description, .condition, .seller, .map, .related {
+    margin-top: 20px;
+  }
+  .seller {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .seller-icon {
+    width: 50px;
+    height: 50px;
+    background: #eee;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #555;
+  }
+  .seller-info {
+    flex: 1;
+  }
+  .seller-info h4 {
+    margin: 0 0 5px;
+  }
+  .message-btn {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .map iframe {
+    width: 100%;
+    height: 200px;
+    border: 0;
+    border-radius: 10px;
+  }
+  .related h3 {
+    margin-bottom: 10px;
+  }
+  .related .related-grid {
+    display: flex;
+    gap: 10px;
+  }
+  .related .related-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100px;
+    text-align: center;
+    position: relative;
+  }
+  .related .related-card i.fa-heart {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #999;
+  }
+  .related .related-card img {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  footer {
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+  }
+
+  .left-align {
+          text-align: left;
+        }
+  .center-align {
+          text-align: center;
+        }
+  .right-align {
+          text-align: right;
+        }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Second-Hand Product Sell & Exchange</h1>
+    <nav>
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-instagram"></i>
+    </nav>
+  </header>
+
+  <div class="slider">
+    <img src="./images/watch 2.jpg" alt="Watch">
+    <img src="./images/air cooler 1.jpg" alt="Air Cooler">
+    <img src="./images/laptop 1.jpg" alt="laptops">
+    <img src="./images/computer 1 .jpg" alt="Computer">
+    <img src="./images/iphone 1.jpg" alt="Iphone">
+  </div>
+
+  
+
+  <div class="content">
+    <div class="left">
+      <div class="main-image">
+       
+      </div>
+
+      <div class="similar-products">
+        <h3>Similar Products</h3>
+        <div class="similar-grid">
+          <img src="./images/Desk.jpg" alt="electronics">
+          <img src="./images/cycle.jpg" alt="desk">
+          <img src="./images/Drone.jpg" alt="laptops">
+          <img src="./images/dslr.jpg" alt="table">
+          <img src="./images/cpu 1.jpg" alt="cycle">
+        </div>
+      </div>
+      <br>
+      <br>
+      <a class="create-list-btn" href="#"><i class="fas fa-plus"></i> Create a list</a>
+    </div>
+
+    <div class="right">
+      <img src="./images/IKEA Desk.jpg">
+      <h2>IKEA Desk</h2>
+      <div class="price">
+        <span>$150</span>
+        <span class="old-price">$250</span>
+      </div>
+
+      <div class="description">
+        <h4><i class="fas fa-info-circle"></i> Description</h4>
+        <p>Size: 200cm x 60cm<br>Color: Oak white<br>Material: Wood<br>Warranty: Yes</p>
+      </div>
+
+      <div class="condition">
+        <h4><i class="fas fa-check-circle" class="left-align"></i> Condition</h4>
+        <p class="right-align">
+      Used - Good.
+  	</p>
+      </div>
+
+      <div class="seller">
+        <div class="seller-icon">
+          <i class='fas fa-horse-head' style='font-size:36px;color:red'></i>
+        </div>
+        <div class="seller-info">
+          <h4>Kelvin</h4>
+          <button class="message-btn"><i class="fas fa-comment"></i> Message</button>
+        </div>
+      </div>
+
+      <div class="map">
+        <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.183576132478!2d-122.4013794!3d37.7937996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064b81c4933%3A0x3d113362f5c9395b!2sIKEA%20San%20Francisco!5e0!3m2!1sen!2sus!4v1713653809397!5m2!1sen!2sus" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="related">
+        <h3>Products related to the items</h3>
+        <div class="related-grid">
+          <div class="related-card">
+            <i class="far fa-heart"></i>
+            <img src="./images/Desk.jpg" alt="Desk">
+            <p>Desk</p>
+          </div>
+          <div class="related-card">
+            <i class="far fa-heart"></i>
+            <img src="./images/Extended Desk.jpg" alt="Extended Desk">
+            <p>Extended Desk</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 EduSync
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Marketplace | EduSync</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-white text-gray-900">
+  <!-- Header -->
+  <header class="flex justify-between items-center px-8 py-4 bg-white border-b shadow-sm">
+    <div class="flex items-center space-x-4">
+      <img src="./images/edusync-logo.png" alt="EduSync Logo" class="h-6" />
+    </div>
+    <div class="flex items-center space-x-6 text-sm text-gray-500">
+      <span>Follow us:</span>
+      <div class="flex space-x-2">
+        <img src="./images/facebook.png" class="h-4" />
+        <img src="./images/twitter.png" class="h-4" />
+
+        <img src="./images/linkedin.png" class="h-4" />
+        <img src="./images/instagram.png" class="h-4" />
+      </div>
+      <span>Eng ▾</span>
+      <span>USD ▾</span>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav class="flex justify-end px-8 py-3 text-sm text-gray-700 space-x-6">
+    <a href="#" class="hover:underline">About</a>
+    <a href="#" class="hover:underline">Contact</a>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-8 py-6">
+    <h1 class="text-2xl font-bold text-indigo-600 mb-6">Dedicated Food Marketplaces</h1>
+
+    <!-- Search Bar -->
+    <div class="flex items-center px-4 py-3 border rounded-lg shadow-sm mb-6 w-1/2">
+      <img src="./images/search-icon.png" class="h-5 mr-3" />
+      <input type="text" placeholder="What will you like to eat?" class="w-full focus:outline-none" />
+    </div>
+
+    <!-- Categories -->
+    <div class="flex items-center space-x-4 mb-8">
+      <button class="px-4 py-2 bg-indigo-600 text-white rounded-full text-sm">All</button>
+      <button class="px-4 py-2 bg-white text-gray-600 border rounded-full text-sm">Pizza</button>
+      <button class="px-4 py-2 bg-white text-gray-600 border rounded-full text-sm">Burger</button>
+    </div>
+
+    <!-- Restaurant Listings -->
+    <section class="grid grid-cols-4 gap-6">
+      <!-- Main Listings Column (span 3) -->
+      <div class="col-span-3 space-y-8">
+        <div>
+          <h2 class="font-bold text-lg mb-3">Open Restaurants</h2>
+          <div class="flex space-x-4 items-center">
+            <div class="w-36">
+              <img src="./images/cheeseburger.jpg" class="rounded-lg mb-1" />
+              <p class="text-sm">Cheese burgers</p>
+              <p class="text-xs text-gray-500">$8.09 <span class="ml-2 text-yellow-500">★ 4.2</span></p>
+            </div>
+            <div class="w-36">
+              <img src="./images/pizza-slice.jpg" class="rounded-lg mb-1" />
+              <p class="text-sm">Margherita Pizza</p>
+              <p class="text-xs text-gray-500">$8.50 <span class="ml-2 text-yellow-500">★ 4.8</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <img src="./images/rose-plate.jpg" class="rounded-xl w-full h-40 object-cover" />
+          <div class="mt-2 text-sm">
+            <h3 class="font-semibold">Rose Garden Restaurant</h3>
+            <p class="text-xs text-gray-500">Burger · Chicken · Ribs · Wings</p>
+            <div class="flex items-center space-x-4 text-xs text-gray-500 mt-1">
+              <span>★ 4.7</span>
+              <span>Free</span>
+              <span>25 min</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <img src="./images/big-burger.jpg" class="rounded-xl w-full h-40 object-cover" />
+          <div class="mt-2 text-sm">
+            <h3 class="font-semibold">Rose Garden Restaurant</h3>
+            <p class="text-xs text-gray-500">Burger · Chicken · Ribs · Wings</p>
+            <div class="flex items-center space-x-4 text-xs text-gray-500 mt-1">
+              <span>★ 3.8</span>
+              <span>Free</span>
+              <span>20 min</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Item -->
+        <div>
+          <img src="./images/grilled.jpg" class="rounded-xl w-full h-40 object-cover" />
+          <div class="mt-2 text-sm">
+            <h3 class="font-semibold">Grilled Kitchen</h3>
+            <p class="text-xs text-gray-500">Grilled · Sandwich · Salad</p>
+            <div class="flex items-center space-x-4 text-xs text-gray-500 mt-1">
+              <span>★ 4.5</span>
+              <span>$5 Delivery</span>
+              <span>15 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggested Restaurants -->
+      <div class="ml-16">
+        <h2 class="font-bold text-lg mb-3">Suggested Restaurants</h2>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-center space-x-5">
+            <img src="./images/suggested1.jpg" class="w-10 h-10 rounded" />
+            <div>
+              <p>Pansi Restaurant</p>
+              <span class="text-xs text-gray-500">★ 4.7</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <img src="./images/suggested2.jpg" class="w-10 h-10 rounded" />
+            <div>
+              <p>American Spicy Burger Shop</p>
+              <span class="text-xs text-gray-500">★ 4.3</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <img src="./images/suggested3.jpg" class="w-10 h-10 rounded" />
+            <div>
+              <p>Caffeine Coffee Club</p>
+              <span class="text-xs text-gray-500">★ 4.0</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <img src="./images/spicy-dish.jpg" class="w-10 h-10 rounded" />
+            <div>
+              <p>Spicy Restaurant</p>
+              <div class="text-xs text-gray-500">★ 4.7 · Free · 20 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Fast Food -->
+    <section class="mt-12">
+      <h2 class="text-lg font-bold mb-4">Popular Fast Food</h2>
+      <div class="flex flex-wrap gap-6 text-sm">
+        <div class="text-center">
+          <img src="./images/european-pizza.jpg" class="w-20 h-20 mx-auto rounded-full" />
+          <p class="mt-1">European Pizza</p>
+        </div>
+        <div class="text-center">
+          <img src="./images/buffalo-pizza.jpg" class="w-20 h-20 mx-auto rounded-full" />
+          <p class="mt-1">Buffalo Pizza</p>
+        </div>
+        <div class="text-center">
+          <img src="./images/pizza-icon.jpg" class="w-20 h-20 mx-auto rounded-full" />
+          <p class="mt-1">Pizza</p>
+        </div>
+        <div class="text-center">
+          <img src="./images/burger-icon.jpg" class="w-20 h-20 mx-auto rounded-full" />
+          <p class="mt-1">Burger</p>
+        </div>
+        <div class="text-center">
+          <img src="./images/bullseye.jpg" class="w-20 h-20 mx-auto rounded-full" />
+          <p class="mt-1">Bullseye Burgers</p>
+        </div>
+        <div class="text-center">
+          <img src="./images/bistro.jpg" class="w-20 h-20 mx-auto rounded-full" />
+          <p class="mt-1">Burger Bistro</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 mt-10 py-8 px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-4 gap-6 text-sm">
+      <div>
+        <h5 class="font-bold mb-2 text-white">EduSync</h5>
+        <p>Making campus life easier and more connected for students everywhere.</p>
+      </div>
+      <div>
+        <h5 class="font-bold mb-2 text-white">Features</h5>
+        <ul>
+          <li>Marketplace</li>
+          <li>Housing</li>
+          <li>Tutoring</li>
+          <li>Jobs</li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-2 text-white">Support</h5>
+        <ul>
+          <li>Help Center</li>
+          <li>Safety Center</li>
+          <li>Community Guidelines</li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-2 text-white">Connect</h5>
+        <div class="flex space-x-3 mt-2">
+          <img src="./images/instagram.png" class="h-4" />
+          <img src="./images/twitter.png" class="h-4" />
+          <img src="./images/facebook.png" class="h-4" />
+          <img src="./images/linkedin.png" class="h-4" />
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-xs text-gray-500 mt-6">© 2025 EduSync. All rights reserved.</div>
+  </footer>
+</body>
+
+</html>

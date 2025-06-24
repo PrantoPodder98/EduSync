@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduSync Marketplace</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header -->
+  <header class="bg-indigo-600 text-white p-4 flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+      <div class="text-xl font-bold">EduSync</div>
+      <nav class="space-x-4 hidden md:flex">
+        <a href="#" class="hover:underline">About</a>
+        <a href="#" class="hover:underline">Contact</a>
+        <a href="#" class="hover:underline">Follow Us</a>
+      </nav>
+    </div>
+    <div class="flex items-center space-x-4">
+      <select class="text-black px-2 py-1 rounded-lg">
+        <option>All Categories</option>
+      </select>
+      <input type="text" placeholder="Search anything..." class="rounded-lg px-4 py-2 text-black w-48">
+      <button class="bg-white text-indigo-600 px-4 py-2 rounded-lg">Login</button>
+      <span class="hidden md:inline">+1 202-555-0156</span>
+    </div>
+  </header>
+
+  <!-- Breadcrumb and Title -->
+  <div class="p-6">
+    <p class="text-gray-500 text-sm mb-2">Home / Marketplace / Shop Grid / Electronic Devices</p>
+    <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center">
+      <h1 class="text-2xl font-bold mb-4 md:mb-0">Marketplace For Small Businesses & Startups</h1>
+      <div class="flex space-x-2">
+        <select class="border rounded px-2 py-1">
+          <option>Sort by</option>
+          <option>Most Popular</option>
+          <option>Newest</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Section -->
+  <main class="flex flex-col lg:flex-row p-6">
+
+    <!-- Sidebar -->
+    <aside class="w-full lg:w-1/4 bg-white p-4 rounded-lg shadow mb-6 lg:mb-0">
+      <h2 class="text-lg font-bold mb-4">CATEGORY</h2>
+      <ul class="space-y-2 mb-6">
+        <li><a href="#" class="hover:underline">Computers & Laptops</a></li>
+        <li><a href="#" class="hover:underline">Smartphones</a></li>
+        <li><a href="#" class="hover:underline">Accessories</a></li>
+        <li><a href="#" class="hover:underline">Cameras</a></li>
+        <li><a href="#" class="hover:underline">Headphones</a></li>
+      </ul>
+
+      <h2 class="text-lg font-bold mb-4">PRICE RANGE</h2>
+      <ul class="space-y-2 mb-6">
+        <li><a href="#" class="hover:underline">$0 - $100</a></li>
+        <li><a href="#" class="hover:underline">$100 - $500</a></li>
+        <li><a href="#" class="hover:underline">$500 - $1000</a></li>
+      </ul>
+
+      <h2 class="text-lg font-bold mb-4">POPULAR BRANDS</h2>
+      <ul class="space-y-2 mb-6">
+        <li><a href="#" class="hover:underline">Apple</a></li>
+        <li><a href="#" class="hover:underline">Samsung</a></li>
+        <li><a href="#" class="hover:underline">Sony</a></li>
+      </ul>
+
+      <h2 class="text-lg font-bold mb-4">POPULAR TAGS</h2>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="bg-gray-200 px-2 py-1 rounded text-sm">iPhone</span>
+        <span class="bg-gray-200 px-2 py-1 rounded text-sm">Headphones</span>
+        <span class="bg-gray-200 px-2 py-1 rounded text-sm">Laptops</span>
+        <span class="bg-gray-200 px-2 py-1 rounded text-sm">Speaker</span>
+        <span class="bg-gray-200 px-2 py-1 rounded text-sm">Samsung</span>
+        <span class="bg-gray-200 px-2 py-1 rounded text-sm">Printer</span>
+      </div>
+
+      <div class="bg-gray-100 p-4 rounded-lg">
+        <img src="./images/Apple Watch.jpg" alt="Watch" class="mb-4 w-full">
+        <h3 class="font-bold mb-2">Apple Watch Series 7</h3>
+        <p class="text-gray-600 mb-2">Heavy on features. Light on price.</p>
+        <p class="font-bold text-orange-600 mb-2">$299 USD</p>
+        <button class="bg-orange-500 text-white w-full py-2 rounded-lg mb-2">Add to Cart</button>
+        <button class="border w-full py-2 rounded-lg">View Details</button>
+      </div>
+    </aside>
+
+    <!-- Product Grid -->
+    <section class="flex-1 ml-0 lg:ml-6">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+        <!-- Product Card Template -->
+        <!-- Example Product Card -->
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">HOT</span>
+          <img src="./images/Iphone13pro.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">iPhone 13 Pro Max</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★★</span>
+            <span class="text-gray-500 text-sm ml-2">(120)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$999</p>
+          <p class="text-sm text-gray-600 mb-2">Apple Electronics Smartphone</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          <span class="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">SALE</span>
+          <img src="./images/Headphone.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Wireless Headphones</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(85)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$120</p>
+          <p class="text-sm text-gray-600 mb-2">Noise Cancelling</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          <span class="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded">FEATURED</span>
+          <img src="./images/laptops.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Gaming Laptop</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★★</span>
+            <span class="text-gray-500 text-sm ml-2">(60)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$1500</p>
+          <p class="text-sm text-gray-600 mb-2">High Performance</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs px-2 py-1 rounded">TRENDING</span>
+          <img src="./images/dslr.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">DSLR Camera</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$900</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/Drone.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Drone</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$900</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/clothes.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Clothes</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$800</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/cycle.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Cycle</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$300</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/electronics.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Electronics</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$100</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/watch 2.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Watch</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$200</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/keyboard.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Keyboard</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$250</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/Desk.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Desk</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$100</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/Extended Desk.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Extended Desk</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$150</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/IKEA Desk.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">IEKA Desk</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$400</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/table.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Table</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$350</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/phone.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">Phone</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$520</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow relative">
+          
+          <img src="./images/Ac.jpg" alt="Product" class="rounded mb-2 w-full h-48 object-cover">
+          <h3 class="font-bold mb-1">AC</h3>
+          <div class="flex mb-1">
+            <span class="text-yellow-400">★★★★☆</span>
+            <span class="text-gray-500 text-sm ml-2">(45)</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-1">$1230</p>
+          <p class="text-sm text-gray-600 mb-2">Professional Quality</p>
+          <button class="bg-indigo-600 text-white w-full py-2 rounded-lg">Add to Cart</button>
+        </div>
+        
+        
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Icons -->
+  <footer class="bg-white mt-8 p-6 flex flex-col md:flex-row justify-between items-center text-gray-600 text-sm">
+    <div class="flex space-x-4 mb-4 md:mb-0">
+      <a href="#" class="hover:underline">Privacy Policy</a>
+      <a href="#" class="hover:underline">Terms of Service</a>
+      <a href="#" class="hover:underline">Help Center</a>
+    </div>
+    <div class="flex space-x-4">
+      <a href="#"><img src="./images/footer-icon1.png" alt="Footer Icon 1" class="w-6 h-6"></a>
+      <a href="#"><img src="./images/footer-icon2.png" alt="Footer Icon 2" class="w-6 h-6"></a>
+      <a href="#"><img src="./images/footer-icon3.png" alt="Footer Icon 3" class="w-6 h-6"></a>
+    </div>
+    <p class="mt-4 md:mt-0">&copy; 2025 EduSync. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

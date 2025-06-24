@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Page - MacBook Pro</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+
+    header {
+      background: #2d3edb;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem 1rem;
+      background: #fff;
+    }
+
+    .product-main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .product-image {
+      flex: 1 1 45%;
+    }
+
+    .product-image img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .product-details {
+      flex: 1 1 45%;
+    }
+
+    .product-details h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .price-box {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .price-box .price {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .price-box .old-price {
+      color: #999;
+      text-decoration: line-through;
+      margin-left: 10px;
+    }
+
+    .price-box .discount {
+      color: orange;
+      margin-left: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px 10px 10px 0;
+      color: white;
+      background-color: #ff6600;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .btn.buy {
+      background-color: #007bff;
+    }
+
+    .features, .shipping, .description {
+      margin-top: 1.5rem;
+      background-color: #f8f9fb;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .features h4, .shipping h4, .description h4 {
+      margin-bottom: 0.5rem;
+      color: #2d3edb;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    .related-section {
+      margin-top: 3rem;
+    }
+
+    .related-section h2 {
+      margin-bottom: 1rem;
+      font-size: 22px;
+      color: #2d3edb;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .filter-buttons button {
+      margin-right: 10px;
+      padding: 6px 12px;
+      border: none;
+      background: #e0e0e0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .filter-buttons button.active {
+      background-color: #2d3edb;
+      color: white;
+    }
+
+    .filter-bar input, .filter-bar select {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .card-price {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  EduSync — Marketplace for Small Businesses & Startups
+</header>
+
+<div class="container">
+  <!-- Product Section -->
+  <div class="product-main">
+    <div class="product-image">
+      <img src="./images/mac book pic 3.jpeg" alt="MacBook Pro">
+
+      <div class="description">
+        <h4>Product Description</h4>
+        <p>
+          This MacBook Pro is powerful and efficient with the Apple M1 chip. It supports creative workflows, software development, and long battery life.
+        </p>
+      </div>
+    </div>
+
+    <div class="product-details">
+      <h1>2020 Apple MacBook Pro (13-inch, M1, 8GB RAM, 256GB SSD)</h1>
+      <div class="price-box">
+        <span class="price">$1699</span>
+        <span class="old-price">$1999</span>
+        <span class="discount">-21%</span>
+      </div>
+      <p><strong>Status:</strong> In Stock</p>
+      <button class="btn">Add to Cart</button>
+      <button class="btn buy">Buy Now</button>
+
+      <div class="features">
+        <h4>Feature</h4>
+        <ul>
+          <li>Free 1 Year Warranty</li>
+          <li>Free Shipping & Fast Delivery</li>
+          <li>100% Money-Back Guarantee</li>
+          <li>24/7 Customer Support</li>
+          <li>Secure Payment Method</li>
+        </ul>
+      </div>
+
+      <div class="shipping">
+        <h4>Shipping Information</h4>
+        <ul>
+          <li>Courier: 2-4 days</li>
+          <li>UPS: 3-5 days</li>
+          <li>Local Shipping: 1-2 days</li>
+          <li>Global Export: 4-8 days</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product List -->
+  <div class="related-section">
+    <h2>Related Products</h2>
+    <div class="filter-bar">
+      <div class="filter-buttons">
+        <button class="active" onclick="filterCards('all')">All</button>
+        <button onclick="filterCards('mobile')">Mobile</button>
+        <button onclick="filterCards('accessory')">Accessory</button>
+        <button onclick="filterCards('camera')">Camera</button>
+      </div>
+      <input type="text" id="searchBox" oninput="searchCards()" placeholder="Search product..." />
+      <select id="sortOptions" onchange="sortCards()">
+        <option value="">Sort</option>
+        <option value="name">Sort by Name</option>
+        <option value="price">Sort by Price</option>
+      </select>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      <!-- 11 Product Cards -->
+      <div class="card accessory" data-title="Samsung Galaxy Earbuds" data-price="99">
+        <img src="./images/Samsung Galaxy Earbuds.jpeg" alt="">
+        <div class="card-title">Samsung Galaxy Earbuds</div>
+        <div class="card-price">$99.00</div>
+      </div>
+      <div class="card mobile" data-title="Sirozle Mobile 4G" data-price="109">
+        <img src="./images/Sirozle Mobile 4G.jpeg" alt="">
+        <div class="card-title">Sirozle Mobile 4G</div>
+        <div class="card-price">$109.00</div>
+      </div>
+      <div class="card camera" data-title="Sony 20MP Zoom Cam" data-price="150">
+        <img src="./images/Sony 20MP Zoom Cam.jpeg" alt="">
+        <div class="card-title">Sony 20MP Zoom Cam</div>
+        <div class="card-price">$150.00</div>
+      </div>
+      <div class="card accessory" data-title="Bluetooth Headset JBL" data-price="59">
+        <img src="./images/Bluetooth Headset JBL.jpeg" alt="">
+        <div class="card-title">Bluetooth Headset JBL</div>
+        <div class="card-price">$59.00</div>
+      </div>
+      <div class="card mobile" data-title="SmartPhone Basic" data-price="89">
+        <img src="./images/SmartPhone Basic.jpeg" alt="">
+        <div class="card-title">SmartPhone Basic</div>
+        <div class="card-price">$89.00</div>
+      </div>
+      <div class="card camera" data-title="Canon EOS Camera" data-price="499">
+        <img src="./images/Canon EOS Camera.jpeg" alt="">
+        <div class="card-title">Canon EOS Camera</div>
+        <div class="card-price">$499.00</div>
+      </div>
+      <div class="card accessory" data-title="Type-C Cable" data-price="15">
+        <img src="./images/Type-C Cable.png" alt="">
+        <div class="card-title">Type-C Cable</div>
+        <div class="card-price">$15.00</div>
+      </div>
+      <div class="card mobile" data-title="Basic 4G Mobile" data-price="65">
+        <img src="./images/Basic 4G Mobile.jpeg" alt="">
+        <div class="card-title">Basic 4G Mobile</div>
+        <div class="card-price">$65.00</div>
+      </div>
+      <div class="card accessory" data-title="USB Hub 3.0" data-price="25">
+        <img src="./images/Type-C Cable.png" alt="">
+        <div class="card-title">USB Hub 3.0</div>
+        <div class="card-price">$25.00</div>
+      </div>
+      <div class="card camera" data-title="Mini Security Cam" data-price="79">
+        <img src="./images/Mini Security Cam.jpeg" alt="">
+        <div class="card-title">Mini Security Cam</div>
+        <div class="card-price">$79.00</div>
+      </div>
+      <div class="card mobile" data-title="Lite Phone 2" data-price="120">
+        <img src="./images/Lite Phone 2.jpeg" alt="">
+        <div class="card-title">Lite Phone 2</div>
+        <div class="card-price">$120.00</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 EduSync. All rights reserved.
+</footer>
+
+<script>
+  function filterCards(category) {
+    document.querySelectorAll('.filter-buttons button').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const matchCategory = category === 'all' || card.classList.contains(category);
+      card.style.display = matchCategory ? 'block' : 'none';
+    });
+    searchCards();
+  }
+
+  function searchCards() {
+    const query = document.getElementById('searchBox').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const name = card.dataset.title.toLowerCase();
+      if (name.includes(query)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  function sortCards() {
+    const sortValue = document.getElementById('sortOptions').value;
+    const grid = document.getElementById('productGrid');
+    const cards = Array.from(grid.children);
+    cards.sort((a, b) => {
+      if (sortValue === 'name') {
+        return a.dataset.title.localeCompare(b.dataset.title);
+      } else if (sortValue === 'price') {
+        return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+      }
+      return 0;
+    });
+    cards.forEach(card => grid.appendChild(card));
+  }
+</script>
+
+</body>
+</html>
