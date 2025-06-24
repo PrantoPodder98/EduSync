@@ -18,6 +18,25 @@
     <!-- Footer -->
     @include('frontend.layouts.footer')
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.getElementById('profileDropdownButton');
+            const menu = document.getElementById('profileDropdownMenu');
+
+            button.addEventListener('click', function(e) {
+                e.stopPropagation(); // prevent closing immediately
+                menu.classList.toggle('hidden');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!menu.contains(e.target) && !button.contains(e.target)) {
+                    menu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
