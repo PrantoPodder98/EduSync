@@ -7,7 +7,6 @@ use App\Models\FoundItems;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 class FoundItemsController extends Controller

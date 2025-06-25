@@ -8,6 +8,33 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+          .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0 20px;
+            gap: 10px;
+        }
+
+        .pagination button {
+            padding: 8px 14px;
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .pagination button.active {
+            background-color: #5d5fef;
+            color: white;
+            border: none;
+        }
+
+        .pagination button:disabled {
+            background-color: #eee;
+            color: #aaa;
+            cursor: not-allowed;
+        }
         @keyframes slide-in {
             0% {
                 transform: translateX(100%);

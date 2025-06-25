@@ -1,4 +1,5 @@
 @extends('frontend.layouts.master')
+
 @section('content')
     <section class="px-8 my-20 text-center">
         <h1 class="text-3xl text-[#5E5EDC] font-bold mb-2">Lost & Found Section</h1>
@@ -10,8 +11,8 @@
             <form method="GET" action="{{ route('found-items.index') }}"
                 class="flex items-center w-[400px] border border-green-500 rounded-full px-4 py-2">
                 <img src="{{ asset('asset/frontend_asset/images/filter-icon.png') }}" alt="Filter" class="w-4 h-4 mr-3" />
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by item name/location/description"
-                    class="flex-1 outline-none text-sm" />
+                <input type="text" name="search" value="{{ request('search') }}"
+                    placeholder="Search by item name/location/description" class="flex-1 outline-none text-sm" />
                 <button type="submit" class="hover:opacity-75 transition-opacity">
                     <img src="{{ asset('asset/frontend_asset/images/search-icon.png') }}" alt="Search"
                         class="w-4 h-4 ml-3" />
@@ -28,7 +29,6 @@
 
         <!-- Items Grid -->
         <div class="flex justify-center flex-wrap gap-6 px-4">
-            {{-- {{dd($foundItems);}} --}}
             @forelse($foundItems as $item)
                 <div class="group w-80 bg-white rounded-xl shadow-lg hover:shadow-2xl border border-gray-100 p-6 text-left transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
                     onclick="openModal('{{ $item->id }}')">
@@ -40,13 +40,13 @@
                                 class="w-12 h-12 rounded-lg object-cover border-2 border-gray-200" />
                         @else
                             <div
-                                class="w-12 h-12 rounded-lg bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center">
+                                class="w-12 h-12 rounded-lg bg-gradient-to-r from-sky-400 to-blue-400 flex items-center justify-center">
                                 <span
                                     class="text-white font-bold text-lg">{{ strtoupper(substr($item->item_name, 0, 2)) }}</span>
                             </div>
                         @endif
                         <div class="flex-1">
-                            <p class="font-bold text-lg group-hover:text-purple-600 transition-colors">
+                            <p class="font-bold text-lg group-hover:text-sky-600 transition-colors">
                                 {{ $item->item_name }}</p>
                             <p class="text-sm text-gray-500">
                                 {{ \Carbon\Carbon::parse($item->found_date)->format('M d, Y') }}</p>
@@ -73,13 +73,13 @@
                                 clip-rule="evenodd" />
                         </svg>
                         <p class="text-sm text-gray-600">Posted by: <span
-                                class="font-semibold text-purple-600">{{ $item->user_name ?? 'Anonymous' }}</span></p>
+                                class="font-semibold text-sky-600">{{ $item->user_name ?? 'Anonymous' }}</span></p>
                     </div>
 
                     <!-- Action Buttons -->
                     <div class="flex space-x-3">
                         <button
-                            class="flex-1 bg-gradient-to-r from-[#A680F2] to-purple-500 text-white text-sm px-4 py-2 rounded-full hover:from-purple-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg flex items-center justify-center"
+                            class="flex-1 bg-gradient-to-r from-[#A680F2] to-sky-500 text-white text-sm px-4 py-2 rounded-full hover:from-sky-600 hover:to-sky-700 transition-all transform hover:scale-105 shadow-lg flex items-center justify-center"
                             onclick="event.stopPropagation(); openModal('{{ $item->id }}')">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -120,23 +120,18 @@
                     </p>
                     @if (request('search'))
                         <a href="{{ route('found-items.index') }}"
-                            class="text-purple-600 hover:text-purple-800 font-medium">Clear search</a>
+                            class="text-sky-600 hover:text-sky-800 font-medium">Clear search</a>
                     @endif
                 </div>
             @endforelse
         </div>
 
-        <!-- Pagination -->
         @if ($foundItems->hasPages())
-            <div class="mt-12 flex justify-center">
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-                    {{ $foundItems->appends(request()->query())->links('pagination::tailwind') }}
-                </div>
-            </div>
+            @include('frontend.components.custom-pagination', ['paginator' => $foundItems])
         @endif
 
         <!-- Back Button -->
-        <div class="mt-16">
+        <div class="mt-14">
             <a href="{{ route('lost-found') }}"
                 class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
                 ← Back to Lost & Found
@@ -159,7 +154,7 @@
                 <!-- Item Image and Basic Info -->
                 <div class="flex items-start space-x-4">
                     <div id="modalImageContainer"
-                        class="w-20 h-20 rounded-lg bg-gray-200 flex items-center justify-center overflow-hidden">
+                        class="w-45 h-45 rounded-lg bg-gray-200 flex items-center justify-center overflow-hidden">
                         <img id="modalImage" src="" alt="" class="w-full h-full object-cover hidden">
                         <span id="modalInitials" class="text-2xl font-bold text-gray-600"></span>
                     </div>
@@ -190,19 +185,19 @@
                             clip-rule="evenodd" />
                     </svg>
                     <p class="text-sm text-gray-600">Posted by: <span id="modalUsername"
-                            class="font-semibold text-purple-600"></span></p>
+                            class="font-semibold text-sky-600"></span></p>
                 </div>
 
                 <!-- Contact Information -->
-                <div class="bg-purple-50 rounded-lg p-4 border border-purple-100">
+                <div class="bg-sky-50 rounded-lg p-4 border border-sky-100">
                     <div class="flex items-center mb-2">
-                        <svg class="w-5 h-5 mr-2 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-5 h-5 mr-2 text-sky-600" fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                         </svg>
-                        <h4 class="font-semibold text-purple-800">Contact Information</h4>
+                        <h4 class="font-semibold text-sky-800">Contact Information</h4>
                     </div>
-                    <p id="modalContact" class="text-lg font-bold text-purple-700"></p>
+                    <p id="modalContact" class="text-lg font-bold text-sky-700"></p>
                 </div>
             </div>
 

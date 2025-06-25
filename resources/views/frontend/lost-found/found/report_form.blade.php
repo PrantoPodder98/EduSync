@@ -13,28 +13,28 @@
             <!-- Item -->
             <div class="flex items-center">
                 <label class="w-40 text-gray-700 font-medium">Item :</label>
-                <input type="text" placeholder="Enter item name" name="item_name"
+                <input type="text" placeholder="Enter item name" name="item_name" required
                     class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
 
             <!-- Location -->
             <div class="flex items-center">
                 <label class="w-40 text-gray-700 font-medium">Location :</label>
-                <input type="text" placeholder="Enter found location" name="location"
+                <input type="text" placeholder="Enter found location" name="location" required
                     class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
 
             <!-- Date -->
             <div class="flex items-center">
                 <label class="w-40 text-gray-700 font-medium">Date :</label>
-                <input type="date" name="found_date"
+                <input type="date" name="found_date" required
                     class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
 
             <!-- Description -->
             <div class="flex items-start">
                 <label class="w-40 text-gray-700 font-medium pt-2">Item Description :</label>
-                <textarea rows="3" placeholder="Describe the item..." name="description"
+                <textarea rows="3" placeholder="Describe the item..." name="description" 
                     class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
             </div>
 
@@ -49,24 +49,24 @@
             <!-- User Name -->
             <div class="flex items-center">
                 <label class="w-40 text-gray-700 font-medium">User Name :</label>
-                <input type="text" placeholder="Enter user name" name="user_name"
+                <input type="text" placeholder="Enter user name" name="user_name" 
                     class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
 
             <!-- Contact Number -->
             <div class="flex items-center">
                 <label class="w-40 text-gray-700 font-medium">Contact Number :</label>
-                <input type="number" placeholder="Enter user contact number" name="contact_number"
+                <input type="number" placeholder="Enter user contact number" name="contact_number" required
                     class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
 
             <!-- Reset Button -->
             <div class="text-center pt-4">
                 <a href="{{ route('found-items.index') }}"
-                    class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 mr-4">Back</a>
+                    class="bg-red-600 text-white px-6 py-2 rounded hover:bg-blue-700 mr-4">Back</a>
 
                 <button type="submit"
-                    class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700">Submit</button>
+                    class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-purple-700">Submit</button>
             </div>
         </form>
     </section>
