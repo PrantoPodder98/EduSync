@@ -25,6 +25,11 @@ Route::middleware('auth')->group(function () {
         ->name('dashboard');
 
     Route::get('/lost-found', [LostFoundController::class, 'index'])->name('lost-found');
+    Route::get('/lost-found/lost', [LostFoundController::class, 'lost_list'])->name('lost-found.lost');
+    Route::get('/lost-report', [LostFoundController::class, 'lost_report'])->name('lost-found.lost.report');
+    Route::get('/lost-found/found', [LostFoundController::class, 'found_list'])->name('lost-found.found');
+    Route::get('/found-report', [LostFoundController::class, 'found_report'])->name('lost-found.found.report');
+
 });
 
 require __DIR__ . '/auth.php';

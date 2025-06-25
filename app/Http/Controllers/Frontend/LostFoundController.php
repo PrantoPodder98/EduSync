@@ -18,4 +18,29 @@ class LostFoundController extends Controller
         // For now, we will return a simple view
         return view('frontend.lost-found.index');
     }
+
+
+    public function lost_list()
+    {
+        // This method can be used to display a list of lost items
+        return view('frontend.lost-found.lost.list');
+    }
+
+    public function lost_report()
+    {
+        // This method can be used to display a form for reporting lost or found items
+        return view('frontend.lost-found.lost.report_form');
+    }
+
+    public function found_list()
+    {
+        // This method can be used to display a list of found items
+        return view('frontend.lost-found.found.list');
+    }
+
+    public function found_report()
+    {
+        // This method can be used to display a form for reporting found items
+        return view('frontend.lost-found.found.report_form');
+    }
 }
