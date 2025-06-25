@@ -10,7 +10,7 @@
                 <span>Lost</span>
                 <img src="{{ asset('asset/frontend_asset') }}/images/lost-icon.png" alt="Lost" class="w-6 h-6 ml-4">
             </a>
-            <a href="{{ route('lost-found.found') }}"
+            <a href="{{ route('found-items.index') }}"
                 class="flex items-center justify-between px-8 py-4 bg-[#A680F2] text-white font-semibold rounded-xl shadow-md w-60 text-lg hover:bg-purple-600 transition">
                 <span>Found</span>
                 <img src="{{ asset('asset/frontend_asset') }}/images/found-icon.png" alt="Found" class="w-6 h-6 ml-4">

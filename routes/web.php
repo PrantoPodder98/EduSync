@@ -4,6 +4,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\LostFoundController;
+use App\Http\Controllers\Frontend\FoundItemsController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,9 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/lost-found', [LostFoundController::class, 'index'])->name('lost-found');
     Route::get('/lost-found/lost', [LostFoundController::class, 'lost_list'])->name('lost-found.lost');
     Route::get('/lost-report', [LostFoundController::class, 'lost_report'])->name('lost-found.lost.report');
-    Route::get('/lost-found/found', [LostFoundController::class, 'found_list'])->name('lost-found.found');
-    Route::get('/found-report', [LostFoundController::class, 'found_report'])->name('lost-found.found.report');
 
+    // Route::get('/lost-found/found', [LostFoundController::class, 'found_list'])->name('lost-found.found');
+    // Route::get('/found-report', [LostFoundController::class, 'found_report'])->name('lost-found.found.report');
+    Route::resource('found-items', FoundItemsController::class);
+    Route::get('found-items/{id}/delete', [FoundItemsController::class, 'delete'])->name('found-items.delete');
 });
 
 require __DIR__ . '/auth.php';

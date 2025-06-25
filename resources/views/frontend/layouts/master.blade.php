@@ -5,6 +5,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EduSync - Campus Life Solution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        @keyframes slide-in {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slide-in {
+            animation: slide-in 0.5s ease-out forwards;
+        }
+    </style>
     @yield('custom_css')
 </head>
 
@@ -18,7 +37,7 @@
     <!-- Footer -->
     @include('frontend.layouts.footer')
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <div id="toast-container" class="fixed top-5 right-5 z-50 space-y-4"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -38,6 +57,52 @@
             });
         });
     </script>
+
+    <script>
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+
+            const bgColors = {
+                success: 'bg-green-500',
+                error: 'bg-red-500',
+                info: 'bg-blue-500',
+                warning: 'bg-yellow-500 text-black'
+            };
+
+            const toast = document.createElement('div');
+            toast.className = `text-white px-4 py-3 rounded shadow-md ${bgColors[type]} animate-slide-in`;
+            toast.innerHTML = `
+            <div class="flex items-center justify-between">
+                <span>${message}</span>
+                <button class="ml-4 font-bold text-white hover:text-gray-200" onclick="this.parentElement.parentElement.remove()">×</button>
+            </div>
+        `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 4000);
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                showToast(@json(session('success')), 'success');
+            @endif
+            @if (session('error'))
+                showToast(@json(session('error')), 'error');
+            @endif
+            @if (session('info'))
+                showToast(@json(session('info')), 'info');
+            @endif
+            @if (session('warning'))
+                showToast(@json(session('warning')), 'warning');
+            @endif
+        });
+    </script>
+
+
 
     @yield('custom_js')
 
