@@ -49,7 +49,7 @@
             <!-- User Name -->
             <div class="flex items-center">
                 <label class="w-40 text-gray-700 font-medium">User Name :</label>
-                <input type="text" placeholder="Enter user name" name="user_name" 
+                <input type="text" placeholder="Enter user name" name="user_name" value="{{ auth()->user()->name }}" required
                     class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
 

@@ -101,7 +101,7 @@ class LostItemsController extends Controller
             ]);
         }
 
-        return redirect()->route('lost-items.index')->with('success', 'Lost item reported successfully.');
+        return redirect()->back()->with('success', 'Lost item reported successfully.');
     }
 
     /**

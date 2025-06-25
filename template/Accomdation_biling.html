@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lost Items - EduSync</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- Topbar -->
+  
+
+  <!-- Header -->
+ <header class="bg-indigo-600 text-white px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <img src="./images/edusync-logo.png" alt="EduSync Logo" class="h-8 w-8" />
+      <span class="text-xl font-semibold">EduSync</span>
+    </div>
+    <div class="flex items-center space-x-6">
+      <div class="flex space-x-2">
+        <a href="#"><img src="./images/twitter.png" alt="X" class="h-5" /></a>
+        <a href="#"><img src="./images/facebook.png" alt="Facebook" class="h-5" /></a>
+        <a href="#"><img src="./images/linkedin.png" alt="LinkedIn" class="h-5" /></a>
+        <a href="#"><img src="./images/instagram.png" alt="Instagram" class="h-5" /></a>
+      </div>
+      <div class="flex space-x-4">
+        <span>Eng</span>
+        <span>USD</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav class="flex justify-end px-8 py-3 text-sm text-gray-700 space-x-6">
+    <a href="#" class="hover:underline">About</a>
+    <a href="#" class="hover:underline">Contact</a>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-8 py-6 grid grid-cols-3 gap-12">
+    <!-- Billing Form -->
+    <div class="col-span-2">
+      <h2 class="text-xl font-bold mb-6">Reservation Information</h2>
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <input type="text" placeholder="First name" class="border p-2 rounded w-full" />
+        <input type="text" placeholder="Last name" class="border p-2 rounded w-full" />
+      </div>
+      <input type="text" placeholder="Contact No:" class="border p-2 rounded w-full mb-4" />
+      <input type="text" placeholder="Address" class="border p-2 rounded w-full mb-4" />
+      <div class="grid grid-cols-4 gap-4 mb-4">
+        <select class="border p-2 rounded w-full">
+          <option>Country</option>
+        </select>
+        <select class="border p-2 rounded w-full">
+          <option>Region/State</option>
+        </select>
+        <select class="border p-2 rounded w-full">
+          <option>City</option>
+        </select>
+        <input type="text" placeholder="Zip Code" class="border p-2 rounded w-full" />
+      </div>
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <input type="email" placeholder="Email" class="border p-2 rounded w-full" />
+        <input type="text" placeholder="Phone Number" class="border p-2 rounded w-full" />
+      </div>
+      <div class="mb-6">
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" />
+          <span>Email me the details</span>
+        </label>
+      </div>
+
+      <!-- Payment Option -->
+      <div class="border rounded p-6 mb-6">
+        <h3 class="font-semibold mb-4">Payment Option</h3>
+        <div class="grid grid-cols-6 gap-4 mb-4">
+          <label class="flex flex-col items-center">
+            <img src="./images/cod.png" class="h-6 mb-2" />
+            <input type="radio" name="payment" />
+            <span class="text-xs mt-1">Cash</span>
+          </label>
+          <label class="flex flex-col items-center">
+            <img src="./images/venmo.png" class="h-6 mb-2" />
+            <input type="radio" name="payment" />
+            <span class="text-xs mt-1">Bkash</span>
+          </label>
+          <label class="flex flex-col items-center">
+            <img src="./images/paypal.png" class="h-6 mb-2" />
+            <input type="radio" name="payment" />
+            <span class="text-xs mt-1">Paypal</span>
+          </label>
+          <label class="flex flex-col items-center">
+            <img src="./images/nagad.png" class="h-6 mb-2" />
+            <input type="radio" name="payment" />
+            <span class="text-xs mt-1">NAGAD</span>
+          </label>
+          <label class="flex flex-col items-center">
+            <img src="./images/card.png" class="h-6 mb-2" />
+            <input type="radio" name="payment" />
+            <span class="text-xs mt-1">Card</span>
+          </label>
+        </div>
+        <input type="text" placeholder="Name on Card" class="border p-2 rounded w-full mb-3" />
+        <input type="text" placeholder="Card Number" class="border p-2 rounded w-full mb-3" />
+        <div class="grid grid-cols-2 gap-4">
+          <input type="text" placeholder="Expire Date (MM/YY)" class="border p-2 rounded w-full" />
+          <input type="text" placeholder="CVC" class="border p-2 rounded w-full" />
+        </div>
+      </div>
+
+      <!-- Additional Info -->
+      <div class="mb-10">
+        <h3 class="font-semibold mb-2">Additional Information</h3>
+        <textarea placeholder="Any Notes" class="border p-2 rounded w-full" rows="4"></textarea>
+      </div>
+    </div>
+
+    <!-- Cart Summary -->
+    <div class="space-y-6">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-4">
+          <img src="./images/room1.jpg" class="w-16 h-16 rounded" />
+          <div>
+            <p class="text-sm">Barklane Getaway</p>
+            
+          </div>
+          <button class="text-red-500 text-xl">×</button>
+        </div>
+      </div>
+      <div class="bg-gray-100 p-4 rounded">
+    
+      </div>
+      <button class="w-full bg-indigo-600 text-white py-3 rounded font-semibold">Reserve</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 mt-10 py-8 px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-4 gap-6 text-sm">
+      <div>
+        <h5 class="font-bold mb-2 text-white">EduSync</h5>
+        <p>Making campus life easier and more connected for students everywhere.</p>
+      </div>
+      <div>
+        <h5 class="font-bold mb-2 text-white">Features</h5>
+        <ul>
+          <li>Marketplace</li>
+          <li>Housing</li>
+          <li>Tutoring</li>
+          <li>Jobs</li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-2 text-white">Support</h5>
+        <ul>
+          <li>Help Center</li>
+          <li>Safety Center</li>
+          <li>Community Guidelines</li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-2 text-white">Connect</h5>
+        <div class="flex space-x-3 mt-2">
+          <img src="./images/instagram.png" class="h-4" />
+          <img src="./images/twitter.png" class="h-4" />
+          <img src="./images/facebook.png" class="h-4" />
+          <img src="./images/linkedin.png" class="h-4" />
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-xs text-gray-500 mt-6">© 2025 EduSync. All rights reserved.</div>
+  </footer>
+</body>
+
+</html>

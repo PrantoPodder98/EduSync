@@ -29,32 +29,61 @@
       </div>
     </div>
   </header>
- 
-  <!-- Main Notice Board -->
-  <main class="max-w-4xl mx-auto mt-12">
-    <h2 class="text-sm text-indigo-600 uppercase font-medium">Notice Board for Institute-Wide Announcements</h2>
 
-    <div class="bg-indigo-100 mt-4 rounded-lg shadow-md p-8 border-l-8 border-indigo-600">
-      <h3 class="text-indigo-700 font-bold text-xl mb-4 uppercase">Notice</h3>
-      <h1 class="text-2xl font-semibold text-indigo-900 mb-6">
-        On-line Course Evaluation SPRING 2025 TRIMESTER
-      </h1>
-      <p class="text-gray-800 leading-relaxed mb-4">
-        This is to inform all students of BSc. in CSE & BSc. in Data Science Program that their course/teacher evaluation for Spring 2025 Trimester (It is a mandatory task to be completed before Course Advising) will continue from June 23 – June 29, 2024 (Monday - Sunday).
-      </p>
-      <p class="text-gray-800 leading-relaxed mb-4">
-        All are advised to complete Course Evaluation in ucam.uiu.ac.bd within the deadline; otherwise you will not be able to continue (no chance to intake/registration) next trimester, Summer 2025. The students who admitted in Summer 2024 and who dropped current trimester of both the programs need not to complete course evaluation.
-      </p>
-      <p class="text-gray-800 leading-relaxed">
-        For more Details: 
-        <a href="https://cse.uiu.ac.bd/notice/on-line-course-evaluation-spring-2025-trimester/" class="text-blue-600 underline">
-          https://cse.uiu.ac.bd/notice/on-line-course-evaluation-spring-2025-trimester/
-        </a>
-      </p>
+  <!-- Main Cart Section -->
+  <main class="px-10 py-12 max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-[#5E5EDC] mb-8 text-center">Second-hand Cart</h1>
+
+    <div class="grid grid-cols-3 gap-8">
+      <!-- Cart Items -->
+      <div class="col-span-2 space-y-6">
+        <!-- Item Row -->
+        <div class="flex items-center justify-between border-b pb-4">
+          <div class="flex items-center space-x-4">
+            <img src="./images/laptop1.png" class="w-24 h-24 object-cover rounded" alt="Used Laptop">
+            <div>
+              <h2 class="text-lg font-semibold">Used Dell Laptop</h2>
+              <p class="text-sm text-gray-600">220</p>
+              <p class="text-sm text-gray-500">Quantity: 1</p>
+            </div>
+          </div>
+          <button class="text-red-500 text-sm hover:underline">Remove</button>
+        </div>
+
+        <div class="flex items-center justify-between border-b pb-4">
+          <div class="flex items-center space-x-4">
+            <img src="./images/phone.jpg" class="w-24 h-24 object-cover rounded" alt="Used Phone">
+            <div>
+              <h2 class="text-lg font-semibold">iPhone 11 (Second-hand)</h2>
+              <p class="text-sm text-gray-600">250/day</p>
+              <p class="text-sm text-gray-500">Quantity: 1</p>
+            </div>
+          </div>
+          <button class="text-red-500 text-sm hover:underline">Remove</button>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="bg-gray-100 p-6 rounded-lg shadow">
+        <h2 class="text-xl font-semibold mb-4">Summary</h2>
+        <div class="flex justify-between text-sm mb-2">
+          <span>Used Dell Laptop</span>
+          <span>150/day</span>
+        </div>
+        <div class="flex justify-between text-sm mb-2">
+          <span>iPhone 11</span>
+          <span>250/day</span>
+        </div>
+        <div class="border-t my-4"></div>
+        <div class="flex justify-between font-semibold text-lg">
+          <span>Total</span>
+          <span>520</span>
+        </div>
+        <button class="mt-6 w-full bg-[#5E5EDC] text-white px-4 py-3 rounded hover:bg-indigo-700">Proceed to Checkout</button>
+      </div>
     </div>
   </main>
 
-  
   <!-- Footer -->
   <footer class="bg-gray-100 mt-20 px-8 py-12 text-sm text-gray-700">
     <div class="grid grid-cols-4 gap-8">
@@ -91,6 +120,6 @@
     </div>
     <div class="mt-10 text-center text-xs text-gray-400">© 2025 EduSync. All rights reserved.</div>
   </footer>
-
 </body>
+
 </html>

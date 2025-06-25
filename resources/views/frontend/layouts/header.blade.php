@@ -7,7 +7,7 @@
       </a>
       <nav class="space-x-8">
           <a href="{{ route('lost-found') }}" class="text-gray-700 hover:text-indigo-600">Lost & Found</a>
-          <a href="#" class="text-gray-700 hover:text-indigo-600">Housing</a>
+          <a href="{{ route('second-hand-products.index') }}" class="text-gray-700 hover:text-indigo-600">Second-Hand Marketplace</a>
           <a href="#" class="text-gray-700 hover:text-indigo-600">Tutoring</a>
           <a href="#" class="text-gray-700 hover:text-indigo-600">Jobs</a>
           <a href="#" class="text-gray-700 hover:text-indigo-600">Community</a>
