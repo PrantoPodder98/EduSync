@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EduSync - Campus Life Solution</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @yield('custom_css')
 </head>
 
 <body class="bg-white text-gray-900 font-sans">
@@ -17,6 +17,8 @@
 
     <!-- Footer -->
     @include('frontend.layouts.footer')
+
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -36,6 +38,8 @@
             });
         });
     </script>
+
+    @yield('custom_js')
 
 </body>
 
