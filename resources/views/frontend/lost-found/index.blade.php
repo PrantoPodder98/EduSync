@@ -5,7 +5,7 @@
 
         <!-- Buttons -->
         <div class="flex flex-col items-center space-y-6 mb-16">
-            <a href="{{ route('lost-found.lost') }}"
+            <a href="{{ route('lost-items.index') }}"
                 class="flex items-center justify-between px-8 py-4 bg-[#709EF2] text-white font-semibold rounded-xl shadow-md w-60 text-lg hover:bg-blue-600 transition">
                 <span>Lost</span>
                 <img src="{{ asset('asset/frontend_asset') }}/images/lost-icon.png" alt="Lost" class="w-6 h-6 ml-4">
