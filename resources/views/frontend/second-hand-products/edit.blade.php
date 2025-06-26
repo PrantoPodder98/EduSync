@@ -87,8 +87,6 @@
                         @endforeach
                     </div>
                 </div>
-
-
                 <hr>
 
                 <div class="grid grid-cols-3 gap-4">

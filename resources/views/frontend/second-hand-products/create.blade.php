@@ -64,19 +64,6 @@
                         class="w-full border border-dashed border-[#5E5EDC] rounded-lg p-4 text-sm text-gray-500" />
                     <small class="text-xs text-gray-500 block mt-1">Supported: JPG, JPEG, PNG (Max 2MB each)</small>
                 </div>
-                <!-- Display Current Images -->
-                <div class="mb-6">
-                    <h2 class="text-xl font-bold mb-4 text-center">Current Images</h2>
-                    <div class="grid grid-cols-3 gap-4">
-                        @foreach ($secondHandProduct->images as $image)
-                            <div class="relative">
-                                <img src="{{ asset($image->url) }}" alt="Product Image"
-                                    class="w-full h-40 object-cover rounded">
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
 
                 <hr>
 
