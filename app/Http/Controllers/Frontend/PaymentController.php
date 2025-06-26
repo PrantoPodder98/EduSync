@@ -18,12 +18,13 @@ class PaymentController extends Controller
     public function showBkashPayment(Request $request)
     {
         $amount = $request->get('amount');
+        $bkashNumber = $request->get('bkash_number');
         
         if (!session('pending_order') || !session('cart_items')) {
             return redirect()->route('cart.index')->with('error', 'Invalid payment session!');
         }
 
-        return view('frontend.payment.bkash', compact('amount'));
+        return view('frontend.payment.bkash', compact('amount', 'bkashNumber'));
     }
 
     /**

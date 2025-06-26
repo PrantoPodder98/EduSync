@@ -64,7 +64,7 @@ class SecondHandProductController extends Controller
             'user_location' => 'required|string|max:255',
             'user_contact' => 'required|string|max:255',
             'user_payment_option' => 'required',
-            'user_bkash_number' => 'nullable|string|max:20',
+            'user_bKash_number' => 'nullable|string|max:20',
         ]);
 
         // Save product
@@ -79,7 +79,7 @@ class SecondHandProductController extends Controller
             'user_location' => $request->user_location,
             'user_contact' => $request->user_contact,
             'user_payment_option' => $request->user_payment_option,
-            'user_bkash_number' => $request->user_bkash_number,
+            'user_bKash_number' => $request->user_payment_option === 'bKash' ? $request->user_bKash_number : null,
             'status' => $request->status, // 0 = sold, 1 = available
             'user_id' => auth()->id(), // Assuming the user is authenticated
             'status' => 1, // Default to available

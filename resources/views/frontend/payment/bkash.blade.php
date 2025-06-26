@@ -5,16 +5,21 @@
     <div class="bg-white rounded-lg shadow-lg p-8">
         <div class="text-center mb-6">
             <div class="w-20 h-20 mx-auto mb-4 bg-white border-4 border-pink-200 rounded-full flex items-center justify-center shadow">
-                <img src="{{ asset('asset/frontend_asset/images/bkash-w.jpg') }}" alt="bKash" class="w-12 h-12 object-contain">
+            <img src="{{ asset('asset/frontend_asset/images/bkash-w.jpg') }}" alt="bKash" class="w-12 h-12 object-contain">
             </div>
             <h1 class="text-2xl font-bold text-gray-800">Bkash Payment</h1>
             <p class="text-gray-600 mt-2">Complete your payment securely</p>
+            @isset($bkashNumber)
+            <div class="mt-2 text-sm text-pink-700 font-semibold">
+                bKash Number: {{ $bkashNumber }}
+            </div>
+            @endisset
         </div>
 
         <div class="mb-6 p-4 bg-gray-50 rounded-lg">
             <div class="flex justify-between items-center">
-                <span class="text-gray-600">Amount to Pay:</span>
-                <span class="text-2xl font-bold text-pink-600">৳{{ number_format($amount) }}</span>
+            <span class="text-gray-600">Amount to Pay:</span>
+            <span class="text-2xl font-bold text-pink-600">৳{{ number_format($amount) }}</span>
             </div>
         </div>
 

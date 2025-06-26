@@ -121,7 +121,7 @@ class OrderController extends Controller
             return $this->processOrder($request, $cartItems);
         } else {
             // Redirect to bKash payment
-            return redirect()->route('payment.bkash', ['amount' => $cartItems->sum('total_price')]);
+            return redirect()->route('payment.bkash', ['amount' => $cartItems->sum('total_price'), 'bkash_number' => $cartItem->secondHandProduct->user_bKash_number]);
         }
     }
 
