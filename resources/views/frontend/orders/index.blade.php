@@ -1,0 +1,96 @@
+@extends('frontend.layouts.master')
+
+@section('custom_css')
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
+@endsection
+@section('content')
+    <div class="container mx-auto mt-20 mb-60">
+        <h1 class="text-3xl font-bold text-[#5E5EDC] mb-8 text-center">My Orders</h1>
+
+        <div class="overflow-x-auto">
+            <table id="orders-table" class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order
+                            Number</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order
+                            Item</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment
+                            Method</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total
+                            (BDT)</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200 mb-20">
+                    @foreach ($orders as $index => $order)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $order->order_number }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @foreach ($order->orderItems as $item)
+                                    <a href="{{ route('second-hand-products.show', $item->secondHandProduct->id) }}">
+                                        <div class="flex items-center space-x-2">
+                                            <img src="{{ asset($item->secondHandProduct->images->first()->url ?? 'asset/frontend_asset/images/default.jpg') }}"
+                                                alt="{{ $item->secondHandProduct->name }}"
+                                                class="w-12 h-12 object-cover rounded">
+                                            <span class="text-gray-800">{{ $item->secondHandProduct->name }}</span>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if ($order->payment_method == 'bKash')
+                                    <span class="text-pink-600 font-semibold">bKash</span>
+                                    <br>
+                                    <span class="text-gray-600 text-sm">Number: {{ $order->bkash_number }}</span>
+                                @else
+                                    <span class="text-gray-600 font-semibold">{{ ucfirst($order->payment_method) }}</span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $order->created_at->format('Y-m-d') }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @php
+                                    $statusColors = [
+                                        'pending' => 'bg-yellow-100 text-yellow-800',
+                                        'processing' => 'bg-blue-100 text-blue-800',
+                                        'completed' => 'bg-green-100 text-green-800',
+                                        'cancelled' => 'bg-red-100 text-red-800',
+                                    ];
+                                    $status = strtolower($order->status);
+                                    $colorClass = $statusColors[$status] ?? 'bg-gray-100 text-gray-800';
+                                @endphp
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $colorClass }}">
+                                    {{ ucfirst($order->status) }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ number_format($order->total_amount) }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+@endsection
+
+@section('custom_js')
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#orders-table').DataTable({
+                // responsive: true,
+                searching: true,
+                paging: true,
+                pageLength: 10,
+            });
+        });
+    </script>
+@endsection

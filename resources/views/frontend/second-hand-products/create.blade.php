@@ -7,17 +7,20 @@
             <h1 class="text-2xl font-bold text-center text-[#5E5EDC] mb-8">Add A New Second-hand Product</h1>
 
             <!-- Form Grid -->
-            <form class="space-y-6" method="POST" action="{{ route('second-hand-products.store') }}" enctype="multipart/form-data">
+            <form class="space-y-6" method="POST" action="{{ route('second-hand-products.store') }}"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium mb-1">Name <span class="text-red-500">*</span></label>
-                        <input type="text" name="name" class="w-full border rounded px-3 py-2" placeholder="Enter Name" required>
+                        <input type="text" name="name" class="w-full border rounded px-3 py-2"
+                            placeholder="Enter Name" required>
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-1">Brand <span class="text-red-500">*</span></label>
-                        <input type="text" name="brand" class="w-full border rounded px-3 py-2" placeholder="Enter Brand Name" required>
+                        <input type="text" name="brand" class="w-full border rounded px-3 py-2"
+                            placeholder="Enter Brand Name" required>
                     </div>
                 </div>
 
@@ -44,7 +47,8 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-1">Price <span class="text-red-500">*</span></label>
-                        <input type="number" name="price" class="w-full border rounded px-3 py-2" placeholder="Enter Price" required>
+                        <input type="number" name="price" class="w-full border rounded px-3 py-2"
+                            placeholder="Enter Price" required>
                     </div>
                 </div>
 
@@ -55,7 +59,8 @@
 
                 <!-- Upload -->
                 <div>
-                    <label class="block text-sm font-medium mb-2">Upload Photos</label>
+                    <label class="block text-sm font-medium mb-2">Upload Photos <span
+                                class="text-red-500">*</span></label>
                     <input type="file" name="images[]" multiple accept="image/*" required
                         class="w-full border border-dashed border-[#5E5EDC] rounded-lg p-4 text-sm text-gray-500" />
                     <small class="text-xs text-gray-500 block mt-1">Supported: JPG, JPEG, PNG (Max 2MB each)</small>
@@ -66,17 +71,43 @@
                 <div class="grid grid-cols-3 gap-4">
                     <div>
                         <label class="block text-sm font-medium mb-1">User Name <span class="text-red-500">*</span></label>
-                        <input type="text" name="user_name" class="w-full border rounded px-3 py-2" value="{{ auth()->user()->name }}" required>
+                        <input type="text" name="user_name" class="w-full border rounded px-3 py-2"
+                            value="{{ auth()->user()->name }}" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1">User Location <span class="text-red-500">*</span></label>
-                        <input type="text" name="user_location" class="w-full border rounded px-3 py-2" placeholder="Enter Location" required>
+                        <label class="block text-sm font-medium mb-1">User Location <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" name="user_location" class="w-full border rounded px-3 py-2"
+                            placeholder="Enter Location" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1">User Contact <span class="text-red-500">*</span></label>
-                        <input type="text" name="user_contact" class="w-full border rounded px-3 py-2" placeholder="Contact" required>
+                        <label class="block text-sm font-medium mb-1">User Contact <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" name="user_contact" class="w-full border rounded px-3 py-2"
+                            placeholder="Contact" required>
                     </div>
                 </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Payment Option <span
+                                class="text-red-500">*</span></label>
+                        <select name="user_payment_option" id="paymentOption" required
+                            class="w-full border rounded px-3 py-2 text-sm">
+                            <option value="">Select Payment Option</option>
+                            <option value="Cash on Delivery">Cash on Delivery</option>
+                            <option value="bKash">bKash</option>
+                        </select>
+                    </div>
+                    <div id="bKashNumberField" style="display: none;">
+                        <label class="block text-sm font-medium mb-1">User bKash Number <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" name="user_bKash_number" class="w-full border rounded px-3 py-2"
+                            placeholder="User bKash Number">
+                    </div>
+                </div>
+
+
 
                 <button type="submit"
                     class="w-full bg-[#5E5EDC] hover:bg-[#4a4adc] text-white font-medium py-3 rounded-xl mt-6">
@@ -90,4 +121,23 @@
             </form>
         </div>
     </main>
+@endsection
+
+
+@section('custom_js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentOption = document.getElementById('paymentOption');
+            const bkashField = document.getElementById('bKashNumberField');
+            paymentOption.addEventListener('change', function() {
+                if (this.value === 'bKash') {
+                    bkashField.style.display = '';
+                    bkashField.querySelector('input').setAttribute('required', 'required');
+                } else {
+                    bkashField.style.display = 'none';
+                    bkashField.querySelector('input').removeAttribute('required');
+                }
+            });
+        });
+    </script>
 @endsection

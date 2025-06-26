@@ -29,6 +29,7 @@ class SecondHandProductController extends Controller
 
         // Get paginated results (12 items per page)
         $secondHandProducts = $query->with('images') // Eager load images to avoid N+1 query problem
+            ->where('status', 1) // Only show available products
             ->latest('created_at')
             ->paginate(4)
             ->withQueryString(); // Preserve search params in pagination links
@@ -61,6 +62,8 @@ class SecondHandProductController extends Controller
             'user_name' => 'required|string|max:255',
             'user_location' => 'required|string|max:255',
             'user_contact' => 'required|string|max:255',
+            'user_payment_option' => 'required',
+            'user_bkash_number' => 'nullable|string|max:20',
         ]);
 
         // Save product
@@ -74,7 +77,11 @@ class SecondHandProductController extends Controller
             'user_name' => $request->user_name,
             'user_location' => $request->user_location,
             'user_contact' => $request->user_contact,
+            'user_payment_option' => $request->user_payment_option,
+            'user_bkash_number' => $request->user_bkash_number,
+            'status' => $request->status, // 0 = sold, 1 = available
             'user_id' => auth()->id(), // Assuming the user is authenticated
+            'status' => 1, // Default to available
         ]);
 
         // Save images (if any)

@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\LostItemsController;
 use App\Http\Controllers\Frontend\SecondHandProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\PaymentController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/order/success/{order}', [OrderController::class, 'orderSuccess'])->name('order.success');
     Route::get('/my-orders', [OrderController::class, 'myOrders'])->name('orders.index');
     Route::get('/order/{order}', [OrderController::class, 'show'])->name('order.show');
+
+    // Payment routes
+Route::get('/payment/bkash', [PaymentController::class, 'showBkashPayment'])->name('payment.bkash');
+Route::post('/payment/bkash/process', [PaymentController::class, 'processBkashPayment'])->name('payment.bkash.process');
 });
 
 require __DIR__ . '/auth.php';

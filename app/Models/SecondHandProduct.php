@@ -19,6 +19,9 @@ class SecondHandProduct extends Model
         'user_location', // Location of the user who posted the product
         'user_contact', // Contact information of the user who posted the product
         'user_id', // Foreign key for user who posted the product
+        'user_payment_option', // Payment option selected by the user
+        'user_bKash_number', // Bkash number if payment option is bkash
+        'status', // 0 = sold, 1 = available
     ];
 
     public function user()

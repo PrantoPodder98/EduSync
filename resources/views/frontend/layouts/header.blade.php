@@ -25,28 +25,20 @@
                       <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
                   </li>
                   <li>
+                      <a href="{{ route('orders.index') }}" class="block px-4 py-2 hover:bg-gray-100">
+                          My Orders
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('cart.index') }}" class="block px-4 py-2 hover:bg-gray-100">
+                          Second-Hand Cart
+                      </a>
+                  </li>
+                  <li>
                       <form method="POST" action="{{ route('logout') }}">
                           @csrf
                           <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
                       </form>
-                  </li>
-                  <!-- Add this to your navbar -->
-                  <li>
-                      @auth
-                          <a href="{{ route('cart.index') }}" class="block px-4 py-2 hover:bg-gray-100">
-                                Second-Hand Cart
-                              {{-- <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5M7 13v6a2 2 0 002 2h6a2 2 0 002-2v-6">
-                                  </path>
-                              </svg> --}}
-                              {{-- @if (auth()->user()->cartItems()->sum('quantity') > 0)
-            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                {{ auth()->user()->cartItems()->sum('quantity') }}
-            </span>
-        @endif --}}
-                          </a>
-                      @endauth
                   </li>
 
               </ul>

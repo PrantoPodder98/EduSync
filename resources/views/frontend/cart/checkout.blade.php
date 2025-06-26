@@ -103,11 +103,6 @@
                         </div>
                     </div>
 
-                    {{-- <div class="mb-6">
-                        <input type="checkbox" id="ship-diff" name="ship_different" class="mr-2">
-                        <label for="ship-diff" class="text-sm">Ship to different address</label>
-                    </div> --}}
-
                     <h2 class="text-xl text-indigo-700 font-semibold mb-2">Additional Information</h2>
                     <label class="block mb-1 text-sm font-medium">Order Notes (optional)</label>
                     <textarea name="order_notes" rows="3" placeholder="Notes about your order, e.g. special notes for delivery"
@@ -129,6 +124,12 @@
                             </div>
                             <div class="text-sm font-semibold">BDT {{ number_format($item->secondHandProduct->price) }}
                             </div>
+                        </div>
+                        <div class="text-sm text-gray-500 mb-2">
+                            Payment Option:
+                            <span class="font-semibold bg-yellow-200 px-2 py-1 rounded">
+                                {{ $item->secondHandProduct->user_payment_option }}
+                            </span>
                         </div>
                     @endforeach
 

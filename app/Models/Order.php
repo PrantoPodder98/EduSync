@@ -24,7 +24,10 @@ class Order extends Model
         'phone_number',
         'total_amount',
         'order_notes',
-        'status'
+        'status',
+        'payment_method',
+        'payment_status',
+        'bkash_number'
     ];
 
     protected $casts = [
