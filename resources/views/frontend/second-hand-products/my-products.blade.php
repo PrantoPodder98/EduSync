@@ -6,6 +6,15 @@
             <h1 class="text-4xl font-bold text-[#5E5EDC] mb-2">My Products for Second Hand</h1>
             <p class="text-gray-600">Manage your second-hand product listings and orders</p>
         </div>
+        <div class="flex justify-end mb-4">
+            <a href="{{ route('second-hand-products.create') }}"
+            class="inline-flex items-center px-3 py-1 bg-[#5E5EDC] text-white rounded font-semibold text-sm hover:bg-[#4A4AC8] transition-colors shadow">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Add New Product
+            </a>
+        </div>
 
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="overflow-x-auto">
@@ -84,18 +93,24 @@
                                         <!-- Product Status -->
                                         <div class="flex items-center space-x-2">
                                             @if ($product->status == 1)
-                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-green-400 to-green-600 text-white shadow">
-                                                    <svg class="w-3 h-3 mr-2 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                        <circle cx="10" cy="10" r="10" fill="currentColor"/>
-                                                        <path d="M7 10l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-green-400 to-green-600 text-white shadow">
+                                                    <svg class="w-3 h-3 mr-2 text-white" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <circle cx="10" cy="10" r="10" fill="currentColor" />
+                                                        <path d="M7 10l2 2 4-4" stroke="#fff" stroke-width="2"
+                                                            fill="none" stroke-linecap="round" stroke-linejoin="round" />
                                                     </svg>
                                                     Product: <span class="ml-1">Available</span>
                                                 </span>
                                             @else
-                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-red-400 to-red-600 text-white shadow">
-                                                    <svg class="w-3 h-3 mr-2 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                        <circle cx="10" cy="10" r="10" fill="currentColor"/>
-                                                        <path d="M7 7l6 6M13 7l-6 6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-red-400 to-red-600 text-white shadow">
+                                                    <svg class="w-3 h-3 mr-2 text-white" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <circle cx="10" cy="10" r="10" fill="currentColor" />
+                                                        <path d="M7 7l6 6M13 7l-6 6" stroke="#fff" stroke-width="2"
+                                                            fill="none" stroke-linecap="round" stroke-linejoin="round" />
                                                     </svg>
                                                     Product: <span class="ml-1">Sold</span>
                                                 </span>
@@ -105,18 +120,24 @@
                                         <!-- Payment Status -->
                                         <div class="flex items-center space-x-2 mt-2">
                                             @if ($latestOrder && $latestOrder->payment_status === 'completed')
-                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow">
-                                                    <svg class="w-3 h-3 mr-2 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                        <circle cx="10" cy="10" r="10" fill="currentColor"/>
-                                                        <path d="M7 10l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow">
+                                                    <svg class="w-3 h-3 mr-2 text-white" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <circle cx="10" cy="10" r="10" fill="currentColor" />
+                                                        <path d="M7 10l2 2 4-4" stroke="#fff" stroke-width="2"
+                                                            fill="none" stroke-linecap="round" stroke-linejoin="round" />
                                                     </svg>
                                                     Payment: <span class="ml-1">Paid</span>
                                                 </span>
                                             @else
-                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-yellow-400 to-yellow-600 text-white shadow">
-                                                    <svg class="w-3 h-3 mr-2 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                        <circle cx="10" cy="10" r="10" fill="currentColor"/>
-                                                        <path d="M10 6v4l2 2" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-yellow-400 to-yellow-600 text-white shadow">
+                                                    <svg class="w-3 h-3 mr-2 text-white" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <circle cx="10" cy="10" r="10" fill="currentColor" />
+                                                        <path d="M10 6v4l2 2" stroke="#fff" stroke-width="2" fill="none"
+                                                            stroke-linecap="round" stroke-linejoin="round" />
                                                     </svg>
                                                     Payment: <span class="ml-1">Pending</span>
                                                 </span>
@@ -132,8 +153,8 @@
                                             <!-- Order Number -->
                                             <div class="flex items-center justify-between">
                                                 <div class="flex items-center space-x-2">
-                                                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24">
+                                                    <svg class="w-4 h-4 text-gray-500" fill="none"
+                                                        stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2"
                                                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -257,16 +278,18 @@
                                             Product View
                                         </a>
 
-                                        <!-- Edit Product -->
-                                        <a href="{{ route('second-hand-products.edit', $product->id) }}"
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                            </svg>
-                                            Edit Product
-                                        </a>
+                                        @if ($product->status == 1)
+                                            <!-- Edit Product -->
+                                            <a href="{{ route('second-hand-products.edit', $product->id) }}"
+                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                </svg>
+                                                Edit Product
+                                            </a>
+                                        @endif
 
                                         <!-- Order Status Update (only if order exists) -->
                                         @if ($latestOrder)
