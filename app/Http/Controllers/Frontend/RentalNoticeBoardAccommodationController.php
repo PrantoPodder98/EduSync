@@ -13,40 +13,44 @@ class RentalNoticeBoardAccommodationController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-{
-    $query = RentalNoticeBoardAccommodation::query()->where('status', 'active');
+    {
+        $query = RentalNoticeBoardAccommodation::query()->where('status', 'active');
 
-    if ($request->filled('division')) {
-        $query->where('division', $request->division);
+        if ($request->filled('division')) {
+            $query->where('division', $request->division);
+        }
+
+        if ($request->filled('property_type')) {
+            $query->where('property_type', $request->property_type);
+        }
+
+        if ($request->filled('rent_type')) {
+            $query->where('rent_type', $request->rent_type);
+        }
+
+        if ($request->filled('bedrooms')) {
+            $query->where('bedrooms', $request->bedrooms);
+        }
+
+        if ($request->filled('min_price')) {
+            $query->where('rent_amount', '>=', $request->min_price);
+        }
+
+        if ($request->filled('max_price')) {
+            $query->where('rent_amount', '<=', $request->max_price);
+        }
+
+        $accommodations = $query
+            // ->where('is_approved', 1)
+            ->where('status', 'active')
+            ->orderBy('created_at', 'desc')
+            ->paginate(8);
+
+        return view('frontend.rental_notice_board_accommodations.index', [
+            'accommodations' => $accommodations,
+            'filters' => $request->only(['division', 'property_type', 'rent_type', 'bedrooms', 'min_price', 'max_price']),
+        ]);
     }
-
-    if ($request->filled('property_type')) {
-        $query->where('property_type', $request->property_type);
-    }
-
-    if ($request->filled('rent_type')) {
-        $query->where('rent_type', $request->rent_type);
-    }
-
-    if ($request->filled('bedrooms')) {
-        $query->where('bedrooms', $request->bedrooms);
-    }
-
-    if ($request->filled('min_price')) {
-        $query->where('rent_amount', '>=', $request->min_price);
-    }
-
-    if ($request->filled('max_price')) {
-        $query->where('rent_amount', '<=', $request->max_price);
-    }
-
-    $accommodations = $query->orderBy('created_at', 'desc')->paginate(8);
-
-    return view('frontend.rental_notice_board_accommodations.index', [
-        'accommodations' => $accommodations,
-        'filters' => $request->only(['division', 'property_type', 'rent_type', 'bedrooms', 'min_price', 'max_price']),
-    ]);
-}
 
 
 
@@ -169,7 +173,7 @@ class RentalNoticeBoardAccommodationController extends Controller
      */
     public function show(RentalNoticeBoardAccommodation $rentalNoticeBoardAccommodation)
     {
-        //
+        
     }
 
     /**
