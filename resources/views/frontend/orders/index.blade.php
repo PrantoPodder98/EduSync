@@ -20,6 +20,7 @@
                             Item</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment
                             Method</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Owner Info</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status
                         </th>
@@ -53,6 +54,23 @@
                                     <span class="text-gray-600 font-semibold">{{ ucfirst($order->payment_method) }}</span>
                                 @endif
                             </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center space-x-2">
+                                    <img src="{{ asset('asset/frontend_asset/images/profile-icon.png') }}"
+                                        class="w-10 h-10 rounded-full" alt="Owner">
+                                    @php
+                                        $firstItem = $order->orderItems->first();
+                                        $product = $firstItem ? $firstItem->secondHandProduct : null;
+                                    @endphp
+                                    <div>
+                                        <p class="text-gray-800 font-semibold">{{ $product->user_name ?? 'N/A' }}</p>
+                                        <p class="text-gray-600 text-sm">{{ $product->user_contact ?? 'N/A' }}</p>
+                                        <p class="text-gray-600 text-sm">{{ $product->user_location ?? 'N/A' }}</p>
+                                    </div>
+                                </div>
+                            </td>
+
                             <td class="px-6 py-4 whitespace-nowrap">{{ $order->created_at->format('Y-m-d') }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @php
