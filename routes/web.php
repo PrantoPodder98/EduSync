@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\SecondHandProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
+use App\Http\Controllers\Frontend\RentalNoticeBoardAccommodationController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,9 @@ Route::middleware('auth')->group(function () {
     // Payment routes
     Route::get('/payment/bkash', [PaymentController::class, 'showBkashPayment'])->name('payment.bkash');
     Route::post('/payment/bkash/process', [PaymentController::class, 'processBkashPayment'])->name('payment.bkash.process');
+
+    // Rental Notice Board Accommodation routes
+    Route::resource('rental-notice-board-accommodations', RentalNoticeBoardAccommodationController::class);
 });
 
 require __DIR__ . '/auth.php';

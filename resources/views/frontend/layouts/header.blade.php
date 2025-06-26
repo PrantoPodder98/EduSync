@@ -9,7 +9,8 @@
           <a href="{{ route('lost-found') }}" class="text-gray-700 hover:text-indigo-600">Lost & Found</a>
           <a href="{{ route('second-hand-products.index') }}" class="text-gray-700 hover:text-indigo-600">Second-Hand
               Marketplace</a>
-          <a href="#" class="text-gray-700 hover:text-indigo-600">Tutoring</a>
+          <a href="{{ route('rental-notice-board-accommodations.index')}}" class="text-gray-700 hover:text-indigo-600">Rental
+              Accommodation</a>
           <a href="#" class="text-gray-700 hover:text-indigo-600">Jobs</a>
           <a href="#" class="text-gray-700 hover:text-indigo-600">Community</a>
       </nav>
@@ -30,7 +31,8 @@
                       </a>
                   </li>
                   <li>
-                      <a href="{{ route('second-hand-products.myProducts') }}" class="block px-4 py-2 hover:bg-gray-100">
+                      <a href="{{ route('second-hand-products.myProducts') }}"
+                          class="block px-4 py-2 hover:bg-gray-100">
                           My Products
                       </a>
                   </li>
