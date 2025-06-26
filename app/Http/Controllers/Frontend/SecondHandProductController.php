@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 
 use App\Models\SecondHandProduct;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class SecondHandProductController extends Controller
@@ -147,4 +148,45 @@ class SecondHandProductController extends Controller
         //
     }
 
+    public function myProducts()
+    {
+        // return
+        $secondHandProducts = SecondHandProduct::where('user_id', auth()->id())
+            ->with('images', 'orderItems.order') // Eager load images to avoid N+1 query problem
+            ->latest('created_at')
+            ->get();
+
+
+        return view('frontend.second-hand-products.my-products', compact('secondHandProducts'));
+    }
+
+    public function updateOrderStatus(Request $request, $orderId)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,processing,shipped,delivered,cancelled'
+        ]);
+
+        try {
+            $order = Order::findOrFail($orderId);
+
+            // Check if the authenticated user owns the product in this order
+            $productOwner = $order->orderItems()
+                ->whereHas('secondHandProduct', function ($query) {
+                    $query->where('user_id', auth()->id());
+                })
+                ->exists();
+
+            if (!$productOwner) {
+                return redirect()->back()->with('error', 'You are not authorized to update this order status.');
+            }
+
+            $order->update([
+                'status' => $request->status
+            ]);
+
+            return redirect()->back()->with('success', 'Order status updated successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error updating order status. Please try again.');
+        }
+    }
 }

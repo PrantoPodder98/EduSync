@@ -1,10 +1,5 @@
 @extends('frontend.layouts.master')
 
-@section('custom_css')
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
-@endsection
 @section('content')
     <div class="container mx-auto mt-20 mb-60">
         <h1 class="text-3xl font-bold text-[#5E5EDC] mb-8 text-center">My Orders</h1>
@@ -97,10 +92,6 @@
 @endsection
 
 @section('custom_js')
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
-
     <script>
         $(document).ready(function() {
             $('#orders-table').DataTable({

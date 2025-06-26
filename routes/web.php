@@ -34,7 +34,9 @@ Route::middleware('auth')->group(function () {
 
     // second hand products rourtes
     Route::resource('second-hand-products', SecondHandProductController::class);
-    // Route::get('/get-secondhand-items', [SecondHandProductController::class, 'getItems']);
+    Route::get('my-products', [SecondHandProductController::class, 'myProducts'])->name('second-hand-products.myProducts');
+    Route::post('/orders/{order}/update-status', [SecondHandProductController::class, 'updateOrderStatus'])
+    ->name('orders.update-status');
 
     // cart rourtes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -52,8 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/order/{order}', [OrderController::class, 'show'])->name('order.show');
 
     // Payment routes
-Route::get('/payment/bkash', [PaymentController::class, 'showBkashPayment'])->name('payment.bkash');
-Route::post('/payment/bkash/process', [PaymentController::class, 'processBkashPayment'])->name('payment.bkash.process');
+    Route::get('/payment/bkash', [PaymentController::class, 'showBkashPayment'])->name('payment.bkash');
+    Route::post('/payment/bkash/process', [PaymentController::class, 'processBkashPayment'])->name('payment.bkash.process');
 });
 
 require __DIR__ . '/auth.php';

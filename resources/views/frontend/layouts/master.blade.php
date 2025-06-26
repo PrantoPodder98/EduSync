@@ -7,6 +7,10 @@
     <title>EduSync - Campus Life Solution</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
+    
     <style>
           .pagination {
             display: flex;
@@ -129,7 +133,9 @@
         });
     </script>
 
-
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
 
     @yield('custom_js')
 

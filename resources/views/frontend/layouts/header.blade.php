@@ -30,6 +30,11 @@
                       </a>
                   </li>
                   <li>
+                      <a href="{{ route('second-hand-products.myProducts') }}" class="block px-4 py-2 hover:bg-gray-100">
+                          My Products
+                      </a>
+                  </li>
+                  <li>
                       <a href="{{ route('cart.index') }}" class="block px-4 py-2 hover:bg-gray-100">
                           Second-Hand Cart
                       </a>

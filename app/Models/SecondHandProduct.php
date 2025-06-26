@@ -33,4 +33,12 @@ class SecondHandProduct extends Model
     {
         return $this->morphMany(Image::class, 'parentable');
     }
+
+    public function orderItems()
+    {
+        return $this->hasMany(
+            OrderItem::class,
+            'second_hand_product_id'
+        );
+    }
 }
