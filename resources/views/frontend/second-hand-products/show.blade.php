@@ -34,7 +34,8 @@
             <div class="col-span-2">
 
                 <h1 class="text-2xl font-bold mb-2"><span class="text-[#5E5EDC]">{{ $secondHandProduct->name }}</span> -
-                    <span class="text-xl">{{ $secondHandProduct->brand }}</span></h1>
+                    <span class="text-xl">{{ $secondHandProduct->brand }}</span>
+                </h1>
                 <p class="text-md mb-2 font-medium">Type: <span
                         class="text-gray-800">{{ $secondHandProduct->item_type }}</span></p>
                 <div class="mb-4 flex items-center space-x-3">
@@ -65,13 +66,29 @@
                 </div>
 
                 <!-- Contact Buttons -->
-                <div class="flex space-x-4">
-                    <button
-                        class="border border-[#5E5EDC] text-[#5E5EDC] px-6 py-2 rounded-lg font-semibold hover:bg-gray-100">
-                        Add to Cart
-                    </button>
+                <div class="flex space-x-4 items-center">
+                    <form action="{{ route('cart.add', $secondHandProduct) }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit"
+                            class="relative bg-gradient-to-r from-[#5E5EDC] to-[#3B82F6] text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:from-[#4a4ab8] hover:to-[#2563eb] transition-all duration-200 flex items-center group overflow-hidden">
+                            <svg class="w-5 h-5 mr-2 text-white group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 007.5 17h9a1 1 0 00.9-1.45L17 13M7 13V6a1 1 0 011-1h5a1 1 0 011 1v7"></path>
+                            </svg>
+                            Add to Cart
+                            <span class="absolute right-0 top-0 bg-yellow-400 text-xs text-black px-2 py-1 rounded-bl-xl font-semibold animate-bounce ml-2">Hot</span>
+                        </button>
+                    </form>
+                    @auth
+                    <a href="{{ route('cart.index') }}"
+                        class="flex items-center bg-white border border-[#5E5EDC] text-[#5E5EDC] px-6 py-2 rounded-lg font-semibold hover:bg-[#5E5EDC] hover:text-white transition">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 007.5 17h9a1 1 0 00.9-1.45L17 13M7 13V6a1 1 0 011-1h5a1 1 0 011 1v7"></path>
+                        </svg>
+                        View Cart
+                    </a>
+                    @endauth
                     <a href="{{ route('second-hand-products.index') }}"
-                        class="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100">
+                        class="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">
                         Back to Products
                     </a>
                 </div>
