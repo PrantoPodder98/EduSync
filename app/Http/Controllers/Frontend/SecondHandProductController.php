@@ -129,7 +129,16 @@ class SecondHandProductController extends Controller
      */
     public function edit(SecondHandProduct $secondHandProduct)
     {
-        //
+        // Check if the authenticated user is the owner of the product
+        if (auth()->id() !== $secondHandProduct->user_id) {
+            return redirect()->back()->with('error', 'You do not have permission to edit this product.');
+        }
+
+        // Eager load images to avoid N+1 query problem
+        // return
+        $secondHandProduct->load('images');
+
+        return view('frontend.second-hand-products.edit', compact('secondHandProduct'));
     }
 
     /**
@@ -137,7 +146,76 @@ class SecondHandProductController extends Controller
      */
     public function update(Request $request, SecondHandProduct $secondHandProduct)
     {
-        //
+        // Check if the authenticated user is the owner of the product
+        if (auth()->id() !== $secondHandProduct->user_id) {
+            return redirect()->back()->with('error', 'You do not have permission to update this product.');
+        }
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'brand' => 'required|string|max:255',
+            'item_type' => 'required|string|max:100',
+            'item_state' => 'required|string|max:100',
+            'price' => 'required|numeric',
+            'description' => 'required|string',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'user_name' => 'required|string|max:255',
+            'user_location' => 'required|string|max:255',
+            'user_contact' => 'required|string|max:255',
+            'user_payment_option' => 'required',
+            'user_bKash_number' => 'nullable|string|max:20',
+        ]);
+
+        // Update product
+        $secondHandProduct->update([
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'item_type' => $request->item_type,
+            'item_state' => $request->item_state,
+            'price' => $request->price,
+            'description' => $request->description,
+            'user_name' => $request->user_name,
+            'user_location' => $request->user_location,
+            'user_contact' => $request->user_contact,
+            'user_payment_option' => $request->user_payment_option,
+            'user_bKash_number' => $request->user_payment_option === 'bKash' ? $request->user_bKash_number : null,
+        ]);
+
+        // Update images first delete old images
+        foreach ($secondHandProduct->images as $image) {
+            $imagePath = public_path($image->url);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+            $image->delete();
+        }
+
+        // Save new images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $locationName = 'images/second_hand_products/';
+                $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+                $destinationPath = env('PUBLIC_FILE_LOCATION')
+                    ? public_path('../' . $locationName)
+                    : public_path($locationName);
+
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0755, true);
+                }
+
+                $file->move($destinationPath, $fileName);
+                $fullPath = $locationName . $fileName;
+
+                $secondHandProduct->images()->create([
+                    'url' => $fullPath,
+                    'type' => $file->getClientOriginalExtension(),
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Product updated successfully!');
+                
     }
 
     /**
@@ -145,7 +223,23 @@ class SecondHandProductController extends Controller
      */
     public function destroy(SecondHandProduct $secondHandProduct)
     {
-        //
+        if (auth()->id() !== $secondHandProduct->user_id) {
+            return redirect()->back()->with('error', 'You do not have permission to delete this product.');
+        }
+
+        // Delete associated images
+        foreach ($secondHandProduct->images as $image) {
+            $imagePath = public_path($image->url);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+            $image->delete();
+        }
+
+        // Delete the product
+        $secondHandProduct->delete();
+
+        return redirect()->back()->with('warning', 'Product deleted successfully.');
     }
 
     public function myProducts()
