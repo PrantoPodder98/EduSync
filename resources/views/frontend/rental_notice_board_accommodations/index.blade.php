@@ -192,7 +192,7 @@
                                 alt="Property Image">
                             <div class="absolute top-4 left-4">
                                 <span
-                                    class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                                    class="bg-gradient-to-r from-green-500 to-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
                                     {{ ucfirst($accommodation->rent_type) }}
                                 </span>
                             </div>
@@ -210,8 +210,9 @@
 
                         <div class="p-6">
                             <div class="mb-4">
-                                <h4 class="font-bold text-lg text-gray-800 mb-2 line-clamp-2">
-                                    {{ $accommodation->address }}</h4>
+                                <h4 class="font-bold text-lg text-gray-800 line-clamp-2">
+                                    {{ $accommodation->title }}</h4>
+                                <span class="text-sm text-gray-400 mb-3">{{ $accommodation->address }}</span>
                                 <div class="flex flex-wrap items-center gap-2">
                                     <span
                                         class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-purple-100 to-indigo-100 text-purple-700 shadow-sm">

@@ -64,7 +64,6 @@
                         class="w-full border border-dashed border-[#5E5EDC] rounded-lg p-4 text-sm text-gray-500" />
                     <small class="text-xs text-gray-500 block mt-1">Supported: JPG, JPEG, PNG (Max 2MB each)</small>
                 </div>
-
                 <hr>
 
                 <div class="grid grid-cols-3 gap-4">
@@ -82,7 +81,7 @@
                     <div>
                         <label class="block text-sm font-medium mb-1">User Contact <span
                                 class="text-red-500">*</span></label>
-                        <input type="text" name="user_contact" class="w-full border rounded px-3 py-2"
+                        <input type="number" name="user_contact" class="w-full border rounded px-3 py-2"
                             placeholder="Contact" required>
                     </div>
                 </div>

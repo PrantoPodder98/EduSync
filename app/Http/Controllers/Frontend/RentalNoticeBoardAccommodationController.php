@@ -78,7 +78,7 @@ class RentalNoticeBoardAccommodationController extends Controller
             'map_link' => 'nullable|url',
             'rent_type' => 'required|in:monthly,daily',
             'rent_amount' => 'required|integer|min:0',
-            'advance_amount' => 'nullable|integer|min:0',
+            'advance_amount' => 'required|integer|min:1',
             'utility_bill' => 'nullable|integer|min:0',
             'bedrooms' => 'required|integer|min:1|max:10',
             'bathrooms' => 'required|integer|min:1|max:10',

@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\RentalNoticeBoardAccommodationController;
+use App\Http\Controllers\Frontend\RentalReservationController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('second-hand-products', SecondHandProductController::class);
     Route::get('my-products', [SecondHandProductController::class, 'myProducts'])->name('second-hand-products.myProducts');
     Route::post('/orders/{order}/update-status', [SecondHandProductController::class, 'updateOrderStatus'])
-    ->name('orders.update-status');
+        ->name('orders.update-status');
 
     // cart rourtes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -60,6 +61,27 @@ Route::middleware('auth')->group(function () {
 
     // Rental Notice Board Accommodation routes
     Route::resource('rental-notice', RentalNoticeBoardAccommodationController::class);
+
+    // Rental reservation routes
+    Route::get('/rental/{id}/reserve', [RentalReservationController::class, 'showCheckout'])
+        ->name('rental.reserve.checkout');
+    Route::post('/rental/{id}/reserve', [RentalReservationController::class, 'processReservation'])
+        ->name('rental.reserve.process');
+    Route::get('/rental-notice-payment/card/{reservation}', [RentalReservationController::class, 'showCardPayment'])
+        ->name('rental.payment.card');
+    Route::post('/rental-notice-payment/card/{reservation}', [RentalReservationController::class, 'processCardPayment'])
+        ->name('rental.payment.card.process');
+    Route::get('/rental-notice-payments/bkash/{reservation}', [RentalReservationController::class, 'showBkashPayment'])
+        ->name('rental.payment.bkash');
+    Route::post('/rental-notice-payment/bkash/{reservation}', [RentalReservationController::class, 'processBkashPayment'])
+        ->name('rental.payment.bkash.process');
+
+    // Success page
+    Route::get('/reservation/{reservation}/success', [RentalReservationController::class, 'showSuccess'])
+        ->name('rental.reservation.success');
+
+    Route::get('/my-reservations', [RentalReservationController::class, 'userReservations'])
+        ->name('user.reservations');
 });
 
 require __DIR__ . '/auth.php';

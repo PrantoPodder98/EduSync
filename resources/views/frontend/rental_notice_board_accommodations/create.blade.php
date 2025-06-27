@@ -114,8 +114,9 @@
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium mb-1">Advance Amount</label>
-                        <input type="number" name="advance_amount" class="w-full border rounded px-3 py-2"
+                        <label class="block text-sm font-medium mb-1">Advance Amount <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" name="advance_amount" class="w-full border rounded px-3 py-2" required
                             value="{{ old('advance_amount') }}" placeholder="e.g. 20000">
                         @error('advance_amount')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

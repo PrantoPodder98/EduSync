@@ -301,13 +301,10 @@
                                 </svg>
                                 Call {{ $rentalNotice->contact_number }}
                             </a>
-                            <form {{-- action="{{ route('rental.reserve', $rentalNotice->id) }}" --}} method="POST" class="mt-4">
-                                @csrf
-                                <button type="submit"
-                                    class="w-full bg-green-400 hover:bg-green-500 text-indigo-900 font-bold py-3 rounded-xl text-center transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                                    Reserve Property
-                                </button>
-                            </form>
+                            <a href="{{ route('rental.reserve.checkout', $rentalNotice->id) }}"
+                                class="w-full bg-green-400 hover:bg-green-500 text-indigo-900 font-bold py-3 rounded-xl text-center transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 mt-4 block">
+                                Reserve Property
+                            </a>
                         @else
                             <button class="w-full bg-gray-400 text-white py-4 rounded-xl font-bold cursor-not-allowed"
                                 disabled>
