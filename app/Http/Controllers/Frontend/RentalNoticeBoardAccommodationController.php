@@ -171,15 +171,19 @@ class RentalNoticeBoardAccommodationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(RentalNoticeBoardAccommodation $rentalNoticeBoardAccommodation)
+    public function show(RentalNoticeBoardAccommodation $rentalNotice)
     {
-        
+        $rentalNotice->load(['images', 'user']);
+
+        return view('frontend.rental_notice_board_accommodations.show', [
+            'rentalNotice' => $rentalNotice,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RentalNoticeBoardAccommodation $rentalNoticeBoardAccommodation)
+    public function edit(RentalNoticeBoardAccommodation $rentalNotice)
     {
         //
     }
@@ -187,7 +191,7 @@ class RentalNoticeBoardAccommodationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RentalNoticeBoardAccommodation $rentalNoticeBoardAccommodation)
+    public function update(Request $request, RentalNoticeBoardAccommodation $rentalNotice)
     {
         //
     }
@@ -195,7 +199,7 @@ class RentalNoticeBoardAccommodationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RentalNoticeBoardAccommodation $rentalNoticeBoardAccommodation)
+    public function destroy(RentalNoticeBoardAccommodation $rentalNotice)
     {
         //
     }
