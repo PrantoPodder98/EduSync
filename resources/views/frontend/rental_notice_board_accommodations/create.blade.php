@@ -9,7 +9,7 @@
         <div class="w-full max-w-5xl bg-white p-10 rounded-2xl shadow-lg border">
             <h1 class="text-2xl font-bold text-center text-[#5E5EDC] mb-8">Add A New Accommodation</h1>
 
-            <form action="{{ route('rental-notice-board-accommodations.store') }}" method="POST" enctype="multipart/form-data"
+            <form action="{{ route('rental-notice.store') }}" method="POST" enctype="multipart/form-data"
                 class="space-y-6">
                 @csrf
 
@@ -252,7 +252,7 @@
                     Add New Property
                 </button>
 
-                <a href="{{ route('rental-notice-board-accommodations.index') }}"
+                <a href="{{ route('rental-notice.index') }}"
                    class="inline-block w-full mt-4 px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-center">
                     Back to List
                 </a>

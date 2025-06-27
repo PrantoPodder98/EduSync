@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/payment/bkash/process', [PaymentController::class, 'processBkashPayment'])->name('payment.bkash.process');
 
     // Rental Notice Board Accommodation routes
-    Route::resource('rental-notice-board-accommodations', RentalNoticeBoardAccommodationController::class);
+    Route::resource('rental-notice', RentalNoticeBoardAccommodationController::class);
 });
 
 require __DIR__ . '/auth.php';

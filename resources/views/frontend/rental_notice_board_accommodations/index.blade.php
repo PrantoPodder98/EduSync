@@ -155,7 +155,7 @@
                             </svg>
                             <span>Search</span>
                         </button>
-                        <a href="{{ route('rental-notice-board-accommodations.index') }}"
+                        <a href="{{ route('rental-notice.index') }}"
                             class="text-indigo-600 hover:text-indigo-800 px-4 py-2 rounded-lg border border-indigo-200 hover:border-indigo-300 font-medium transition-all duration-300 flex items-center space-x-1 text-sm">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -174,7 +174,7 @@
 
             <!-- Properties Grid -->
             <div class="flex justify-end mb-4">
-                <a href="{{ route('rental-notice-board-accommodations.create') }}"
+                <a href="{{ route('rental-notice.create') }}"
                     class="inline-flex items-center px-3 py-1 bg-[#5E5EDC] text-white rounded font-semibold text-sm hover:bg-[#4A4AC8] transition-colors shadow">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -242,7 +242,7 @@
                             </div>
 
                             <div class="flex space-x-2">
-                                <a href="{{ route('rental-notice-board-accommodations.show', $accommodation->id) }}"
+                                <a href="{{ route('rental-notice.show', $accommodation->id) }}"
                                     class="flex-1 text-center bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white py-3 rounded-xl font-semibold text-sm transform hover:scale-105 transition-all duration-300">
                                     View Details
                                 </a>
@@ -264,7 +264,7 @@
                             We couldn't find any properties matching your criteria. Try adjusting your filters or check back
                             later for new listings.
                         </p>
-                        <a href="{{ route('rental-notice-board-accommodations.index') }}"
+                        <a href="{{ route('rental-notice.index') }}"
                             class="inline-block bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-8 py-3 rounded-xl font-semibold hover:from-indigo-600 hover:to-purple-600 transition-all duration-300">
                             View All Properties
                         </a>
