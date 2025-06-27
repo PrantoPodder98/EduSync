@@ -183,7 +183,7 @@
                     <div>
                         <label class="block text-sm font-medium mb-1">Contact Number <span
                                 class="text-red-500">*</span></label>
-                        <input type="text" name="contact_number" class="w-full border rounded px-3 py-2" required
+                        <input type="number" name="contact_number" class="w-full border rounded px-3 py-2" required
                             value="{{ old('contact_number') }}" placeholder="e.g. 017XXXXXXXX">
                         @error('contact_number')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -193,7 +193,7 @@
 
                 <label class="block text-sm font-medium text-blue-600">Full Details</label>
                 <div>
-                    <label class="block text-sm font-medium mb-1">Description <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium mb-1">Description </label>
                     <textarea name="description" id="description" rows="10" class="w-full border rounded px-3 py-2">{{ old('description') }}</textarea>
                     @error('description')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -203,8 +203,9 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium mb-2">Upload Photos</label>
-                    <input type="file" name="images[]" multiple
+                    <label class="block text-sm font-medium mb-2">Upload Photos <span
+                                class="text-red-500">*</span></label>
+                    <input type="file" name="images[]" multiple required
                         class="w-full text-sm border border-dashed border-[#5E5EDC] rounded-lg px-4 py-6 bg-gray-50">
                     @error('images')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

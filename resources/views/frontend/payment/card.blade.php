@@ -32,8 +32,8 @@
                                 maxlength="19" required>
                             <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
                                 <div id="cardType" class="flex space-x-1">
-                                    <img src="{{ asset('asset/frontend_asset/images/visa.png') }}" alt="Visa" class="h-6 opacity-30">
-                                    <img src="{{ asset('asset/frontend_asset/images/mastercard.png') }}" alt="Mastercard" class="h-6 opacity-30">
+                                    <img src="{{ asset('asset/frontend_asset/images/visa.jpg') }}" alt="Visa" class="h-6 opacity-30">
+                                    <img src="{{ asset('asset/frontend_asset/images/master.jpg') }}" alt="Mastercard" class="h-6 opacity-30">
                                 </div>
                             </div>
                         </div>
@@ -149,14 +149,13 @@
                     <span class="text-[#5E5EDC]">BDT {{ number_format($reservation->reservation_fee, 2) }}</span>
                 </div>
 
-                <!-- Customer Info -->
+                <!-- Owner Bank Info -->
                 <div class="mt-6 pt-4 border-t">
-                    <h4 class="font-semibold text-gray-800 mb-3">Billing Information</h4>
+                    <h4 class="font-semibold text-gray-800 mb-3">Owner Bank Information</h4>
                     <div class="space-y-2 text-sm">
-                        <p class="text-gray-600">{{ $reservation->full_name }}</p>
-                        <p class="text-gray-600">{{ $reservation->email }}</p>
-                        <p class="text-gray-600">{{ $reservation->phone_number }}</p>
-                        <p class="text-gray-600">{{ $reservation->address }}, {{ $reservation->city }}</p>
+                        <p class="text-gray-600">Bank Name: {{ $reservation->rentalNotice->bank_name }}</p>
+                        <p class="text-gray-600">Account Number: {{ $reservation->rentalNotice->bank_account_number }}</p>
+                        <p class="text-gray-600">Routing Number: {{ $reservation->rentalNotice->bank_routing_number }}</p>
                     </div>
                 </div>
 
@@ -222,14 +221,14 @@
                 
                 if (value.startsWith('4')) {
                     // Visa
-                    cardType.innerHTML = '<img src="{{ asset("asset/frontend_asset/images/visa.png") }}" alt="Visa" class="h-6">';
+                    cardType.innerHTML = '<img src="{{ asset("asset/frontend_asset/images/visa.jpg") }}" alt="Visa" class="h-6">';
                 } else if (value.startsWith('5') || value.startsWith('2')) {
                     // Mastercard
-                    cardType.innerHTML = '<img src="{{ asset("asset/frontend_asset/images/mastercard.png") }}" alt="Mastercard" class="h-6">';
+                    cardType.innerHTML = '<img src="{{ asset("asset/frontend_asset/images/master.jpg") }}" alt="Mastercard" class="h-6">';
                 } else {
                     cardType.innerHTML = `
-                        <img src="{{ asset('asset/frontend_asset/images/visa.png') }}" alt="Visa" class="h-6 opacity-30">
-                        <img src="{{ asset('asset/frontend_asset/images/mastercard.png') }}" alt="Mastercard" class="h-6 opacity-30">
+                        <img src="{{ asset('asset/frontend_asset/images/visa.jpg') }}" alt="Visa" class="h-6 opacity-30">
+                        <img src="{{ asset('asset/frontend_asset/images/master.jpg') }}" alt="Mastercard" class="h-6 opacity-30">
                     `;
                 }
             });

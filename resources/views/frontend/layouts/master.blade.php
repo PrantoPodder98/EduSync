@@ -116,6 +116,15 @@
                 toast.remove();
             }, 4000);
         }
+
+        // Show multiple errors if present
+        document.addEventListener('DOMContentLoaded', function() {
+            @if ($errors && $errors->any())
+                @foreach ($errors->all() as $error)
+                    showToast(@json($error), 'error');
+                @endforeach
+            @endif
+        });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -12,7 +12,7 @@
             <p class="text-gray-600 text-lg">Your property reservation has been successfully processed</p>
         </div>
 
-        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8" id="reservation-details">
             <div class="border-b pb-6 mb-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Reservation Details</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -164,10 +164,20 @@
                 class="border border-[#5E5EDC] text-[#5E5EDC] px-8 py-3 rounded-lg font-semibold hover:bg-[#5E5EDC] hover:text-white transition-colors duration-300 text-center">
                 View My Reservations
             </a>
-            <button onclick="window.print()" 
+            <button onclick="printReservationDetails()" 
                 class="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
                 Print Receipt
             </button>
+            <script>
+                function printReservationDetails() {
+                    var printContents = document.getElementById('reservation-details').innerHTML;
+                    var originalContents = document.body.innerHTML;
+                    document.body.innerHTML = printContents;
+                    window.print();
+                    document.body.innerHTML = originalContents;
+                    location.reload();
+                }
+            </script>
         </div>
     </div>
 
