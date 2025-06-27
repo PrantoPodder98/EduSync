@@ -12,6 +12,9 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\RentalNoticeBoardAccommodationController;
 use App\Http\Controllers\Frontend\RentalReservationController;
+use App\Http\Controllers\Frontend\RentItemController;
+use App\Http\Controllers\Frontend\RentOrderController;
+use App\Http\Controllers\Frontend\RentCartController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -75,13 +78,31 @@ Route::middleware('auth')->group(function () {
         ->name('rental.payment.bkash');
     Route::post('/rental-notice-payment/bkash/{reservation}', [RentalReservationController::class, 'processBkashPayment'])
         ->name('rental.payment.bkash.process');
-
-    // Success page
     Route::get('/reservation/{reservation}/success', [RentalReservationController::class, 'showSuccess'])
         ->name('rental.reservation.success');
-
     Route::get('/my-reservations', [RentalReservationController::class, 'userReservations'])
         ->name('user.reservations');
+
+    // Rental Order Item routes
+    Route::resource('rent-items', RentItemController::class);
+    Route::get('my-rent-items', [RentOrderController::class, 'myRentItems'])->name('rent-items.myRentItems');
+    Route::post('rent-items/{rentItem}/update-status', [RentOrderController::class, 'updateOrderStatus'])
+        ->name('rent-items.update-status');
+
+
+    // Rent Cart routes
+    Route::get('/rent-cart', [RentCartController::class, 'index'])->name('rent.cart.index');
+    Route::post('/rent-cart/add/{rent_item}', [RentCartController::class, 'addToCart'])->name('rent.cart.add');
+    Route::delete('/rent-cart/remove/{cartItem}', [RentCartController::class, 'removeFromCart'])->name('rent.cart.remove');
+    Route::delete('/rent-cart/clear', [RentCartController::class, 'clearCart'])->name('rent.cart.clear');
+    Route::get('/rent-cart/checkout', [RentCartController::class, 'checkout'])->name('rent.cart.checkout');
+
+
+    // Rent Order routes
+    Route::post('/rent-order/place', [RentOrderController::class, 'placeOrder'])->name('rent.order.place');
+    Route::get('/rent-order/success/{order}', [RentOrderController::class, 'orderSuccess'])->name('rent.order.success');
+    Route::get('/my-rent-orders', [RentOrderController::class, 'myOrders'])->name('rent.orders.index');
+    Route::get('/rent-order/{order}', [RentOrderController::class, 'show'])->name('rent.order.show');
 });
 
 require __DIR__ . '/auth.php';

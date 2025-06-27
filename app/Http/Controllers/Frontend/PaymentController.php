@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\RentOrderItem;
 use App\Models\SecondHandProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class PaymentController extends Controller
     {
         $amount = $request->get('amount');
         $bkashNumber = $request->get('bkash_number');
-        
+
         if (!session('pending_order') || !session('cart_items')) {
             return redirect()->route('cart.index')->with('error', 'Invalid payment session!');
         }
@@ -37,22 +38,36 @@ class PaymentController extends Controller
             'bkash_pin' => 'required|string|min:4|max:6',
         ]);
 
+
         $pendingOrder = session('pending_order');
         $cartItems = session('cart_items');
+        $rentCartItems = session('rent_cart_items');
 
-        if (!$pendingOrder || !$cartItems) {
-            return redirect()->route('cart.index')->with('error', 'Payment session expired!');
+        if ($request->type === 'rent') {
+            if (!$pendingOrder || !$rentCartItems) {
+                return redirect()->route('rent.cart.index')->with('error', 'Payment session expired!');
+            }
+        } else {
+            if (!$pendingOrder || !$cartItems) {
+                return redirect()->route('cart.index')->with('error', 'Payment session expired!');
+            }
         }
 
+
         // Simulate bKash payment processing
+        // return
         $paymentSuccess = $this->simulateBkashPayment($request->bkash_number, $request->bkash_pin);
 
         if ($paymentSuccess) {
             // Process the order after successful payment
             $orderRequest = new Request($pendingOrder);
-            $cartItemsCollection = collect($cartItems);
-            
-            return $this->processOrderAfterPayment($orderRequest, $cartItemsCollection, $request->bkash_number);
+            if ($request->type === 'rent') {
+                $cartItemsCollection = collect($rentCartItems);
+            } else {
+                $cartItemsCollection = collect($cartItems);
+            }
+
+            return $this->processOrderAfterPayment($orderRequest, $cartItemsCollection, $request->bkash_number, $request->type ?? null);
         } else {
             return redirect()->back()->with('error', 'Payment failed! Please check your bKash credentials and try again.');
         }
@@ -76,15 +91,28 @@ class PaymentController extends Controller
     /**
      * Process order after successful payment
      */
-    private function processOrderAfterPayment($request, $cartItems, $bkashNumber)
+    private function processOrderAfterPayment($request, $cartItems, $bkashNumber, $type)
     {
         $user = Auth::user();
-        
+
         DB::beginTransaction();
         try {
-            $totalAmount = $cartItems->sum(function($item) {
-                return $item['secondHandProduct']['price'];
-            });
+            if ($type != null && $type === 'rent') {
+                $totalPrice = $cartItems->sum(function ($item) {
+                    return $item['rentItem']['price']; 
+                });
+                $totalrentDuration = $cartItems->sum(function ($item) {
+                    return $item['rentItem']['rent_duration'];
+                });
+                if ($totalrentDuration == 0) {  
+                    $totalrentDuration = 1; // Avoid division by zero
+                }
+                $totalAmount = $totalPrice * $totalrentDuration; // Total amount for rent items
+            } else {
+                $totalAmount = $cartItems->sum(function ($item) {
+                    return $item['secondHandProduct']['price'];
+                });
+            }
 
             // Create order
             $order = Order::create([
@@ -107,28 +135,47 @@ class PaymentController extends Controller
                 'status' => 'pending'
             ]);
 
-            // Create order items
-            foreach ($cartItems as $cartItem) {
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'second_hand_product_id' => $cartItem['second_hand_product_id'],
-                    'price' => $cartItem['secondHandProduct']['price']
-                ]);
-                $cartItem->secondHandProduct->update(['status' => 0]); // 0 = sold
+            if ($type != null && $type === 'rent') {
+                foreach ($cartItems as $cartItem) {
+                    RentOrderItem::create([
+                        'order_id' => $order->id,
+                        'rent_item_id' => $cartItem['rent_item_id'],
+                        'price' => $cartItem['rentItem']['price']
+                    ]);
+                    $cartItem->rentItem->update(['status' => 0]); // 0 = sold
+                }
+
+                // Clear the cart
+                $user->rentCartItems()->delete();
+
+                // Clear session data
+                session()->forget(['pending_order', 'rent_cart_items']);
+
+                DB::commit();
+
+                // return redirect()->route('order.success', $order->id)->with('success', 'Order placed successfully!');
+                return redirect()->route('orders.index')->with('success', 'Payment successful! Rent order placed successfully! Your order number is ' . $order->order_number);
+            } else {
+                foreach ($cartItems as $cartItem) {
+                    OrderItem::create([
+                        'order_id' => $order->id,
+                        'second_hand_product_id' => $cartItem['second_hand_product_id'],
+                        'price' => $cartItem['secondHandProduct']['price']
+                    ]);
+                    $cartItem->secondHandProduct->update(['status' => 0]); // 0 = sold
+                }
+
+                // Clear the cart
+                $user->cartItems()->delete();
+
+                // Clear session data
+                session()->forget(['pending_order', 'cart_items']);
+
+                DB::commit();
+
+                // return redirect()->route('order.success', $order->id)->with('success', 'Order placed successfully!');
+                return redirect()->route('orders.index')->with('success', 'Payment successful! Order placed successfully! Your order number is ' . $order->order_number);
             }
-
-            // Clear the cart
-            $user->cartItems()->delete();
-
-            // Clear session data
-            session()->forget(['pending_order', 'cart_items']);
-
-            DB::commit();
-
-            // return redirect()->route('order.success', $order->id)->with('success', 'Order placed successfully!');
-            return redirect()->route('orders.index')->with('success', 'Payment successful! Order placed successfully! Your order number is ' . $order->order_number);
-
-
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->route('cart.index')->with('error', 'Order processing failed after payment. Please contact support.');

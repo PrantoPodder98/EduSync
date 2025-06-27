@@ -65,4 +65,12 @@ class Order extends Model
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    /**
+     * Get formatted total amount
+     */
+    public function rentOrderItems()
+    {
+        return $this->hasMany(RentOrderItem::class);
+    }
 }

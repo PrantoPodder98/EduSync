@@ -58,7 +58,24 @@
                 {{ $secondHandProducts->links('frontend.components.custom-pagination') }}
             </div>
         @else
-            <div class="text-gray-500 mt-8">No products found.</div>
+            <div class="text-center py-24">
+                <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.5-.935-6.072-2.458M7.5 14.25L5.106 5.272M6.25 17.25L4.106 8.272M22.25 12c0 5.523-4.477 10-10 10S2.25 17.523 2.25 12 6.727 2.25 12.25 2.25s10 4.477 10 10z" />
+                </svg>
+                <h3 class="text-xl font-semibold text-gray-600 mb-2">No items found</h3>
+                <p class="text-gray-500 mb-6">
+                    @if (request('search'))
+                        No items match your search for "{{ request('search') }}"
+                    @else
+                        Be the first to add a second hand product!
+                    @endif
+                </p>
+                @if (request('search'))
+                    <a href="{{ route('second-hand-products.index') }}" class="text-sky-600 hover:text-sky-800 font-medium">Clear
+                        search</a>
+                @endif
+            </div>
         @endif
     </section>
 @endsection

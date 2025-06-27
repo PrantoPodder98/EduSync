@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="max-w-6xl mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-[#5E5EDC] mb-8 text-center">Checkout</h1>
+        <h1 class="text-3xl font-bold text-[#5E5EDC] mb-8 text-center">Second Hand Product Checkout</h1>
 
         <form action="{{ route('order.place') }}" method="POST">
             @csrf

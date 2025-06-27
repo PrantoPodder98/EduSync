@@ -67,4 +67,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    /**
+     * Get the user's rent cart items
+     */
+    public function rentCartItems()
+    {
+        return $this->hasMany(RentCart::class);
+    }
+
+    /**
+     * Get rent cart items with rent items
+     */
+    public function rentCartWithItems()
+    {
+        return $this->hasMany(RentCart::class)->with('rentItem.images');
+    }
+
+
 }

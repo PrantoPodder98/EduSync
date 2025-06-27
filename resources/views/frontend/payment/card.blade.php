@@ -12,7 +12,8 @@
             <div class="flex-1 min-w-[60%] bg-white p-8 rounded-lg shadow-lg">
                 <div class="flex items-center mb-6">
                     <svg class="w-8 h-8 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.18L16.59,7.59L18,9L10,17Z"/>
+                        <path
+                            d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.18L16.59,7.59L18,9L10,17Z" />
                     </svg>
                     <div>
                         <h2 class="text-xl font-semibold text-gray-800">SSL Secured Payment</h2>
@@ -20,9 +21,10 @@
                     </div>
                 </div>
 
-                <form action="{{ route('rental.payment.card.process', $reservation->id) }}" method="POST" id="cardPaymentForm">
+                <form action="{{ route('rental.payment.card.process', $reservation->id) }}" method="POST"
+                    id="cardPaymentForm">
                     @csrf
-                    
+
                     <!-- Card Number -->
                     <div class="mb-6">
                         <label class="block mb-2 text-sm font-medium text-gray-700">Card Number *</label>
@@ -32,8 +34,10 @@
                                 maxlength="19" required>
                             <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
                                 <div id="cardType" class="flex space-x-1">
-                                    <img src="{{ asset('asset/frontend_asset/images/visa.jpg') }}" alt="Visa" class="h-6 opacity-30">
-                                    <img src="{{ asset('asset/frontend_asset/images/master.jpg') }}" alt="Mastercard" class="h-6 opacity-30">
+                                    <img src="{{ asset('asset/frontend_asset/images/visa.jpg') }}" alt="Visa"
+                                        class="h-6 opacity-30">
+                                    <img src="{{ asset('asset/frontend_asset/images/master.jpg') }}" alt="Mastercard"
+                                        class="h-6 opacity-30">
                                 </div>
                             </div>
                         </div>
@@ -71,8 +75,10 @@
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#5E5EDC] focus:border-transparent @error('cvv') border-red-500 @enderror"
                                     maxlength="3" required>
                                 <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.657-1.343 3-3 3s-3-1.343-3-3m0 8h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.657-1.343 3-3 3s-3-1.343-3-3m0 8h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
                             </div>
@@ -86,11 +92,14 @@
                     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                         <div class="flex items-start">
                             <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                    clip-rule="evenodd" />
                             </svg>
                             <div class="text-sm">
                                 <p class="text-blue-800 font-medium mb-1">Secure Payment</p>
-                                <p class="text-blue-700">Your card details are encrypted and secure. We don't store your payment information.</p>
+                                <p class="text-blue-700">Your card details are encrypted and secure. We don't store your
+                                    payment information.</p>
                             </div>
                         </div>
                     </div>
@@ -99,7 +108,8 @@
                     <button type="submit" id="payButton"
                         class="w-full bg-[#5E5EDC] text-white py-4 rounded-lg font-semibold text-lg hover:bg-[#4a4ab8] transition-colors duration-300 flex items-center justify-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
                         Pay BDT {{ number_format($reservation->reservation_fee, 2) }}
                     </button>
@@ -112,12 +122,11 @@
 
                 <!-- Property Details -->
                 <div class="mb-6">
-                    @if($reservation->rentalNotice->images->count() > 0)
-                        <img src="{{ asset($reservation->rentalNotice->images->first()->url) }}" 
-                            class="w-full h-32 object-cover rounded-lg mb-4" 
-                            alt="{{ $reservation->rentalNotice->title }}">
+                    @if ($reservation->rentalNotice->images->count() > 0)
+                        <img src="{{ asset($reservation->rentalNotice->images->first()->url) }}"
+                            class="w-full h-32 object-cover rounded-lg mb-4" alt="{{ $reservation->rentalNotice->title }}">
                     @endif
-                    
+
                     <h4 class="font-semibold text-gray-800 mb-2">{{ $reservation->rentalNotice->title }}</h4>
                     <p class="text-sm text-gray-600 mb-2">{{ $reservation->rentalNotice->location }}</p>
                     <p class="text-xs text-gray-500">Reservation ID: {{ $reservation->reservation_code }}</p>
@@ -218,13 +227,15 @@
             cardNumberInput.addEventListener('input', function(e) {
                 const value = e.target.value.replace(/\s/g, '');
                 const cardType = document.getElementById('cardType');
-                
+
                 if (value.startsWith('4')) {
                     // Visa
-                    cardType.innerHTML = '<img src="{{ asset("asset/frontend_asset/images/visa.jpg") }}" alt="Visa" class="h-6">';
+                    cardType.innerHTML =
+                        '<img src="{{ asset('asset/frontend_asset/images/visa.jpg') }}" alt="Visa" class="h-6">';
                 } else if (value.startsWith('5') || value.startsWith('2')) {
                     // Mastercard
-                    cardType.innerHTML = '<img src="{{ asset("asset/frontend_asset/images/master.jpg") }}" alt="Mastercard" class="h-6">';
+                    cardType.innerHTML =
+                        '<img src="{{ asset('asset/frontend_asset/images/master.jpg') }}" alt="Mastercard" class="h-6">';
                 } else {
                     cardType.innerHTML = `
                         <img src="{{ asset('asset/frontend_asset/images/visa.jpg') }}" alt="Visa" class="h-6 opacity-30">
@@ -239,9 +250,15 @@
         .animate-spin {
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
     </style>
 @endsection

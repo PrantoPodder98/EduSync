@@ -3,21 +3,16 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\SecondHandProduct;
+use App\Models\RentItem;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
-class SecondHandProductController extends Controller
+class RentItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $query = SecondHandProduct::query();
+        $query = RentItem::query();
 
-        // Handle search functionality
         if (request()->has('search') && !empty(request()->search)) {
             $searchTerm = request()->search;
             $query->where(function ($q) use ($searchTerm) {
@@ -28,38 +23,29 @@ class SecondHandProductController extends Controller
             });
         }
 
-        // Get paginated results (12 items per page)
-        $secondHandProducts = $query->with('images') // Eager load images to avoid N+1 query problem
-            ->where('status', 1) // Only show available products
+        $rentItems = $query->where('status', 1)
             ->latest('created_at')
             ->paginate(4)
-            ->withQueryString(); // Preserve search params in pagination links
+            ->withQueryString();
 
-        return view('frontend.second-hand-products.list', compact('secondHandProducts'));
+        return view('frontend.rent-items.list', compact('rentItems'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('frontend.second-hand-products.create');
+        return view('frontend.rent-items.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        // return $request->all(); // For debugging purposes, remove this in production
         $request->validate([
             'name' => 'required|string|max:255',
             'brand' => 'required|string|max:255',
             'item_type' => 'required|string|max:100',
-            'item_state' => 'required|string|max:100',
+            'rent_type' => 'required|in:daily,monthly',
+            'rent_duration' => 'nullable|integer|min:1',
             'price' => 'required|numeric',
             'description' => 'required|string',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'user_name' => 'required|string|max:255',
             'user_location' => 'required|string|max:255',
             'user_contact' => 'required|string|max:255',
@@ -67,12 +53,12 @@ class SecondHandProductController extends Controller
             'user_bKash_number' => 'nullable|string|max:20',
         ]);
 
-        // Save product
-        $product = SecondHandProduct::create([
+        $rentItem = RentItem::create([
             'name' => $request->name,
             'brand' => $request->brand,
             'item_type' => $request->item_type,
-            'item_state' => $request->item_state,
+            'rent_type' => $request->rent_type,
+            'rent_duration' => $request->rent_duration,
             'price' => $request->price,
             'description' => $request->description,
             'user_name' => $request->user_name,
@@ -80,15 +66,14 @@ class SecondHandProductController extends Controller
             'user_contact' => $request->user_contact,
             'user_payment_option' => $request->user_payment_option,
             'user_bKash_number' => $request->user_payment_option === 'bKash' ? $request->user_bKash_number : null,
-            'status' => $request->status, // 0 = sold, 1 = available
-            'user_id' => auth()->id(), // Assuming the user is authenticated
-            'status' => 1, // Default to available
+            'user_id' => auth()->id(),
+            'status' => 1,
         ]);
 
-        // Save images (if any)
+         // Save images (if any)
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $locationName = 'images/second_hand_products/';
+                $locationName = 'images/rent_items/';
                 $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
                 $destinationPath = env('PUBLIC_FILE_LOCATION')
@@ -102,63 +87,48 @@ class SecondHandProductController extends Controller
                 $file->move($destinationPath, $fileName);
                 $fullPath = $locationName . $fileName;
 
-                $product->images()->create([
+                $rentItem->images()->create([
                     'url' => $fullPath,
                     'type' => $file->getClientOriginalExtension(),
                 ]);
             }
         }
 
-        return redirect()->back()->with('success', 'Product added successfully!');
+        return redirect()->back()->with('success', 'Rent item added successfully!');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(SecondHandProduct $secondHandProduct)
+    public function show(RentItem $rentItem)
     {
-        // Eager load images to avoid N+1 query problem
-        $secondHandProduct->load('images');
+        $rentItem->load('images');
 
-        return view('frontend.second-hand-products.show', compact('secondHandProduct'));
+        return view('frontend.rent-items.show', compact('rentItem'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SecondHandProduct $secondHandProduct)
+    public function edit(RentItem $rentItem)
     {
-        // Check if the authenticated user is the owner of the product
-        if (auth()->id() !== $secondHandProduct->user_id) {
-            return redirect()->back()->with('error', 'You do not have permission to edit this product.');
+        $rentItem->load('images');
+
+        if (auth()->id() !== $rentItem->user_id) {
+            return redirect()->back()->with('error', 'You do not have permission to edit this rent item.');
         }
 
-        // Eager load images to avoid N+1 query problem
-        // return
-        $secondHandProduct->load('images');
-
-        return view('frontend.second-hand-products.edit', compact('secondHandProduct'));
+        return view('frontend.rent-items.edit', compact('rentItem'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, SecondHandProduct $secondHandProduct)
+    public function update(Request $request, RentItem $rentItem)
     {
-        // Check if the authenticated user is the owner of the product
-        if (auth()->id() !== $secondHandProduct->user_id) {
-            return redirect()->back()->with('error', 'You do not have permission to update this product.');
+        if (auth()->id() !== $rentItem->user_id) {
+            return redirect()->back()->with('error', 'You do not have permission to update this rent item.');
         }
 
         $request->validate([
             'name' => 'required|string|max:255',
             'brand' => 'required|string|max:255',
             'item_type' => 'required|string|max:100',
-            'item_state' => 'required|string|max:100',
+            'rent_type' => 'required|in:daily,monthly',
+            'rent_duration' => 'nullable|integer|min:1',
             'price' => 'required|numeric',
             'description' => 'required|string',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'user_name' => 'required|string|max:255',
             'user_location' => 'required|string|max:255',
             'user_contact' => 'required|string|max:255',
@@ -166,12 +136,12 @@ class SecondHandProductController extends Controller
             'user_bKash_number' => 'nullable|string|max:20',
         ]);
 
-        // Update product
-        $secondHandProduct->update([
+        $rentItem->update([
             'name' => $request->name,
             'brand' => $request->brand,
             'item_type' => $request->item_type,
-            'item_state' => $request->item_state,
+            'rent_type' => $request->rent_type,
+            'rent_duration' => $request->rent_duration,
             'price' => $request->price,
             'description' => $request->description,
             'user_name' => $request->user_name,
@@ -181,8 +151,8 @@ class SecondHandProductController extends Controller
             'user_bKash_number' => $request->user_payment_option === 'bKash' ? $request->user_bKash_number : null,
         ]);
 
-        // Update images first delete old images
-        foreach ($secondHandProduct->images as $image) {
+         // Update images first delete old images
+        foreach ($rentItem->images as $image) {
             $imagePath = public_path($image->url);
             if (file_exists($imagePath)) {
                 unlink($imagePath);
@@ -193,7 +163,7 @@ class SecondHandProductController extends Controller
         // Save new images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $locationName = 'images/second_hand_products/';
+                $locationName = 'images/rent_items/';
                 $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
                 $destinationPath = env('PUBLIC_FILE_LOCATION')
@@ -207,51 +177,34 @@ class SecondHandProductController extends Controller
                 $file->move($destinationPath, $fileName);
                 $fullPath = $locationName . $fileName;
 
-                $secondHandProduct->images()->create([
+                $rentItem->images()->create([
                     'url' => $fullPath,
                     'type' => $file->getClientOriginalExtension(),
                 ]);
             }
         }
 
-        return redirect()->back()->with('success', 'Product updated successfully!');
-                
+        return redirect()->back()->with('success', 'Rent item updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(SecondHandProduct $secondHandProduct)
+    public function destroy(RentItem $rentItem)
     {
-        if (auth()->id() !== $secondHandProduct->user_id) {
-            return redirect()->back()->with('error', 'You do not have permission to delete this product.');
+        if (auth()->id() !== $rentItem->user_id) {
+            return redirect()->back()->with('error', 'You do not have permission to delete this rent item.');
         }
 
-        // Delete associated images
-        foreach ($secondHandProduct->images as $image) {
-            $imagePath = public_path($image->url);
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            }
-            $image->delete();
-        }
+        $rentItem->delete();
 
-        // Delete the product
-        $secondHandProduct->delete();
-
-        return redirect()->back()->with('warning', 'Product deleted successfully.');
+        return redirect()->back()->with('warning', 'Rent item deleted successfully.');
     }
 
-    public function myProducts()
+    public function myRentItems()
     {
-        // return
-        $secondHandProducts = SecondHandProduct::where('user_id', auth()->id())
-            ->with('images', 'orderItems.order') // Eager load images to avoid N+1 query problem
+        $rentItems = RentItem::where('user_id', auth()->id())
             ->latest('created_at')
             ->get();
 
-
-        return view('frontend.second-hand-products.my-products', compact('secondHandProducts'));
+        return view('frontend.rent-items.my-items', compact('rentItems'));
     }
 
     public function updateOrderStatus(Request $request, $orderId)
@@ -260,28 +213,28 @@ class SecondHandProductController extends Controller
             'status' => 'required|in:pending,processing,shipped,delivered,cancelled'
         ]);
 
-        try {
-            $order = Order::findOrFail($orderId);
+        try{
+            $rentOrder = Order::findOrFail($orderId);
 
-            // Check if the authenticated user owns the product in this order
-            $productOwner = $order->orderItems()
-                ->whereHas('secondHandProduct', function ($query) {
+            // Check if the authenticated user owns the rent item in this order
+            $rentItemOwner = $rentOrder->rentOrderItems()
+                ->whereHas('rentItem', function ($query) {
                     $query->where('user_id', auth()->id());
                 })
                 ->exists();
 
-            if (!$productOwner) {
+            if (!$rentItemOwner) {
                 return redirect()->back()->with('error', 'You are not authorized to update this order status.');
             }
 
-            $order->update([
+            $rentOrder->update([
                 'status' => $request->status,
                 'payment_status' => in_array($request->status, ['processing', 'shipped', 'delivered']) ? 'completed' : 'pending',
             ]);
 
-            return redirect()->back()->with('success', 'Order status updated successfully!');
+            return redirect()->back()->with('success', 'Rent order status updated successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error updating order status. Please try again.');
+            return redirect()->back()->with('error', 'Error updating rent order status. Please try again.');
         }
     }
 }

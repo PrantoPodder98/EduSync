@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container mx-auto px-4 py-8 my-20">
-        <h1 class="text-3xl font-bold text-[#5E5EDC] mb-8 text-center">Your Shopping Cart</h1>
+        <h1 class="text-3xl font-bold text-[#5E5EDC] mb-8 text-center">Your second hand product Cart</h1>
 
         @if ($cartItems->isEmpty())
             <div class="text-center py-16">
                 <div class="text-gray-500 text-6xl mb-4">🛒</div>
-                <h2 class="text-2xl font-semibold text-gray-600 mb-4">Your cart is empty</h2>
+                <h2 class="text-2xl font-semibold text-gray-600 mb-4">Your second hand product cart is empty</h2>
                 <p class="text-gray-500 mb-8">Add product to your cart to see them here!</p>
                 <a href="{{ route('second-hand-products.index') }}"
                     class="bg-[#5E5EDC] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#4a4ab8]">
@@ -75,9 +75,9 @@
                                     </div>
 
                                     <!-- Item Total -->
-                                    <p class="text-sm font-semibold text-gray-800">
+                                    {{-- <p class="text-sm font-semibold text-gray-800">
                                         BDT {{ number_format($item->total_price) }}
-                                    </p>
+                                    </p> --}}
                                 </div>
                             </div>
                         </div>

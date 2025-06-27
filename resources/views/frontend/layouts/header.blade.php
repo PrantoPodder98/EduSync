@@ -11,8 +11,8 @@
               Marketplace</a>
           <a href="{{ route('rental-notice.index')}}" class="text-gray-700 hover:text-indigo-600">Rental
               Accommodation</a>
-          <a href="#" class="text-gray-700 hover:text-indigo-600">Jobs</a>
-          <a href="#" class="text-gray-700 hover:text-indigo-600">Community</a>
+          <a href="{{ route('rent-items.index')}}" class="text-gray-700 hover:text-indigo-600">Rental Items</a>
+          {{-- <a href="#" class="text-gray-700 hover:text-indigo-600">Community</a> --}}
       </nav>
       <div class="relative">
           <button id="profileDropdownButton" class="focus:outline-none">
@@ -39,6 +39,11 @@
                   <li>
                       <a href="{{ route('cart.index') }}" class="block px-4 py-2 hover:bg-gray-100">
                           Second-Hand Cart
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('rent.cart.index') }}" class="block px-4 py-2 hover:bg-gray-100">
+                          Rent Item Cart
                       </a>
                   </li>
                   <li>

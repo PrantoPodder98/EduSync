@@ -3,28 +3,32 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cart;
-use App\Models\SecondHandProduct;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\RentCart;
+use App\Models\RentItem;
 
-class CartController extends Controller
+class RentCartController extends Controller
 {
-    /**
-     * Display the cart items
-     */
     public function index()
     {
-        $cartItems = Auth::user()->cartWithProducts()->get();
-        $totalAmount = $cartItems->sum('total_price');
+        // return
+        $item = Auth::user()->rentCartWithItems()->first();
+        
+        if ($item->rentItem->rent_duration != 0) {
+            $totalAmount = $item->rentItem->price * $item->rentItem->rent_duration;
+        } else {
+            $totalAmount = $item->rentItem->price;
+        }
 
-        return view('frontend.cart.second-hand.index', compact('cartItems', 'totalAmount'));
+        return view('frontend.cart.rent.index', compact('item', 'totalAmount'));
     }
 
     /**
      * Add product to cart
      */
-    public function addToCart(Request $request, SecondHandProduct $product)
+    public function addToCart(Request $request, RentItem $rent_item)
     {
         // Check if user is authenticated
         if (!Auth::check()) {
@@ -34,15 +38,15 @@ class CartController extends Controller
         $userId = Auth::id();
 
         // Check if user is trying to add their own product
-        if ($product->user_id == $userId) {
-            return redirect()->back()->with('error', 'You cannot add your own product to cart.');
+        if ($rent_item->user_id == $userId) {
+            return redirect()->back()->with('error', 'You cannot add your own item to cart.');
         }
 
         // Check if user already has a product in cart (only one allowed)
-        $existingCartItem = Cart::where('user_id', $userId)->first();
+        $existingCartItem = RentCart::where('user_id', $userId)->first();
         if ($existingCartItem) {
             // If the existing product is the same as the one being added
-            if ($existingCartItem->second_hand_product_id == $product->id) {
+            if ($existingCartItem->rent_item_id == $rent_item->id) {
                 return redirect()->back()->with('info', 'Product is already in your cart!');
             } else {
                 return redirect()->back()->with('error', 'You can only add one product to your cart at a time. Please purchase or remove the existing product first.');
@@ -50,11 +54,11 @@ class CartController extends Controller
         }
 
         // Add new item to cart
-        Cart::create([
+        RentCart::create([
             'user_id' => $userId,
-            'second_hand_product_id' => $product->id
+            'rent_item_id' => $rent_item->id
         ]);
-        $message = 'Product added to cart successfully!';
+        $message = 'Item added to cart successfully!';
 
         return redirect()->back()->with('success', $message);
     }
@@ -62,7 +66,7 @@ class CartController extends Controller
     /**
      * Remove product from cart
      */
-    public function removeFromCart(Cart $cartItem)
+    public function removeFromCart(RentCart $cartItem)
     {
         // Check if the cart item belongs to the authenticated user
         if ($cartItem->user_id !== Auth::id()) {
@@ -83,7 +87,7 @@ class CartController extends Controller
             return response()->json(['count' => 0]);
         }
 
-        $count = Auth::user()->cartItems()->count();
+        $count = Auth::user()->rentCartItems()->count();
         return response()->json(['count' => $count]);
     }
 
@@ -92,7 +96,7 @@ class CartController extends Controller
      */
     public function clearCart()
     {
-        Auth::user()->cartItems()->delete();
+        Auth::user()->rentCartItems()->delete();
 
         return redirect()->back()->with('success', 'Cart cleared successfully!');
     }
@@ -102,14 +106,18 @@ class CartController extends Controller
      */
     public function checkout()
     {
-        $cartItems = Auth::user()->cartWithProducts()->get();
+        $item = Auth::user()->rentCartWithItems()->first();
         
-        if ($cartItems->isEmpty()) {
-            return redirect()->route('cart.index')->with('error', 'Your cart is empty!');
+        if (!$item) {
+            return redirect()->route('rent.cart.index')->with('error', 'Your cart is empty!');
         }
 
-        $totalAmount = $cartItems->sum('total_price');
+        if ($item->rentItem->rent_duration != 0) {
+            $totalAmount = $item->rentItem->price * $item->rentItem->rent_duration;
+        } else {
+            $totalAmount = $item->rentItem->price;
+        }
 
-        return view('frontend.cart.second-hand.checkout', compact('cartItems', 'totalAmount'));
+        return view('frontend.cart.rent.checkout', compact('item', 'totalAmount'));
     }
 }

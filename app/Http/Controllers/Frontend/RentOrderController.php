@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
-use App\Models\OrderItem;
-use Illuminate\Http\Request;
+use App\Models\RentOrderItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Order;
+use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class RentOrderController extends Controller
 {
     public function placeOrder(Request $request)
     {
@@ -27,32 +27,37 @@ class OrderController extends Controller
         ]);
 
         $user = Auth::user();
-        $cartItems = $user->cartWithProducts()->get();
+        $cartItems = $user->rentCartWithItems()->get();
 
         if ($cartItems->isEmpty()) {
-            return redirect()->route('cart.index')->with('error', 'Your cart is empty!');
+            return redirect()->route('rent.cart.index')->with('error', 'Your cart is empty!');
         }
 
         // Since only 1 product is allowed, get the first item
         $cartItem = $cartItems->first();
-        $paymentOption = $cartItem->secondHandProduct->user_payment_option;
+        $paymentOption = $cartItem->rentItem->user_payment_option;
 
         // Store order data in session for payment processing
         session([
             'pending_order' => $request->all(),
-            'cart_items' => $cartItems
+            'rent_cart_items' => $cartItems
         ]);
-
+        // Redirect to bKash payment
+        if ($cartItem->rentItem->rent_duration != 0) {
+            $amount = $cartItem->rentItem->price * $cartItem->rentItem->rent_duration;
+        } else {
+            $amount = $cartItem->rentItem->price;
+        }
         // Check payment option
         if (strtolower($paymentOption) === 'cash on delivery') {
-            return $this->processOrder($request, $cartItems);
+            return $this->processOrder($request, $cartItems, $amount);
         } else {
-            // Redirect to bKash payment
-            return redirect()->route('payment.bkash', ['amount' => $cartItems->sum('total_price'), 'bkash_number' => $cartItem->secondHandProduct->user_bKash_number]);
+            // return $amount;
+            return redirect()->route('payment.bkash', ['amount' => $amount, 'bkash_number' => $cartItem->rentItem->user_bKash_number, 'type' => 'rent']);
         }
     }
 
-    private function processOrder($request, $cartItems)
+    private function processOrder($request, $cartItems, $amount)
     {
         $user = Auth::user();
 
@@ -75,30 +80,30 @@ class OrderController extends Controller
                 'phone_number' => $request->phone_number,
                 'total_amount' => $totalAmount,
                 'order_notes' => $request->order_notes,
-                'payment_method' => $cartItems->first()->secondHandProduct->user_payment_option,
-                'payment_status' => strtolower($cartItems->first()->secondHandProduct->user_payment_option) === 'cash on delivery' ? 'pending' : 'completed',
+                'payment_method' => $cartItems->first()->rentItem->user_payment_option,
+                'payment_status' => strtolower($cartItems->first()->rentItem->user_payment_option) === 'cash on delivery' ? 'pending' : 'completed',
                 'status' => 'pending'
             ]);
 
             // Create order items
             foreach ($cartItems as $cartItem) {
-                OrderItem::create([
+                RentOrderItem::create([
                     'order_id' => $order->id,
-                    'second_hand_product_id' => $cartItem->second_hand_product_id,
-                    'price' => $cartItem->secondHandProduct->price
+                    'rent_item_id' => $cartItem->rent_item_id,
+                    'price' => $amount,
                 ]);
-                $cartItem->secondHandProduct->update(['status' => 0]); // 0 = sold
+                $cartItem->rentItem->update(['status' => 0]); // 0 = sold
             }
 
             // Clear the cart
             $user->cartItems()->delete();
 
             // Clear session data
-            session()->forget(['pending_order', 'cart_items']);
+            session()->forget(['pending_order', 'rent_cart_items']);
 
             DB::commit();
 
-            return redirect()->route('order.success', $order->id)->with('success', 'Order placed successfully!');
+            return redirect()->route('rent.order.success', $order->id)->with('success', 'Order placed successfully!');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error', 'Something went wrong. Please try again.')->withInput();
@@ -114,7 +119,7 @@ class OrderController extends Controller
             abort(403);
         }
 
-        return redirect()->route('orders.index')->with('success', 'Order placed successfully! Your order number is ' . $order->order_number);
+        return redirect()->route('rent.orders.index')->with('success', 'Order placed successfully! Your order number is ' . $order->order_number);
     }
 
     /**
@@ -122,11 +127,11 @@ class OrderController extends Controller
      */
     public function myOrders()
     {
-        $orders = Auth::user()->orders()->with('orderItems.secondHandProduct.images','rentOrderItems.rentItem.images')
+        $orders = Auth::user()->orders()->with('orderItems.rentItem.images')
             ->latest()
             ->paginate(10);
 
-        return view('frontend.orders.index', compact('orders'));
+        return view('frontend.orders.rent.index', compact('orders'));
     }
 
     /**
@@ -139,8 +144,8 @@ class OrderController extends Controller
             abort(403);
         }
 
-        $order->load('orderItems.secondHandProduct.images');
+        $order->load('orderItems.rentItem.images');
 
-        return view('frontend.orders.show', compact('order'));
+        return view('frontend.orders.rent.show', compact('order'));
     }
 }

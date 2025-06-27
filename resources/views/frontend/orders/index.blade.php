@@ -15,7 +15,8 @@
                             Item</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment
                             Method</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Owner Info</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Owner
+                            Info</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status
                         </th>
@@ -29,7 +30,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $order->order_number }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                @foreach ($order->orderItems as $item)
+                                {{-- @foreach ($order->orderItems as $item)
                                     <a href="{{ route('second-hand-products.show', $item->secondHandProduct->id) }}">
                                         <div class="flex items-center space-x-2">
                                             <img src="{{ asset($item->secondHandProduct->images->first()->url ?? 'asset/frontend_asset/images/default.jpg') }}"
@@ -38,6 +39,25 @@
                                             <span class="text-gray-800">{{ $item->secondHandProduct->name }}</span>
                                         </div>
                                     </a>
+                                @endforeach --}}
+                                @foreach ($order->orderItems as $item)
+                                    @php
+                                        $product = $item->secondHandProduct;
+                                        $type = 'Second-Hand';
+                                    @endphp
+                                    @include(
+                                        'frontend.orders.partial.order_item',
+                                        compact('product', 'type'))
+                                @endforeach
+
+                                @foreach ($order->rentOrderItems as $item)
+                                    @php
+                                        $product = $item->rentItem;
+                                        $type = 'Rent';
+                                    @endphp
+                                    @include(
+                                        'frontend.orders.partial.order_item',
+                                        compact('product', 'type'))
                                 @endforeach
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
@@ -54,14 +74,23 @@
                                 <div class="flex items-center space-x-2">
                                     <img src="{{ asset('asset/frontend_asset/images/profile-icon.png') }}"
                                         class="w-10 h-10 rounded-full" alt="Owner">
-                                    @php
+                                    {{-- @php
                                         $firstItem = $order->orderItems->first();
                                         $product = $firstItem ? $firstItem->secondHandProduct : null;
+                                    @endphp --}}
+                                    @php
+                                        if ($order->orderItems->isNotEmpty()) {
+                                            $firstProduct = $order->orderItems->first()->secondHandProduct;
+                                        } elseif ($order->rentOrderItems->isNotEmpty()) {
+                                            $firstProduct = $order->rentOrderItems->first()->rentItem;
+                                        } else {
+                                            $firstProduct = null;
+                                        }
                                     @endphp
                                     <div>
-                                        <p class="text-gray-800 font-semibold">{{ $product->user_name ?? 'N/A' }}</p>
-                                        <p class="text-gray-600 text-sm">{{ $product->user_contact ?? 'N/A' }}</p>
-                                        <p class="text-gray-600 text-sm">{{ $product->user_location ?? 'N/A' }}</p>
+                                        <p class="text-gray-800 font-semibold">{{ $firstProduct->user_name ?? 'N/A' }}</p>
+                                        <p class="text-gray-600 text-sm">{{ $firstProduct->user_contact ?? 'N/A' }}</p>
+                                        <p class="text-gray-600 text-sm">{{ $firstProduct->user_location ?? 'N/A' }}</p>
                                     </div>
                                 </div>
                             </td>
@@ -85,6 +114,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ number_format($order->total_amount) }}</td>
                         </tr>
                     @endforeach
+
                 </tbody>
             </table>
         </div>

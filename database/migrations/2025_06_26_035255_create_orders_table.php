@@ -33,7 +33,6 @@ return new class extends Migration
             $table->text('order_notes')->nullable();
             $table->enum('status', ['pending', 'processing', 'shipped', 'delivered', 'cancelled'])->default('pending');
         
-            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
