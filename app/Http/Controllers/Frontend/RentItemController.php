@@ -70,7 +70,7 @@ class RentItemController extends Controller
             'status' => 1,
         ]);
 
-         // Save images (if any)
+        // Save images (if any)
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
                 $locationName = 'images/rent_items/';
@@ -151,7 +151,7 @@ class RentItemController extends Controller
             'user_bKash_number' => $request->user_payment_option === 'bKash' ? $request->user_bKash_number : null,
         ]);
 
-         // Update images first delete old images
+        // Update images first delete old images
         foreach ($rentItem->images as $image) {
             $imagePath = public_path($image->url);
             if (file_exists($imagePath)) {
@@ -200,6 +200,7 @@ class RentItemController extends Controller
 
     public function myRentItems()
     {
+        // return
         $rentItems = RentItem::where('user_id', auth()->id())
             ->with(['images', 'rentOrderItems.order'])
             ->latest('created_at')
@@ -214,10 +215,11 @@ class RentItemController extends Controller
             'status' => 'required|in:pending,processing,shipped,delivered,cancelled'
         ]);
 
-        try{
+        try {
             $rentOrder = Order::findOrFail($orderId);
 
             // Check if the authenticated user owns the rent item in this order
+            // return
             $rentItemOwner = $rentOrder->rentOrderItems()
                 ->whereHas('rentItem', function ($query) {
                     $query->where('user_id', auth()->id());

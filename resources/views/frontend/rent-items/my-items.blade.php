@@ -69,18 +69,17 @@
                                             <h3 class="text-lg font-semibold text-gray-900 mb-1">{{ $rentItem->name }}</h3>
                                             <div class="flex items-center space-x-2">
                                                 <span
-                                                    class="text-2xl font-bold text-[#5E5EDC]">৳{{ number_format($rentItem->price_per_day) }}</span>
-                                                <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">per
-                                                    day</span>
+                                                    class="text-2xl font-bold text-[#5E5EDC]">৳{{ number_format($latestRentOrderItem->order->total_amount) }}</span>
+                                                <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">{{ number_format($rentItem->price ?? 0) }}/{{ $rentItem->rent_type === 'daily' ? 'day' : 'month' }}</span>
                                             </div>
                                             @if ($rentItem->brand)
                                                 <p class="text-sm text-gray-600 mt-1">
                                                     <span class="font-medium">Brand:</span> {{ $rentItem->brand }}
                                                 </p>
                                             @endif
-                                            @if ($rentItem->category)
+                                            @if ($rentItem->item_type)
                                                 <p class="text-sm text-gray-600">
-                                                    <span class="font-medium">Category:</span> {{ $rentItem->category }}
+                                                    <span class="font-medium">Item Type:</span> {{ $rentItem->item_type }}
                                                 </p>
                                             @endif
                                         </div>
@@ -182,13 +181,17 @@
                                                     </div>
                                                     <div class="mt-1 text-xs text-gray-600">
                                                         <p><span class="font-medium">Start:</span>
-                                                            {{ \Carbon\Carbon::parse($latestRentOrderItem->start_date)->format('Y-m-d') }}
+                                                            {{ \Carbon\Carbon::parse($latestRentOrderItem->created_at)->format('Y-m-d') }}
                                                         </p>
                                                         <p><span class="font-medium">End:</span>
-                                                            {{ \Carbon\Carbon::parse($latestRentOrderItem->end_date)->format('Y-m-d') }}
+                                                            @if($rentItem->rent_duration)
+                                                                {{ \Carbon\Carbon::parse($latestRentOrderItem->created_at)->addDays($rentItem->rent_duration)->format('Y-m-d') }}
+                                                            @else
+                                                                N/A
+                                                            @endif
                                                         </p>
                                                         <p><span class="font-medium">Days:</span>
-                                                            {{ $latestRentOrderItem->rental_days }} days</p>
+                                                            {{ $rentItem->rent_duration ?? '' }} days</p>
                                                     </div>
                                                 </div>
                                             @endif
@@ -346,7 +349,7 @@
                                                     </button>
                                                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Update Order
                                                         Status</h3>
-                                                    <form action="{{ route('orders.update-status', $latestOrder->id) }}"
+                                                    <form action="{{ route('rent-items.order.update-status', $latestOrder->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         <div class="mb-4">

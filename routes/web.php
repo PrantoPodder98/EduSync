@@ -90,7 +90,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('rent-items', RentItemController::class);
     Route::get('my-rent-items', [RentItemController::class, 'myRentItems'])->name('rent-items.myRentItems');
     Route::post('rent-items/{rentItem}/update-status', [RentItemController::class, 'updateOrderStatus'])
-        ->name('rent-items.update-status');
+        ->name('rent-items.order.update-status');
 
 
     // Rent Cart routes
