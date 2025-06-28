@@ -165,7 +165,7 @@ class RentalNoticeBoardAccommodationController extends Controller
         }
 
         return redirect()->back()
-            ->with('success', 'Accommodation posted successfully. It will be reviewed before approval.');
+            ->with('success', 'Accommodation added successfully.');
     }
 
     /**
