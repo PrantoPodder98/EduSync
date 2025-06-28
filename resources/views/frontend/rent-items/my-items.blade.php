@@ -68,8 +68,11 @@
                                         <div class="flex-grow">
                                             <h3 class="text-lg font-semibold text-gray-900 mb-1">{{ $rentItem->name }}</h3>
                                             <div class="flex items-center space-x-2">
+                                                @php
+                                                    $totalPrice = $rentItem->price * ($latestRentOrderItem->rent_duration ?? 1);
+                                                @endphp
                                                 <span
-                                                    class="text-2xl font-bold text-[#5E5EDC]">৳{{ number_format($latestRentOrderItem->order->total_amount) }}</span>
+                                                    class="text-2xl font-bold text-[#5E5EDC]">৳{{ number_format($totalPrice) }}</span>
                                                 <span
                                                     class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">{{ number_format($rentItem->price ?? 0) }}/{{ $rentItem->rent_type === 'daily' ? 'day' : 'month' }}</span>
                                             </div>

@@ -99,6 +99,7 @@ class RentItemController extends Controller
 
     public function show(RentItem $rentItem)
     {
+        // return
         $rentItem->load('images');
 
         return view('frontend.rent-items.show', compact('rentItem'));
@@ -151,17 +152,19 @@ class RentItemController extends Controller
             'user_bKash_number' => $request->user_payment_option === 'bKash' ? $request->user_bKash_number : null,
         ]);
 
-        // Update images first delete old images
-        foreach ($rentItem->images as $image) {
-            $imagePath = public_path($image->url);
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            }
-            $image->delete();
-        }
+
 
         // Save new images
         if ($request->hasFile('images')) {
+            // Update images first delete old images
+            foreach ($rentItem->images as $image) {
+                $imagePath = public_path($image->url);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+                $image->delete();
+            }
+            
             foreach ($request->file('images') as $file) {
                 $locationName = 'images/rent_items/';
                 $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();

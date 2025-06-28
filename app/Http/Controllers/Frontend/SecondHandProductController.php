@@ -181,7 +181,11 @@ class SecondHandProductController extends Controller
             'user_bKash_number' => $request->user_payment_option === 'bKash' ? $request->user_bKash_number : null,
         ]);
 
-        // Update images first delete old images
+        
+
+        // Save new images
+        if ($request->hasFile('images')) {
+            // Update images first delete old images
         foreach ($secondHandProduct->images as $image) {
             $imagePath = public_path($image->url);
             if (file_exists($imagePath)) {
@@ -189,9 +193,7 @@ class SecondHandProductController extends Controller
             }
             $image->delete();
         }
-
-        // Save new images
-        if ($request->hasFile('images')) {
+        
             foreach ($request->file('images') as $file) {
                 $locationName = 'images/second_hand_products/';
                 $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
