@@ -70,7 +70,8 @@
                                             <div class="flex items-center space-x-2">
                                                 <span
                                                     class="text-2xl font-bold text-[#5E5EDC]">৳{{ number_format($latestRentOrderItem->order->total_amount) }}</span>
-                                                <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">{{ number_format($rentItem->price ?? 0) }}/{{ $rentItem->rent_type === 'daily' ? 'day' : 'month' }}</span>
+                                                <span
+                                                    class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">{{ number_format($rentItem->price ?? 0) }}/{{ $rentItem->rent_type === 'daily' ? 'day' : 'month' }}</span>
                                             </div>
                                             @if ($rentItem->brand)
                                                 <p class="text-sm text-gray-600 mt-1">
@@ -169,29 +170,45 @@
 
                                             <!-- Rental Period -->
                                             @if ($latestRentOrderItem)
-                                                <div class="border-t border-gray-200 pt-3">
-                                                    <div class="flex items-center space-x-2 text-sm">
-                                                        <svg class="w-4 h-4 text-gray-500" fill="none"
-                                                            stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                                        </svg>
-                                                        <span class="font-medium text-gray-700">Rental Period:</span>
+                                                <div class="border-t border-gray-200 pt-3 flex justify-between">
+                                                    <div>
+                                                        @php
+                                                            $startDate = \Carbon\Carbon::parse($latestRentOrderItem->created_at);
+                                                            $endDate = $startDate->copy()->addDays($rentItem->rent_duration);
+                                                            $now = \Carbon\Carbon::now();
+                                                        @endphp
+                                                        <div class="flex items-center space-x-2 text-xs text-gray-600">
+                                                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                            </svg>
+                                                            <span class="font-medium text-gray-700">Rental:</span>
+                                                            <span>
+                                                                {{ $startDate->format('Y-m-d') }} &rarr; {{ $endDate->format('Y-m-d') }}
+                                                                ({{ $rentItem->rent_duration ?? '' }} days)
+                                                            </span>
+                                                        </div>
                                                     </div>
-                                                    <div class="mt-1 text-xs text-gray-600">
-                                                        <p><span class="font-medium">Start:</span>
-                                                            {{ \Carbon\Carbon::parse($latestRentOrderItem->created_at)->format('Y-m-d') }}
-                                                        </p>
-                                                        <p><span class="font-medium">End:</span>
-                                                            @if($rentItem->rent_duration)
-                                                                {{ \Carbon\Carbon::parse($latestRentOrderItem->created_at)->addDays($rentItem->rent_duration)->format('Y-m-d') }}
+                                                    <div>
+                                                        <div class="text-xs text-gray-600">
+                                                            <span class="font-medium">Rent:</span>
+                                                            @if ($latestRentOrderItem->created_at && $rentItem->rent_duration)
+                                                                @if ($now->lt($endDate))
+                                                                    <span class="text-green-600 font-semibold">
+                                                                        {{ abs((int) $endDate->diffInDays($now)) }} day(s)
+                                                                        left
+                                                                    </span>
+                                                                @else
+                                                                    <span class="text-red-600 font-semibold">
+                                                                        Ended {{ (int) $now->diffInDays($endDate) }} day(s)
+                                                                        ago
+                                                                    </span>
+                                                                @endif
                                                             @else
                                                                 N/A
                                                             @endif
-                                                        </p>
-                                                        <p><span class="font-medium">Days:</span>
-                                                            {{ $rentItem->rent_duration ?? '' }} days</p>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             @endif
@@ -349,7 +366,8 @@
                                                     </button>
                                                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Update Order
                                                         Status</h3>
-                                                    <form action="{{ route('rent-items.order.update-status', $latestOrder->id) }}"
+                                                    <form
+                                                        action="{{ route('rent-items.order.update-status', $latestOrder->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         <div class="mb-4">
@@ -481,7 +499,9 @@
                     [0, 'asc']
                 ],
                 columnDefs: [{
-                    targets: [1, 2, 3, 4], // Make Product Info, Status, Order Info, and Actions columns non-orderable
+                    targets: [1, 2, 3,
+                        4
+                    ], // Make Product Info, Status, Order Info, and Actions columns non-orderable
                     orderable: false
                 }],
                 language: {
@@ -593,7 +613,8 @@
                 if (event.key === 'Escape') {
                     // Close all open modals
                     const openModals = document.querySelectorAll(
-                        '[id^="orderStatusModal-"]:not(.hidden), [id^="deleteProductModal-"]:not(.hidden)');
+                        '[id^="orderStatusModal-"]:not(.hidden), [id^="deleteProductModal-"]:not(.hidden)'
+                    );
                     openModals.forEach(modal => {
                         if (modal.id.includes('deleteProductModal')) {
                             const productId = modal.id.split('-')[1];
@@ -607,5 +628,3 @@
         });
     </script>
 @endsection
-
-

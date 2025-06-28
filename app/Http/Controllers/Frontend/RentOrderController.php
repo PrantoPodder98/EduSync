@@ -80,7 +80,7 @@ class RentOrderController extends Controller
                 'zip_code' => $request->zip_code,
                 'email' => $request->email,
                 'phone_number' => $request->phone_number,
-                'total_amount' => $totalAmount,
+                'total_amount' => $amount,
                 'order_notes' => $request->order_notes,
                 'payment_method' => $cartItems->first()->rentItem->user_payment_option,
                 'payment_status' => strtolower($cartItems->first()->rentItem->user_payment_option) === 'cash on delivery' ? 'pending' : 'completed',
@@ -92,7 +92,7 @@ class RentOrderController extends Controller
                 RentOrderItem::create([
                     'order_id' => $order->id,
                     'rent_item_id' => $cartItem->rent_item_id,
-                    'price' => $amount,
+                    'price' => $totalAmount,
                 ]);
                 $cartItem->rentItem->update(['status' => 0]); // 0 = sold
             }

@@ -62,8 +62,8 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1">Rent Duration</label>
-                        <input type="number" name="rent_duration" class="w-full border rounded px-3 py-2"
+                        <label class="block text-sm font-medium mb-1">Rent Duration <span class="text-red-500">*</span></label>
+                        <input type="number" name="rent_duration" class="w-full border rounded px-3 py-2" required
                             placeholder="Enter Duration">
                     </div>
                 </div>
