@@ -3,22 +3,22 @@
 @section('content')
     <div class="container mx-auto mt-20 mb-60 px-4">
         <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-[#5E5EDC] mb-2">My Products for Second Hand</h1>
-            <p class="text-gray-600">Manage your second-hand product listings and orders</p>
+            <h1 class="text-4xl font-bold text-[#5E5EDC] mb-2">My Products for Rent</h1>
+            <p class="text-gray-600">Manage your rent product listings and orders</p>
         </div>
         <div class="flex justify-end mb-4">
-            <a href="{{ route('second-hand-products.create') }}"
-            class="inline-flex items-center px-3 py-1 bg-[#5E5EDC] text-white rounded font-semibold text-sm hover:bg-[#4A4AC8] transition-colors shadow">
-            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Add New Product
+            <a href="{{ route('rent-items.create') }}"
+                class="inline-flex items-center px-3 py-1 bg-[#5E5EDC] text-white rounded font-semibold text-sm hover:bg-[#4A4AC8] transition-colors shadow">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Add New Rent Item
             </a>
         </div>
 
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="overflow-x-auto">
-                <table id="my-products-table" class="min-w-full divide-y divide-gray-200">
+                <table id="my-rent-items-table" class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gradient-to-r text-black">
                         <tr>
                             <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">#</th>
@@ -41,11 +41,11 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-100">
-                        @forelse ($secondHandProducts as $index => $product)
+                        @forelse ($rentItems as $index => $rentItem)
                             @php
-                                // Get the latest orderItem if available
-                                $latestOrderItem = $product->orderItems->sortByDesc('created_at')->first();
-                                $latestOrder = $latestOrderItem ? $latestOrderItem->order : null;
+                                // Get the latest rentOrderItem if available
+                                $latestRentOrderItem = $rentItem->rentOrderItems->sortByDesc('created_at')->first();
+                                $latestOrder = $latestRentOrderItem ? $latestRentOrderItem->order : null;
                                 $customer = $latestOrder ? $latestOrder->user : null;
                             @endphp
 
@@ -61,25 +61,26 @@
                                 <td class="px-6 py-4">
                                     <div class="flex items-start space-x-4">
                                         <div class="flex-shrink-0">
-                                            <img src="{{ asset($product->images->first()->url ?? 'asset/frontend_asset/images/default.jpg') }}"
-                                                alt="{{ $product->name }}"
+                                            <img src="{{ asset($rentItem->images->first()->url ?? 'asset/frontend_asset/images/default.jpg') }}"
+                                                alt="{{ $rentItem->name }}"
                                                 class="w-16 h-16 object-cover rounded-lg shadow-md border-2 border-gray-200">
                                         </div>
                                         <div class="flex-grow">
-                                            <h3 class="text-lg font-semibold text-gray-900 mb-1">{{ $product->name }}</h3>
+                                            <h3 class="text-lg font-semibold text-gray-900 mb-1">{{ $rentItem->name }}</h3>
                                             <div class="flex items-center space-x-2">
                                                 <span
-                                                    class="text-2xl font-bold text-[#5E5EDC]">৳{{ number_format($product->price) }}</span>
-                                                <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">BDT</span>
+                                                    class="text-2xl font-bold text-[#5E5EDC]">৳{{ number_format($rentItem->price_per_day) }}</span>
+                                                <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">per
+                                                    day</span>
                                             </div>
-                                            @if ($product->brand)
+                                            @if ($rentItem->brand)
                                                 <p class="text-sm text-gray-600 mt-1">
-                                                    <span class="font-medium">Brand:</span> {{ $product->brand }}
+                                                    <span class="font-medium">Brand:</span> {{ $rentItem->brand }}
                                                 </p>
                                             @endif
-                                            @if ($product->item_type)
+                                            @if ($rentItem->category)
                                                 <p class="text-sm text-gray-600">
-                                                    <span class="font-medium">Type:</span> {{ $product->item_type }}
+                                                    <span class="font-medium">Category:</span> {{ $rentItem->category }}
                                                 </p>
                                             @endif
                                         </div>
@@ -90,9 +91,8 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="space-y-2">
                                         <!-- Product Status -->
-                                        <!-- Product Status -->
                                         <div class="flex items-center space-x-2">
-                                            @if ($product->status == 1)
+                                            @if ($rentItem->status == 1)
                                                 <span
                                                     class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-green-400 to-green-600 text-white shadow">
                                                     <svg class="w-3 h-3 mr-2 text-white" fill="currentColor"
@@ -112,7 +112,7 @@
                                                         <path d="M7 7l6 6M13 7l-6 6" stroke="#fff" stroke-width="2"
                                                             fill="none" stroke-linecap="round" stroke-linejoin="round" />
                                                     </svg>
-                                                    Product: <span class="ml-1">Sold</span>
+                                                    Product: <span class="ml-1">Rented</span>
                                                 </span>
                                             @endif
                                         </div>
@@ -167,6 +167,31 @@
                                                     {{ $latestOrder->created_at->format('Y-m-d H:i') }}
                                                 </div>
                                             </div>
+
+                                            <!-- Rental Period -->
+                                            @if ($latestRentOrderItem)
+                                                <div class="border-t border-gray-200 pt-3">
+                                                    <div class="flex items-center space-x-2 text-sm">
+                                                        <svg class="w-4 h-4 text-gray-500" fill="none"
+                                                            stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                        </svg>
+                                                        <span class="font-medium text-gray-700">Rental Period:</span>
+                                                    </div>
+                                                    <div class="mt-1 text-xs text-gray-600">
+                                                        <p><span class="font-medium">Start:</span>
+                                                            {{ \Carbon\Carbon::parse($latestRentOrderItem->start_date)->format('Y-m-d') }}
+                                                        </p>
+                                                        <p><span class="font-medium">End:</span>
+                                                            {{ \Carbon\Carbon::parse($latestRentOrderItem->end_date)->format('Y-m-d') }}
+                                                        </p>
+                                                        <p><span class="font-medium">Days:</span>
+                                                            {{ $latestRentOrderItem->rental_days }} days</p>
+                                                    </div>
+                                                </div>
+                                            @endif
 
                                             <!-- Customer Info -->
                                             <div class="border-t border-gray-200 pt-3">
@@ -241,7 +266,6 @@
                                                 </div>
                                             @endif
 
-
                                             <!-- Order Status -->
                                             <div class="border-t pt-3 flex items-center space-x-2">
                                                 <span class="text-xs font-medium text-gray-700">Order Status:</span>
@@ -266,7 +290,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex flex-col space-y-2">
                                         <!-- Product View -->
-                                        <a href="{{ route('second-hand-products.show', $product->id) }}"
+                                        <a href="{{ route('rent-items.show', $rentItem->id) }}"
                                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
                                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
@@ -278,9 +302,9 @@
                                             Product View
                                         </a>
 
-                                        @if ($product->status == 1)
+                                        @if ($rentItem->status == 1)
                                             <!-- Edit Product -->
-                                            <a href="{{ route('second-hand-products.edit', $product->id) }}"
+                                            <a href="{{ route('rent-items.edit', $rentItem->id) }}"
                                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
                                                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
@@ -362,9 +386,9 @@
                                             </div>
                                         @endif
 
-                                        @if ($product->status == 1)
+                                        @if ($rentItem->status == 1)
                                             <!-- Delete Button to open modal -->
-                                            <button type="button" onclick="openDeleteModal({{ $product->id }})"
+                                            <button type="button" onclick="openDeleteModal({{ $rentItem->id }})"
                                                 class="w-full inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
                                                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
@@ -375,10 +399,10 @@
                                             </button>
 
                                             <!-- Delete Confirmation Modal -->
-                                            <div id="deleteProductModal-{{ $product->id }}"
+                                            <div id="deleteProductModal-{{ $rentItem->id }}"
                                                 class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300">
                                                 <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 transform scale-95 transition-transform duration-300"
-                                                    id="deleteModalContent-{{ $product->id }}">
+                                                    id="deleteModalContent-{{ $rentItem->id }}">
                                                     <div class="text-center">
                                                         <div
                                                             class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-6">
@@ -389,25 +413,22 @@
                                                                     d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                                                             </svg>
                                                         </div>
-                                                        <h3 class="text-xl font-bold text-gray-900 mb-3">Delete Product
-                                                        </h3>
-                                                        <p class="text-gray-600 mb-8">Are you sure you want to delete this
-                                                            product? This action <br>cannot be undone and will permanently
-                                                            remove the <br>product from the system.</p>
-
-                                                        <div class="flex space-x-4">
-                                                            <button onclick="closeDeleteModal({{ $product->id }})"
-                                                                class="flex-1 px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-medium transition-colors">
-                                                                Cancel
-                                                            </button>
-                                                            <form id="deleteForm-{{ $product->id }}"
-                                                                action="{{ route('second-hand-products.destroy', $product->id) }}"
-                                                                method="POST" class="flex-1">
+                                                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Are you sure
+                                                            you want to delete this rent item?</h3>
+                                                        <p class="text-sm text-gray-600 mb-6">This action cannot be undone.
+                                                        </p>
+                                                        <div class="flex justify-center space-x-4">
+                                                            <button type="button"
+                                                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+                                                                onclick="closeDeleteModal({{ $rentItem->id }})">Cancel</button>
+                                                            <form
+                                                                action="{{ route('rent-items.destroy', $rentItem->id) }}"
+                                                                method="POST" class="inline">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
-                                                                    class="w-full px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium transition-colors">
-                                                                    Delete Product
+                                                                    class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                                                                    Delete
                                                                 </button>
                                                             </form>
                                                         </div>
@@ -447,7 +468,8 @@
 @section('custom_js')
     <script>
         $(document).ready(function() {
-            $('#my-products-table').DataTable({
+            // Initialize DataTable for rent items
+            $('#my-rent-items-table').DataTable({
                 searching: true,
                 paging: true,
                 pageLength: 10,
@@ -456,15 +478,15 @@
                     [0, 'asc']
                 ],
                 columnDefs: [{
-                    targets: [1, 3, 4],
+                    targets: [1, 2, 3, 4], // Make Product Info, Status, Order Info, and Actions columns non-orderable
                     orderable: false
                 }],
                 language: {
-                    search: "Search products:",
-                    lengthMenu: "Show _MENU_ products per page",
-                    info: "Showing _START_ to _END_ of _TOTAL_ products",
-                    infoEmpty: "No products available",
-                    zeroRecords: "No matching products found",
+                    search: "Search rent items:",
+                    lengthMenu: "Show _MENU_ rent items per page",
+                    info: "Showing _START_ to _END_ of _TOTAL_ rent items",
+                    infoEmpty: "No rent items available",
+                    zeroRecords: "No matching rent items found",
                     paginate: {
                         first: "First",
                         last: "Last",
@@ -474,8 +496,7 @@
                 }
             });
         });
-    </script>
-    <script>
+
         // Order Status Modal Functions
         function openOrderStatusModal(orderId) {
             const modal = document.getElementById('orderStatusModal-' + orderId);
@@ -563,6 +584,25 @@
                     }
                 });
             });
+
+            // Close modal on Escape key press
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    // Close all open modals
+                    const openModals = document.querySelectorAll(
+                        '[id^="orderStatusModal-"]:not(.hidden), [id^="deleteProductModal-"]:not(.hidden)');
+                    openModals.forEach(modal => {
+                        if (modal.id.includes('deleteProductModal')) {
+                            const productId = modal.id.split('-')[1];
+                            closeDeleteModal(productId);
+                        } else if (modal.id.includes('orderStatusModal')) {
+                            modal.classList.add('hidden');
+                        }
+                    });
+                }
+            });
         });
     </script>
 @endsection
+
+

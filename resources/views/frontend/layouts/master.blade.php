@@ -55,6 +55,24 @@
         .animate-slide-in {
             animation: slide-in 0.5s ease-out forwards;
         }
+
+
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .submenu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(10px);
+            transition: all 0.2s ease;
+        }
+        .group:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
     </style>
     @yield('custom_css')
 </head>
@@ -70,6 +88,22 @@
     @include('frontend.layouts.footer')
 
     <div id="toast-container" class="fixed top-5 right-5 z-50 space-y-4"></div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById('profileDropdownMenu').classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('profileDropdownMenu');
+            const button = event.target.closest('button[onclick="toggleDropdown()"]');
+            
+            if (!dropdown.contains(event.target) && !button) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

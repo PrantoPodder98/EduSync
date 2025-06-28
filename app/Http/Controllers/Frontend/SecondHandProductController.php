@@ -279,7 +279,7 @@ class SecondHandProductController extends Controller
                 'payment_status' => in_array($request->status, ['processing', 'shipped', 'delivered']) ? 'completed' : 'pending',
             ]);
 
-            return redirect()->back()->with('success', 'Order status updated successfully!');
+            return redirect()->back()->with('success', 'Second hand product order status updated successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error updating order status. Please try again.');
         }

@@ -201,6 +201,7 @@ class RentItemController extends Controller
     public function myRentItems()
     {
         $rentItems = RentItem::where('user_id', auth()->id())
+            ->with(['images', 'rentOrderItems.order'])
             ->latest('created_at')
             ->get();
 
@@ -232,7 +233,7 @@ class RentItemController extends Controller
                 'payment_status' => in_array($request->status, ['processing', 'shipped', 'delivered']) ? 'completed' : 'pending',
             ]);
 
-            return redirect()->back()->with('success', 'Rent order status updated successfully!');
+            return redirect()->back()->with('success', 'Rent item order status updated successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error updating rent order status. Please try again.');
         }
