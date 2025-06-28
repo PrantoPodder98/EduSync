@@ -131,6 +131,41 @@
                     </ul>
                 </li>
 
+               
+                <!-- Rental Accommodation with Submenu -->
+                <li class="relative group">
+                    <a href="#" class="flex items-center justify-between px-6 py-3 hover:bg-purple-50 transition-all duration-200">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="text-gray-700 group-hover:text-purple-700 font-medium">Rental Accommodation</span>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </a>
+                    <!-- Submenu -->
+                    <ul class="submenu absolute right-full top-0 mt-0 mr-2 w-56 glass-effect rounded-lg shadow-xl z-30 border border-white/20">
+                        <li>
+                            <a href="{{ route('myRentalNotices') }}" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-all duration-200 group">
+                                <svg class="w-4 h-4 mr-3 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700 group-hover:text-purple-700 font-medium">Rental Notice List</span>
+                            </a>
+                        </li>
+                        <li>
+                            {{-- <a href="{{ route('my.reservations') }}" class="flex items-center px-4 py-3 hover:bg-pink-50 transition-all duration-200 group">
+                                <svg class="w-4 h-4 mr-3 text-pink-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700 group-hover:text-pink-700 font-medium">My Reservation</span>
+                            </a> --}}
+                        </li>
+                    </ul>
+                </li>
+
                 <!-- Logout -->
                 <li class="pt-2">
                     <form method="POST" action="{{ route('logout') }}">

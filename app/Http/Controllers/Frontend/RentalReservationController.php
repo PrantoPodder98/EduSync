@@ -205,15 +205,14 @@ class RentalReservationController extends Controller
         // return
         $reservation = RentalReservation::with('rentalNotice')->findOrFail($reservationId);
 
-        if ($reservation->user_id !== Auth::id()) {
-            abort(403);
-        }
+        // if ($reservation->user_id !== Auth::id()) {
+        //     abort(403);
+        // }
 
-        return view('frontend.rental.success', compact('reservation'));
-        // return redirect()->route('rental-notice.index')->with('success', 'Reservation successful! Your reservation has been confirmed.');
+        return view('frontend.rental.success', compact('reservation'))->with('success', 'Reservation successful! Your reservation has been confirmed.');
     }
 
-    public function userReservations()
+    public function myReservations()
     {
         $reservations = RentalReservation::with(['rentalNotice', 'rentalNotice.images'])
             ->where('user_id', Auth::id())

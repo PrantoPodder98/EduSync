@@ -8,11 +8,11 @@
         </div>
         <div class="flex justify-end mb-4">
             <a href="{{ route('second-hand-products.create') }}"
-            class="inline-flex items-center px-3 py-1 bg-[#5E5EDC] text-white rounded font-semibold text-sm hover:bg-[#4A4AC8] transition-colors shadow">
-            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Add New Product
+                class="inline-flex items-center px-3 py-1 bg-[#5E5EDC] text-white rounded font-semibold text-sm hover:bg-[#4A4AC8] transition-colors shadow">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Add New Product
             </a>
         </div>
 
@@ -429,7 +429,7 @@
                                         </svg>
                                         <h3 class="text-lg font-medium text-gray-900 mb-2">No Products Found</h3>
                                         <p class="text-gray-500">You haven't listed any second-hand products yet.</p>
-                                        <a href="#"
+                                        <a href="{{ route('second-hand-products.create') }}"
                                             class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#5E5EDC] hover:bg-[#4A4AC8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5E5EDC]">
                                             Add Your First Product
                                         </a>

@@ -56,4 +56,9 @@ class RentalNoticeBoardAccommodation extends Model
     {
         return $this->morphMany(Image::class, 'parentable');
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(RentalReservation::class, 'rental_notice_id');
+    }
 }

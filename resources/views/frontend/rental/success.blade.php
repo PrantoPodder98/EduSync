@@ -160,9 +160,9 @@
                 class="bg-[#5E5EDC] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#4a4ab8] transition-colors duration-300 text-center">
                 Browse More Properties
             </a>
-            <a href="{{ route('user.reservations') }}" 
+            <a href="{{ route('rental-notice.index') }}" 
                 class="border border-[#5E5EDC] text-[#5E5EDC] px-8 py-3 rounded-lg font-semibold hover:bg-[#5E5EDC] hover:text-white transition-colors duration-300 text-center">
-                View My Reservations
+                Back to Rental Notices
             </a>
             <button onclick="printReservationDetails()" 
                 class="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">

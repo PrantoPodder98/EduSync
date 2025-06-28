@@ -67,6 +67,9 @@ Route::middleware('auth')->group(function () {
 
     // Rental Notice Board Accommodation routes
     Route::resource('rental-notice', RentalNoticeBoardAccommodationController::class);
+    Route::get('my-rental-notices', [RentalNoticeBoardAccommodationController::class, 'myRentalNotices'])->name('myRentalNotices');
+    // rental notice reservation status update
+    Route::post('rental-notice/{rentalNotice}/update-status', [RentalNoticeBoardAccommodationController::class, 'updateReservationStatus'])->name('rental-reservations.update-status');
 
     // Rental reservation routes
     Route::get('/rental/{id}/reserve', [RentalReservationController::class, 'showCheckout'])
@@ -83,8 +86,8 @@ Route::middleware('auth')->group(function () {
         ->name('rental.payment.bkash.process');
     Route::get('/reservation/{reservation}/success', [RentalReservationController::class, 'showSuccess'])
         ->name('rental.reservation.success');
-    Route::get('/my-reservations', [RentalReservationController::class, 'userReservations'])
-        ->name('user.reservations');
+    Route::get('/my-reservations', [RentalReservationController::class, 'myReservations'])
+        ->name('my.reservations');
 
     // Rental Order Item routes
     Route::resource('rent-items', RentItemController::class);
