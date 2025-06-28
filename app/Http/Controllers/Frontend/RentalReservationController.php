@@ -214,11 +214,12 @@ class RentalReservationController extends Controller
 
     public function myReservations()
     {
+        // return
         $reservations = RentalReservation::with(['rentalNotice', 'rentalNotice.images'])
             ->where('user_id', Auth::id())
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('frontend.user.reservations', compact('reservations'));
+        return view('frontend.rental_notice_board_accommodations.my-reservations', compact('reservations'));
     }
 }

@@ -7,9 +7,20 @@
         <div>
             <h5 class="text-white font-semibold mb-2">Features</h5>
             <ul>
-                <li><a href="#" class="hover:text-white">Marketplace</a></li>
-                <li><a href="#" class="hover:text-white">Housing</a></li>
-                <li><a href="#" class="hover:text-white">Jobs</a></li>
+                <li>
+                    <a href="{{ route('lost-found') }}" class="hover:text-white">Lost & Found</a>
+                </li>
+                <li>
+                    <a href="{{ route('second-hand-products.index') }}" class="hover:text-white">Second-Hand
+                        Marketplace</a>
+                </li>
+                <li>
+                    <a href="{{ route('rental-notice.index') }}" class="hover:text-white">Rental
+                        Accommodation</a>
+                </li>
+                <li>
+                    <a href="{{ route('rent-items.index') }}" class="hover:text-white">Rent Items</a>
+                </li>
             </ul>
         </div>
         <div>

@@ -87,7 +87,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservation/{reservation}/success', [RentalReservationController::class, 'showSuccess'])
         ->name('rental.reservation.success');
     Route::get('/my-reservations', [RentalReservationController::class, 'myReservations'])
-        ->name('my.reservations');
+        ->name('myReservations');
 
     // Rental Order Item routes
     Route::resource('rent-items', RentItemController::class);
