@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="px-8 my-14 text-center">
-        <h1 class="text-3xl font-bold text-[#5E5EDC] mb-6">Rental Items Section</h1>
+        <h1 class="text-3xl font-bold text-[#5E5EDC] mb-6">Rent Items Section</h1>
 
         <div class="flex justify-end mb-8">
             <div class="flex space-x-4 items-start">

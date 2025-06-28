@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-    <h1 class="text-3xl font-bold text-[#5E5EDC] my-6 text-center">Rental Notice Board</h1>
+    <h1 class="text-3xl font-bold text-[#5E5EDC] my-6 text-center">Rent Items Section</h1>
 
     <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Item Details</h2>
 

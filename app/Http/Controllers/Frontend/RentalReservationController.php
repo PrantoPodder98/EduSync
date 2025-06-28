@@ -86,10 +86,8 @@ class RentalReservationController extends Controller
             if ($validated['payment_method'] === 'card') {
 
                 return redirect()->route('rental.payment.card', $reservation->id);
-                // return redirect()->route('rental.payment.card', $reservation->id, $type, ['bank_name' => $rentalNotice->bank_name, 'bank_account_number' => $rentalNotice->bank_account_number, 'bank_routing_number' => $rentalNotice->bank_routing_number]);
             } else {
                 return redirect()->route('rental.payment.bkash', $reservation->id);
-                // return redirect()->route('rental.payment.bkash', $reservation->id, $type, ['amount' => $reservationFee, 'bkash_number' => $rentalNotice->bkash_number]);
             }
         } catch (\Exception $e) {
             DB::rollback();

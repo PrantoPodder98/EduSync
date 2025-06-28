@@ -35,7 +35,7 @@
                                 @if (isset($order->orderItems) && $order->orderItems->isNotEmpty())
                                     <span class="text-blue-600 font-semibold">Second-Hand Product</span>
                                 @elseif (isset($order->rentOrderItems) && $order->rentOrderItems->isNotEmpty())
-                                    <span class="text-green-600 font-semibold">Rent Items</span>
+                                    <span class="text-green-600 font-semibold">Rent Item</span>
                                 @else
                                     <span class="text-gray-600 font-semibold">Unknown</span>
                                 @endif
@@ -108,10 +108,9 @@
                                     {{ ucfirst($order->status) }}
                                 </span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ number_format($order->total_amount) }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">BDT {{ number_format($order->total_amount) }}/-</td>
                         </tr>
                     @endforeach
-
                 </tbody>
             </table>
         </div>

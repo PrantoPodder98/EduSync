@@ -98,7 +98,7 @@ class RentOrderController extends Controller
             }
 
             // Clear the cart
-            $user->cartItems()->delete();
+            $user->rentCartItems()->delete();
 
             // Clear session data
             session()->forget(['pending_order', 'rent_cart_items']);

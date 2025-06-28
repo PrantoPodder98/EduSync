@@ -106,7 +106,7 @@ class PaymentController extends Controller
                 'payment_method' => 'bKash',
                 'payment_status' => 'completed',
                 'bkash_number' => $bkashNumber,
-                'status' => 'pending'
+                'status' => 'processing'
             ]);
 
             // Create order items
@@ -210,7 +210,7 @@ class PaymentController extends Controller
                 'payment_method' => 'bKash',
                 'payment_status' => 'completed',
                 'bkash_number' => $bkashNumber,
-                'status' => 'pending'
+                'status' => 'processing'
             ]);
 
 
