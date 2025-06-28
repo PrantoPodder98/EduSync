@@ -11,7 +11,8 @@
                 </div>
                 <h1 class="text-2xl font-bold text-gray-800">Bkash Payment</h1>
                 <p class="text-gray-600 mt-2">Complete your payment securely</p>
-                @if (isset($type) && ($type = 'reservation'))
+
+                @if (isset($type) && $type == 'reservation')
                     <div class="mt-2 text-sm text-pink-700 font-semibold">
                         bKash Number: {{ $reservation->rentalNotice->bkash_number ?? '' }}
                     </div>
@@ -28,7 +29,7 @@
                 <div class="flex justify-between items-center">
                     <span class="text-gray-600">Amount to Pay:</span>
                     <span class="text-2xl font-bold text-pink-600">
-                        @if (isset($type) && ($type = 'reservation'))
+                        @if (isset($type) && $type == 'reservation')
                             ৳{{ number_format($reservation->reservation_fee ?? '') }}
                         @else
                             ৳{{ number_format($amount) }}
@@ -36,16 +37,18 @@
                     </span>
                 </div>
             </div>
-            @if (isset($type) && ($type = 'reservation'))
+            @if (isset($type) && $type == 'reservation')
                 <form action="{{ route('rental.payment.bkash.process', $reservation->id) }}" method="POST" id="bkashForm">
-                @else
-                    <form action="{{ route('payment.bkash.process') }}" method="POST" id="bkashForm">
+                @elseif (isset($type) && $type == 'rent')
+                    <form action="{{ route('rent.payment.bkash.process') }}" method="POST" id="bkashForm">
+                    @else
+                        <form action="{{ route('payment.bkash.process') }}" method="POST" id="bkashForm">
             @endif
             @csrf
-
-            @if (isset($type) && ($type = 'rent'))
-                <input type="hidden" name="type" value="rent">
+            @if (isset($type) && $type == 'rent')
+                <input type="hidden" name="amount" value="{{ $amount }}">
             @endif
+
             <div class="mb-4">
                 <label class="block mb-2 text-sm font-medium text-gray-700">Bkash Account Number *</label>
                 <input type="number" name="bkash_number" value="{{ old('bkash_number') }}" placeholder="01XXXXXXXXX"
@@ -70,7 +73,7 @@
             <button type="submit" id="payBtn"
                 class="w-full bg-pink-600 text-white py-3 rounded-lg font-semibold hover:bg-pink-700 focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition duration-200">
                 <span id="payBtnText">
-                    @if (isset($type) && ($type = 'reservation'))
+                    @if (isset($type) && $type == 'reservation')
                         Pay ৳{{ number_format($reservation->reservation_fee ?? '') }}
                     @else
                         Pay ৳{{ number_format($amount) }}
@@ -90,7 +93,7 @@
             </button>
 
             <div class="mt-4 text-center">
-                @if (isset($type) && ($type = 'reservation'))
+                @if (isset($type) && $type == 'reservation')
                     <a href="{{ route('rental.reserve.checkout', $reservation->rental_notice_id) }}"
                         class="text-gray-600 hover:text-gray-800 text-sm">
                         ← Back to Checkout

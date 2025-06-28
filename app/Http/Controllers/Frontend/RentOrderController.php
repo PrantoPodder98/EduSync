@@ -38,10 +38,12 @@ class RentOrderController extends Controller
         $paymentOption = $cartItem->rentItem->user_payment_option;
 
         // Store order data in session for payment processing
+        // return $request->all();
         session([
             'pending_order' => $request->all(),
             'rent_cart_items' => $cartItems
         ]);
+
         // Redirect to bKash payment
         if ($cartItem->rentItem->rent_duration != 0) {
             $amount = $cartItem->rentItem->price * $cartItem->rentItem->rent_duration;
@@ -53,7 +55,7 @@ class RentOrderController extends Controller
             return $this->processOrder($request, $cartItems, $amount);
         } else {
             // return $amount;
-            return redirect()->route('payment.bkash', ['amount' => $amount, 'bkash_number' => $cartItem->rentItem->user_bKash_number, 'type' => 'rent']);
+            return redirect()->route('rent.payment.bkash', ['amount' => $amount, 'bkash_number' => $cartItem->rentItem->user_bKash_number, 'type' => 'rent']);
         }
     }
 
@@ -103,7 +105,8 @@ class RentOrderController extends Controller
 
             DB::commit();
 
-            return redirect()->route('rent.order.success', $order->id)->with('success', 'Order placed successfully!');
+            // return redirect()->route('rent.order.success', $order->id)->with('success', 'Order placed successfully!');
+            return redirect()->route('orders.index')->with('success', 'Order placed successfully! Your order number is ' . $order->order_number);
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error', 'Something went wrong. Please try again.')->withInput();

@@ -61,6 +61,9 @@ Route::middleware('auth')->group(function () {
     // Payment routes
     Route::get('/payment/bkash', [PaymentController::class, 'showBkashPayment'])->name('payment.bkash');
     Route::post('/payment/bkash/process', [PaymentController::class, 'processBkashPayment'])->name('payment.bkash.process');
+    Route::get('/rent-payment/bkash', [PaymentController::class, 'showRentBkashPayment'])->name('rent.payment.bkash');
+    Route::post('/rent-payment/bkash/process', [PaymentController::class, 'processRentBkashPayment'])->name('rent.payment.bkash.process');
+
 
     // Rental Notice Board Accommodation routes
     Route::resource('rental-notice', RentalNoticeBoardAccommodationController::class);
@@ -103,6 +106,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/rent-order/success/{order}', [RentOrderController::class, 'orderSuccess'])->name('rent.order.success');
     Route::get('/my-rent-orders', [RentOrderController::class, 'myOrders'])->name('rent.orders.index');
     Route::get('/rent-order/{order}', [RentOrderController::class, 'show'])->name('rent.order.show');
+
 });
 
 require __DIR__ . '/auth.php';

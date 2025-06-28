@@ -11,7 +11,7 @@
               Marketplace</a>
           <a href="{{ route('rental-notice.index')}}" class="text-gray-700 hover:text-indigo-600">Rental
               Accommodation</a>
-          <a href="{{ route('rent-items.index')}}" class="text-gray-700 hover:text-indigo-600">Rental Items</a>
+          <a href="{{ route('rent-items.index')}}" class="text-gray-700 hover:text-indigo-600">Rent Items</a>
           {{-- <a href="#" class="text-gray-700 hover:text-indigo-600">Community</a> --}}
       </nav>
       <div class="relative">

@@ -15,11 +15,16 @@ class RentCartController extends Controller
     {
         // return
         $item = Auth::user()->rentCartWithItems()->first();
-        
-        if ($item->rentItem->rent_duration != 0) {
-            $totalAmount = $item->rentItem->price * $item->rentItem->rent_duration;
+
+        if ($item != null) {
+            if ($item->rentItem->rent_duration != 0) {
+                $totalAmount = $item->rentItem->price * $item->rentItem->rent_duration;
+            } else {
+                $totalAmount = $item->rentItem->price;
+            }
         } else {
-            $totalAmount = $item->rentItem->price;
+            $item = null; // No item in cart
+            $totalAmount = 0; // No items in cart
         }
 
         return view('frontend.cart.rent.index', compact('item', 'totalAmount'));
@@ -107,7 +112,7 @@ class RentCartController extends Controller
     public function checkout()
     {
         $item = Auth::user()->rentCartWithItems()->first();
-        
+
         if (!$item) {
             return redirect()->route('rent.cart.index')->with('error', 'Your cart is empty!');
         }
